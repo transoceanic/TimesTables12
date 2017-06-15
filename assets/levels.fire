@@ -233,8 +233,12 @@
       "__id__": 2
     },
     "_enabled": true,
-    "levelButtonPrefab": {
-      "__uuid__": "2b73f50f-a331-487e-8211-82d90f78365e"
-    }
+    "canvas": {
+      "__id__": 2
+    },
+    "levelButtonGroupPrefab": {
+      "__uuid__": "680f1761-def7-462f-86a7-08410286f021"
+    },
+    "currentLevel": null
   }
 ]

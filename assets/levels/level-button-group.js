@@ -2,15 +2,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //    default: null,      // The default value will be used only when the component attaching
-        //                           to a node for the first time
-        //    url: cc.Texture2D,  // optional, default is typeof default
-        //    serializable: true, // optional, default is true
-        //    visible: true,      // optional, default is true
-        //    displayName: 'Foo', // optional
-        //    readonly: false,    // optional, default is false
-        // },
         button: {
             default: null,
             type: cc.Button
@@ -25,12 +16,15 @@ cc.Class({
         },
         scene: {
             default: null
-        }
+        },
+        
+        pressedScale: 1.3,
+        transDuration: 0.08
    },
 
     // use this for initialization
     onLoad: function () {
-
+        // this.initScale = this.node.scale;
     },
     
     setIndex: function(index) {
@@ -40,7 +34,13 @@ cc.Class({
     
     onButtonClick: function() {
         if (this.scene) {
-            this.scene.chooseLevel(this.index);
+            this.node.runAction(cc.sequence(
+                cc.scaleTo(this.transDuration, this.pressedScale),
+                cc.callFunc(function() {
+                    this.scene.chooseLevel(this.index);
+                }, this),
+                // cc.scaleTo(0, this.initScale)
+            ));
         }
     },
 

@@ -1,8 +1,11 @@
+var Types = require('Types'),
+flow = require('Flow');
+
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        number: null,
+        // number: null,
         
         labelPrefab: {
             default: null,
@@ -13,15 +16,16 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        this.numberObj = flow.getTrainingNumber();
         // console.log('-----scene one number table for ' + this.number);
         
-        this.canvas = cc.director.getScene().getChildByName('Canvas')
-        this.canvas.opacity = 0;
-        this.canvas.runAction(cc.sequence(
+        // this.canvas = cc.director.getScene().getChildByName('Canvas')
+        this.node.opacity = 0;
+        this.node.runAction(cc.sequence(
             cc.fadeIn(G.fadeInDuration)
          ));
    
-        for (var i=0; i<10; i++) {
+        for (var i=0; i<G.levels.length; i++) {
             var newLabel = cc.instantiate(this.labelPrefab);
             // newLevelButtonGroup.parent = this.node;
             this.node.addChild(newLabel);
@@ -35,15 +39,14 @@ cc.Class({
             );
     
             var newLabelScript = newLabel.getComponent('one-number-label');
-            newLabelScript.setText(this.number, i+1);
+            newLabelScript.setText(this.numberObj, G.levels[i]);
         }
         
         // this.runAction(cc.scaleTo(2.0, 2.0));
     },
     
     onBackClicked: function() {
-        console.log('one-number-table onBackClicked '+this.name);
-        this.canvas.runAction(cc.sequence(
+        this.node.runAction(cc.sequence(
             cc.fadeOut(G.fadeOutDuration),
             cc.callFunc(function() {
                 cc.director.loadScene('levels');
@@ -52,21 +55,12 @@ cc.Class({
     },
     
     trainingClicked: function() {
-        console.log('one-number-table trainingClicked '+this.canvas.getComponent('one-number-table-scene').name);
-        var self = this.canvas;
-        self.runAction(cc.sequence(
+        flow.setState(Types.State.training);
+        
+        this.node.runAction(cc.sequence(
             cc.fadeOut(G.fadeOutDuration),
             cc.callFunc(function() {
-                cc.director.loadScene('training', function(err, data) {
-                    // console.log('callback load='+data.children[0].getComponent('one-number-table-scene').number);
-                    console.log('step 1 = '+self.getComponent('one-number-table-scene').number);
-                    var trainingScene = data.children[0].getComponent('training-scene');
-                    self.runAction(
-                        cc.callFunc(function() {
-                            trainingScene.startTraining(self.getComponent('one-number-table-scene').number);
-                        }, trainingScene)
-                    );
-                });
+                cc.director.loadScene('training');
             })
         ));
     }

@@ -11,7 +11,7 @@ cc.Class({
             type: cc.Label
         },
         
-        index: {
+        numberObj: {
             default: null
         },
         scene: {
@@ -27,9 +27,9 @@ cc.Class({
         // this.initScale = this.node.scale;
     },
     
-    setIndex: function(index) {
-        this.index = index;
-        this.label.string = index;
+    setIndex: function(obj) {
+        this.numberObj = obj;
+        this.label.string = obj.number;
     },
     
     onButtonClick: function() {
@@ -37,8 +37,8 @@ cc.Class({
             this.node.runAction(cc.sequence(
                 cc.scaleTo(this.transDuration, this.pressedScale),
                 cc.callFunc(function() {
-                    this.scene.chooseLevel(this.index);
-                }, this),
+                    this.scene.chooseLevel(this.numberObj);
+                }, this)
                 // cc.scaleTo(0, this.initScale)
             ));
         }

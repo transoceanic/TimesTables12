@@ -10,28 +10,24 @@ cc.Class({
             default: null,
             type: cc.Label
         },
-        
-        numberObj: {
-            default: null
-        },
         scene: {
             default: null
         }
-   },
+    },
 
     // use this for initialization
     onLoad: function () {
-        // this.initScale = this.node.scale;
+
     },
-    
-    setIndex: function(obj) {
-        this.numberObj = obj;
-        this.label.string = obj.number;
+
+    setAnswer: function(answer) {
+        this.answer = answer;
+        this.label.string = this.answer.string;
     },
     
     onButtonClick: function() {
         if (this.scene) {
-            this.scene.chooseLevel(this.numberObj);
+            this.scene.chooseAnswer(this.answer);
         }
     },
 

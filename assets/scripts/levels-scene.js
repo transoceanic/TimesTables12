@@ -6,7 +6,8 @@ cc.Class({
     properties: {
         audioMng: cc.Node,
 
-        musicButton: cc.Button,
+        musicOff: cc.Button,
+        musicOn: cc.Button,
         
         levelButtonGroupPrefab: {
             default: null,
@@ -24,6 +25,8 @@ cc.Class({
         if (flow.getSettings('music')) {
             this.audioMng.playMusic();
         }
+        this.musicOff.node.active = flow.getSettings('music');
+        this.musicOn.node.active = !flow.getSettings('music');
 
 
         flow.setTrainingNumber(null);
@@ -84,6 +87,8 @@ cc.Class({
         } else {
             this.audioMng.pauseMusic();
         }
+        this.musicOff.node.active = status;
+        this.musicOn.node.active = !status;
     }
 
     // called every frame, uncomment this function to activate update callback

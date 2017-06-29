@@ -14,8 +14,10 @@ cc.Class({
         self.scaleDownAction = cc.scaleTo(self.transDuration, self.pressedScale);
         self.scaleUpAction = cc.scaleTo(self.transDuration, self.initScale);
         function onTouchDown (event) {
-            this.stopAllActions();
-            this.runAction(self.scaleDownAction);
+            if (self.button.interactable) {
+                this.stopAllActions();
+                this.runAction(self.scaleDownAction);
+            }
         }
         function onTouchUp (event) {
             this.stopAllActions();

@@ -99,10 +99,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 28
+        "__id__": 33
       },
       {
-        "__id__": 29
+        "__id__": 34
       }
     ],
     "_prefab": null,
@@ -555,8 +555,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 182.78,
-      "height": 77.78
+      "width": 575,
+      "height": 111.11
     },
     "_children": [],
     "_rotationX": 0,
@@ -593,8 +593,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 70,
-    "_fontSize": 70,
+    "_actualFontSize": 100,
+    "_fontSize": 100,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -602,7 +602,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "Label",
+    "_N$string": "10 x 10 = 100",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$overflow": 0
@@ -668,6 +668,12 @@
       },
       {
         "__id__": 21
+      },
+      {
+        "__id__": 23
+      },
+      {
+        "__id__": 25
       }
     ],
     "_rotationX": 0,
@@ -686,10 +692,13 @@
     "_tag": -1,
     "_opacityModifyRGB": false,
     "_id": "49d60IPpmBHjbEghiApluPo",
-    "_active": false,
+    "_active": true,
     "_components": [
       {
-        "__id__": 27
+        "__id__": 31
+      },
+      {
+        "__id__": 32
       }
     ],
     "_prefab": null,
@@ -823,6 +832,143 @@
   },
   {
     "__type__": "cc.Node",
+    "_name": "rate-stars-placeholder",
+    "_objFlags": 0,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_parent": {
+      "__id__": 17
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 500,
+      "height": 200
+    },
+    "_children": [],
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 176
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_tag": -1,
+    "_opacityModifyRGB": false,
+    "_id": "838ee9fitNHmr0nowow47sa",
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 22
+      }
+    ],
+    "_prefab": null,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "c1e5aM6h5NO0KFE7YlYJspM",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 21
+    },
+    "_enabled": true,
+    "starsPanel": {
+      "__uuid__": "87c5fa49-0cf5-42a3-8bab-f9e77e66c17c"
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "label",
+    "_objFlags": 0,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_parent": {
+      "__id__": 17
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 394.34,
+      "height": 80
+    },
+    "_children": [],
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -48
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_tag": -1,
+    "_opacityModifyRGB": false,
+    "_id": "a74e2IZmI5MhpuSC3axQuHc",
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 24
+      }
+    ],
+    "_prefab": null,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 23
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 40,
+    "_fontSize": 40,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "You finished this level.\nNext level is open.",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$overflow": 0
+  },
+  {
+    "__type__": "cc.Node",
     "_name": "button",
     "_objFlags": 0,
     "_opacity": 255,
@@ -849,7 +995,7 @@
     },
     "_children": [
       {
-        "__id__": 22
+        "__id__": 26
       }
     ],
     "_rotationX": 0,
@@ -871,10 +1017,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 24
+        "__id__": 28
       },
       {
-        "__id__": 25
+        "__id__": 29
       }
     ],
     "_prefab": null,
@@ -894,7 +1040,7 @@
     },
     "_cascadeOpacityEnabled": true,
     "_parent": {
-      "__id__": 21
+      "__id__": 25
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -926,7 +1072,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 23
+        "__id__": 27
       }
     ],
     "_prefab": null,
@@ -937,7 +1083,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 22
+      "__id__": 26
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -958,7 +1104,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 21
+      "__id__": 25
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -984,7 +1130,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 21
+      "__id__": 25
     },
     "_enabled": true,
     "transition": 2,
@@ -1012,7 +1158,7 @@
     },
     "clickEvents": [
       {
-        "__id__": 26
+        "__id__": 30
       }
     ],
     "_N$interactable": true,
@@ -1038,7 +1184,7 @@
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_N$target": {
-      "__id__": 21
+      "__id__": 25
     }
   },
   {
@@ -1060,6 +1206,18 @@
     "_enabled": true,
     "mask": {
       "__id__": 18
+    }
+  },
+  {
+    "__type__": "b52b5pasz9Bs4GkDlcpJMD9",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 17
+    },
+    "_enabled": true,
+    "rateStarsPlaceholder": {
+      "__id__": 21
     }
   },
   {

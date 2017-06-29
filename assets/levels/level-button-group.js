@@ -2,6 +2,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        rateStarsPlaceholder: {
+            default: null,
+            type: cc.Node
+        },
         button: {
             default: null,
             type: cc.Button
@@ -27,6 +31,15 @@ cc.Class({
     setIndex: function(obj) {
         this.numberObj = obj;
         this.label.string = obj.number;
+        
+        this.rateStarsPlaceholder.getComponent('RateStars')
+            .setStars(this.numberObj.stars.count, this.numberObj.stars.isNew);
+
+        this.numberObj.stars.isNew = false;
+        G.saveAll();
+            
+        this.button.interactable = !this.numberObj.locked;
+
     },
     
     onButtonClick: function() {

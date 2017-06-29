@@ -36,6 +36,8 @@ cc.Class({
             var newLevelButtonGroupScript = newLevelButtonGroup.getComponent('level-button-group');
             newLevelButtonGroupScript.setIndex(G.levels[i]);
             newLevelButtonGroupScript.scene = this;
+            
+            // console.log(i+' '+G.levels[i].stars);
         }
     },
 

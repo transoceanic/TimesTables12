@@ -1,4 +1,5 @@
 var flow = require('Flow');
+var Utils = require('Utils');
 
 cc.Class({
     extends: cc.Component,
@@ -30,9 +31,9 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.numberObj = flow.getTrainingNumber();
-
-        this.modalFinish.active = false;
         
+        this.wrongAnswerCounter = 0;
+
         
         // this.canvas = cc.director.getScene().getChildByName('Canvas');
         this.node.opacity = 0;
@@ -63,7 +64,8 @@ cc.Class({
     },
     
     generateQuestions: function() {
-        if (this.numberObj) {
+        if (this.numberObj) { 
+            // from one number table
             for (var i=0; i<G.levels.length; i++) {
                 this.questions.push({
                     first: this.numberObj,
@@ -74,43 +76,31 @@ cc.Class({
                     second: this.numberObj
                 });
             }
+        } else {
+            // play
         }
         
         
-        this.shuffle(this.questions);
-        // for (var m=0; m<this.questions.length; m++) {
-        //     console.log('random '+m+' = '+this.questions[m].first.number+' x '+this.questions[m].second.number);
-        // }
+        Utils.shuffle(this.questions);
     },
-    
-    shuffle: function(a) {
-        for (let i=a.length; i; i--) {
-            let j = Math.floor(Math.random() * i);
-            [a[i-1], a[j]] = [a[j], a[i-1]];
-        }
-    },
-    
-    showQuestion: function() {
-        if (this.questions.length == 19) {
-            if (this.numberObj) {
-                // level complete
-                this.modalFinish.y = 900;
-                this.modalFinish.active = true;
-                
-                var modalIn = cc.MoveBy.create(0.6, cc.p(0, -900))
-                    .easing(
-                        cc.easeBounceOut()
-                        // cc.easeElasticOut(2.0)
-                        //cc.easeCircleActionIn()
-                        //cc.easeQuarticActionInOut()    //cc.easeCubicActionOut()
-                    );
-                    
-                this.modalFinish.runAction(modalIn);    
 
+    showQuestion: function() {
+        if (this.questions.length === 0) {
+            if (this.numberObj) {
+                // training number complete
+                var stars = this.wrongAnswerCounter > 0 ? this.wrongAnswerCounter < 5 ? 2 : 1 : 3;
+                flow.addStar(stars);
+                
+                this.modalFinish.getComponent('ModalUI').show();
+                this.modalFinish.getComponent('modal-finish-dialog').setStars(stars);
                 return;
             } else {
                 this.generateQuestions();
             }
+        }
+
+        for (var i=0; i<this.buttons.length; i++) {
+            this.buttons[i].setInteractable(true);
         }
         
         this.currentQuestion = this.questions.pop();
@@ -118,6 +108,7 @@ cc.Class({
         this.expressionLabel.string = this.currentQuestion.first.number + ' x ' + this.currentQuestion.second.number + ' = ?';
         
         // generate wrong answers
+        this.currentQuestion.answer = answer;
         this.currentQuestion.answers = [{string: answer, correct: true}];
         var simpleAnswers = [answer];
         while (this.currentQuestion.answers.length < this.buttons.length) {
@@ -130,29 +121,16 @@ cc.Class({
             }
         }
         
-        this.shuffle(this.currentQuestion.answers);
-        // console.log(this.currentQuestion.answers);
-        
+        Utils.shuffle(this.currentQuestion.answers);
+
         for (let i=0; i<this.buttons.length; i++) {
             this.buttons[i].setAnswer(this.currentQuestion.answers[i]);
-            // for (let prop in this.buttons[i].node)
-                // console.log(prop);
-            // console.log(this.buttons[i].node.children.length);
         }
     },
 
     onBackClicked: function() {
-        var modalOut = cc.MoveBy.create(0.6, cc.p(0, 900))
-            .easing(
-                // cc.easeBounceOut()
-                cc.easeElasticOut(2.0)
-                //cc.easeCircleActionIn()
-                //cc.easeQuarticActionInOut()    //cc.easeCubicActionOut()
-            );
-            
-        this.modalFinish.runAction(modalOut);    
         this.node.runAction(cc.sequence(
-            cc.delayTime(0.3),
+            cc.delayTime( this.modalFinish.getComponent('ModalUI').hide() ),
             cc.fadeOut(G.fadeOutDuration),
             cc.callFunc(function() {
                 cc.director.loadScene('levels');
@@ -161,9 +139,26 @@ cc.Class({
     },
 
     chooseAnswer: function(answer) {
-        console.log('chooseAnswer customEventData = '+answer.string+ ' is '+answer.correct);
+        // console.log('chooseAnswer customEventData = '+answer.string+ ' is '+answer.correct);
         if (answer.correct) {
-            this.showQuestion();
+            this.expressionLabel.string = this.currentQuestion.first.number + ' x ' + this.currentQuestion.second.number 
+                + ' = ' +  this.currentQuestion.answer;
+
+            for (var i=0; i<this.buttons.length; i++) {
+                this.buttons[i].setInteractable(false);
+            }
+            
+            var self = this;
+            this.node.runAction(cc.sequence(
+                cc.delayTime( 0.6 ),
+                cc.callFunc(function() {
+                    self.showQuestion();
+                }/*.bind(this)*/)
+            ));
+            
+            // this.showQuestion();
+        } else {
+            this.wrongAnswerCounter++;
         }
     },
     

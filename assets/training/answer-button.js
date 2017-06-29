@@ -25,6 +25,10 @@ cc.Class({
         this.label.string = this.answer.string;
     },
     
+    setInteractable: function(b) {
+        this.button.interactable = b;
+    },
+    
     onButtonClick: function() {
         if (this.scene) {
             this.scene.chooseAnswer(this.answer);

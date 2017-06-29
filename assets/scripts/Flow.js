@@ -10,6 +10,17 @@ Flow.prototype.getTrainingNumber = function() {
     return this.trainingNumberObj;
 }
 
+Flow.prototype.addStar = function(stars) {
+    this.trainingNumberObj.stars = {count: stars, isNew: true};
+    
+    if (G.levels.length > this.trainingNumberObj.index + 1) {
+        G.levels[this.trainingNumberObj.index + 1].locked = false;
+    }
+    
+    G.saveAll();
+}
+
+
 Flow.prototype.setState = function(state) {
     this.state = state;
     console.log('setState '+this.state);

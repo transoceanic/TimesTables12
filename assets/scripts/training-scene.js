@@ -12,6 +12,16 @@ cc.Class({
             type: cc.Label
         },
         
+        answerCorrect: {
+            default: null,
+            type: cc.Node
+        },
+        
+        answerWrong: {
+            default: null,
+            type: cc.Node
+        },
+        
         answerButtonPrefab: {
             default: null,
             type: cc.Prefab
@@ -30,10 +40,15 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        // initialization
         this.numberObj = flow.getTrainingNumber();
         
         this.wrongAnswerCounter = 0;
 
+        this.answerCorrect.active = false;
+        this.answerWrong.active = false;
+        this.expressionLabel.string = '';
+        
         
         // this.canvas = cc.director.getScene().getChildByName('Canvas');
         this.node.opacity = 0;
@@ -85,10 +100,24 @@ cc.Class({
     },
 
     showQuestion: function() {
-        if (this.questions.length === 0) {
+        (this.answerCorrect.active ? this.answerCorrect : this.answerWrong)
+        .runAction(cc.sequence(
+            cc.fadeOut(G.fadeOutDuration),
+            cc.callFunc(function() {
+                this.answerCorrect.active = false;
+                this.answerWrong.active = false;
+                this.answerCorrect.opacity = 255;
+                this.answerWrong.opacity = 255;
+            }.bind(this))
+         ));
+
+       if (this.questions.length === 0) {
             if (this.numberObj) {
                 // training number complete
-                var stars = this.wrongAnswerCounter > 0 ? this.wrongAnswerCounter < 5 ? 2 : 1 : 3;
+                this.expressionLabel.string = '';
+                var stars = this.wrongAnswerCounter < 10 ? 
+                    (this.wrongAnswerCounter < 5 ?
+                        (this.wrongAnswerCounter > 0 ? 2 : 3) : 1) : 0;
                 flow.addStar(stars);
                 
                 this.modalFinish.getComponent('ModalUI').show();
@@ -105,8 +134,18 @@ cc.Class({
         
         this.currentQuestion = this.questions.pop();
         var answer = this.currentQuestion.first.number  * this.currentQuestion.second.number;
-        this.expressionLabel.string = this.currentQuestion.first.number + ' x ' + this.currentQuestion.second.number + ' = ?';
-        
+        // this.expressionLabel.string = this.currentQuestion.first.number 
+        //     + ' x ' + this.currentQuestion.second.number/* + ' = ?'*/;
+
+        this.expressionLabel.node.runAction(cc.sequence(
+            cc.fadeOut(G.fadeOutDuration),
+            cc.callFunc(function() {
+                this.expressionLabel.string = this.currentQuestion.first.number 
+                    + ' x ' + this.currentQuestion.second.number/* + ' = ?'*/;
+            }.bind(this)),
+            cc.fadeIn(G.fadeInDuration)
+         ));
+
         // generate wrong answers
         this.currentQuestion.answer = answer;
         this.currentQuestion.answers = [{string: answer, correct: true}];
@@ -139,27 +178,37 @@ cc.Class({
     },
 
     chooseAnswer: function(answer) {
-        // console.log('chooseAnswer customEventData = '+answer.string+ ' is '+answer.correct);
+        var answerIcon = this.answerCorrect;
         if (answer.correct) {
-            this.expressionLabel.string = this.currentQuestion.first.number + ' x ' + this.currentQuestion.second.number 
-                + ' = ' +  this.currentQuestion.answer;
+            this.expressionLabel.string = this.currentQuestion.first.number 
+                + ' x ' + this.currentQuestion.second.number/* 
+                + ' = ' +  this.currentQuestion.answer*/;
 
-            for (var i=0; i<this.buttons.length; i++) {
-                this.buttons[i].setInteractable(false);
-            }
-            
-            var self = this;
-            this.node.runAction(cc.sequence(
-                cc.delayTime( 0.6 ),
-                cc.callFunc(function() {
-                    self.showQuestion();
-                }/*.bind(this)*/)
-            ));
-            
-            // this.showQuestion();
+            // this.answerCorrect.active = true;
         } else {
+            // this.answerWrong.active = true;
+            answerIcon = this.answerWrong;
             this.wrongAnswerCounter++;
         }
+        
+        answerIcon.scaleX = 0;
+        answerIcon.scaleY = 0;
+        answerIcon.active = true;
+        answerIcon.runAction(cc.sequence(
+            cc.scaleTo(0.2, 1.2, 1.2).easing(cc.easeBackInOut()),
+            cc.scaleTo(0.1, 1.0, 1.0).easing(cc.easeOut(1.0))
+        ));
+
+        for (var i=0; i<this.buttons.length; i++) {
+            this.buttons[i].setInteractable(false);
+        }
+
+        this.node.runAction(cc.sequence(
+            cc.delayTime( 0.8 ),
+            cc.callFunc(function() {
+                this.showQuestion();
+            }.bind(this))
+        ));
     },
     
     // called every frame, uncomment this function to activate update callback

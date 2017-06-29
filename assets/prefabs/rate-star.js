@@ -24,7 +24,7 @@ cc.Class({
         } else {
             this.star.runAction(cc.sequence(
                 cc.delayTime(0.3 + queue * 0.2),
-                cc.scaleTo(0.3, 1.2, 1.2).easing(cc.easeBackInOut()),
+                cc.scaleTo(0.3, 1.4, 1.4).easing(cc.easeBackInOut()),
                 cc.scaleTo(0.1, 1.0, 1.0).easing(cc.easeOut(1.0))
             ));
         }

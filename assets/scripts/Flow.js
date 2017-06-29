@@ -13,7 +13,7 @@ Flow.prototype.getTrainingNumber = function() {
 Flow.prototype.addStar = function(stars) {
     this.trainingNumberObj.stars = {count: stars, isNew: true};
     
-    if (G.levels.length > this.trainingNumberObj.index + 1) {
+    if (stars > 0 && G.levels.length > this.trainingNumberObj.index + 1) {
         G.levels[this.trainingNumberObj.index + 1].locked = false;
     }
     

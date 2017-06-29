@@ -27,6 +27,16 @@ cc.Class({
     
     setInteractable: function(b) {
         this.button.interactable = b;
+
+        if (b) {
+            this.button.node.runAction(cc.sequence(
+                cc.fadeIn(G.fadeInDuration)
+            ));
+        } else {
+            this.button.node.runAction(cc.sequence(
+                cc.fadeOut(G.fadeOutDuration)
+            ));
+        }
     },
     
     onButtonClick: function() {

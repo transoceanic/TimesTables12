@@ -1,6 +1,9 @@
 window.G = {
     fadeInDuration: 0.2,
     fadeOutDuration: 0.2,
+    settings: {
+        music: true
+    },
     levels: [
         {
             index: 0,
@@ -74,16 +77,25 @@ window.G = {
         }
     ],
     
-    saveAll: function() {
-        cc.sys.localStorage.setItem('levels', JSON.stringify(this.levels));
+    save: function(key) {
+        // console.log('-------------'+key+'----'+JSON.stringify(this[key]));
+        cc.sys.localStorage.setItem(key, JSON.stringify(this[key]));
     },
-    
+
     restoreAll: function() {
         // cc.sys.localStorage.removeItem('levels');
+        // cc.sys.localStorage.removeItem('settings');
+        
         var levels = cc.sys.localStorage.getItem('levels');
         if (levels) {
             this.levels = JSON.parse( levels );
         }
+
+        var settings = cc.sys.localStorage.getItem('settings');
+        if (settings) {
+            this.settings = JSON.parse( settings );
+        }
+        console.log('-------------G settings----'+settings);
     }
 };
 

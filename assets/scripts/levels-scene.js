@@ -4,6 +4,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        audioMng: cc.Node,
+
+        musicButton: cc.Button,
+        
         levelButtonGroupPrefab: {
             default: null,
             type: cc.Prefab
@@ -16,6 +20,12 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        this.audioMng = this.audioMng.getComponent('AudioMng');
+        if (flow.getSettings('music')) {
+            this.audioMng.playMusic();
+        }
+
+
         flow.setTrainingNumber(null);
 
         //  cc.game.addPersistRootNode(this.node);
@@ -42,6 +52,8 @@ cc.Class({
     },
 
     chooseLevel: function(numberObj) {
+        this.audioMng.playButton();
+        
         flow.setTrainingNumber(numberObj);
         
         // this.node.active = false;
@@ -63,6 +75,16 @@ cc.Class({
             })
         ));
     },
+    
+    onMusicButtonClicked: function() {
+        var status = !flow.getSettings('music');
+        flow.setSettings('music', status)
+        if (status) {
+            this.audioMng.resumeMusic();
+        } else {
+            this.audioMng.pauseMusic();
+        }
+    }
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

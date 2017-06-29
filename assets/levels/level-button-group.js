@@ -36,7 +36,7 @@ cc.Class({
             .setStars(this.numberObj.stars.count, this.numberObj.stars.isNew);
 
         this.numberObj.stars.isNew = false;
-        G.saveAll();
+        G.save('levels');
             
         this.button.interactable = !this.numberObj.locked;
 

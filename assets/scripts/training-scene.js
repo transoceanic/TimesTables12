@@ -5,8 +5,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // number: null,
-        
+        audioMng: cc.Node,
+
         expressionLabel: {
             default: null,
             type: cc.Label
@@ -41,6 +41,8 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         // initialization
+        this.audioMng = this.audioMng.getComponent('AudioMng');
+
         this.numberObj = flow.getTrainingNumber();
         
         this.wrongAnswerCounter = 0;
@@ -178,6 +180,8 @@ cc.Class({
     },
 
     chooseAnswer: function(answer) {
+        this.audioMng.playButton();
+        
         var answerIcon = this.answerCorrect;
         if (answer.correct) {
             this.expressionLabel.string = this.currentQuestion.first.number 
@@ -186,7 +190,8 @@ cc.Class({
 
             // this.answerCorrect.active = true;
         } else {
-            // this.answerWrong.active = true;
+            this.audioMng.playLose();
+            
             answerIcon = this.answerWrong;
             this.wrongAnswerCounter++;
         }

@@ -17,7 +17,17 @@ Flow.prototype.addStar = function(stars) {
         G.levels[this.trainingNumberObj.index + 1].locked = false;
     }
     
-    G.saveAll();
+    G.save('levels');
+}
+
+
+Flow.prototype.setSettings = function(key, value) {
+    G.settings[key] = value;
+    
+    G.save('settings');
+}
+Flow.prototype.getSettings = function(key) {
+    return G.settings[key];
 }
 
 

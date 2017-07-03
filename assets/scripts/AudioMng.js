@@ -1,3 +1,5 @@
+var flow = require('Flow');
+
 cc.Class({
     extends: cc.Component,
 
@@ -41,7 +43,9 @@ cc.Class({
     },
 
     _playSFX: function(clip) {
-        cc.audioEngine.playEffect( clip, false );
+        if (flow.getSettings('sound')) {
+            cc.audioEngine.playEffect( clip, false );
+        }
     },
 
     playWin: function() {

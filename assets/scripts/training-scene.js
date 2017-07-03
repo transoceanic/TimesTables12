@@ -35,7 +35,24 @@ cc.Class({
         modalFinish: {
             default: null,
             type: cc.Node
-        }
+        },
+        
+        modalTimeout: {
+            default: null,
+            type: cc.Node
+        },
+        
+        modalGameOver: {
+            default: null,
+            type: cc.Node
+        },
+        
+        countdown: cc.ProgressBar,
+        countdownLabel: cc.Label,
+        
+        scorePanel: cc.Node,
+        scoreLabel: cc.Label,
+        hearts: [cc.Node]
     },
 
     // use this for initialization
@@ -52,6 +69,14 @@ cc.Class({
         this.expressionLabel.string = '';
         
         
+        this.isCounting = false;
+        this.counterTimer = 0;
+        this.countdown.node.active = !this.numberObj;
+        
+        this.scorePanel.active = !this.numberObj;
+        this.addScore();
+
+
         // this.canvas = cc.director.getScene().getChildByName('Canvas');
         this.node.opacity = 0;
         this.node.runAction(cc.sequence(
@@ -80,10 +105,15 @@ cc.Class({
         this.showQuestion();
     },
     
+    addScore: function(score) {
+        this.score = (this.score || 0) + (score || 0);
+        this.scoreLabel.string = this.score;
+    },
+    
     generateQuestions: function() {
         if (this.numberObj) { 
             // from one number table
-            for (var i=0; i<G.levels.length; i++) {
+            for (let i=0; i<G.levels.length; i++) {
                 this.questions.push({
                     first: this.numberObj,
                     second: G.levels[i]
@@ -95,6 +125,14 @@ cc.Class({
             }
         } else {
             // play
+            for (let i=0; i<G.levels.length; i++) {
+                for (let j=0; j<G.levels.length; j++) {
+                    this.questions.push({
+                        first: G.levels[i],
+                        second: G.levels[j]
+                    });
+                }
+            }
         }
         
         
@@ -113,13 +151,21 @@ cc.Class({
             }.bind(this))
          ));
 
-       if (this.questions.length === 0) {
+        if (!this.numberObj 
+                && this.wrongAnswerCounter >= this.hearts.length) {
+            
+            this.gameOver();
+            return;
+        }
+        
+        if (this.questions.length === 0) {
             if (this.numberObj) {
                 // training number complete
                 this.expressionLabel.string = '';
                 var stars = this.wrongAnswerCounter < 10 ? 
                     (this.wrongAnswerCounter < 5 ?
                         (this.wrongAnswerCounter > 0 ? 2 : 3) : 1) : 0;
+                        
                 flow.addStar(stars);
                 
                 this.modalFinish.getComponent('ModalUI').show();
@@ -145,7 +191,12 @@ cc.Class({
                 this.expressionLabel.string = this.currentQuestion.first.number 
                     + ' x ' + this.currentQuestion.second.number/* + ' = ?'*/;
             }.bind(this)),
-            cc.fadeIn(G.fadeInDuration)
+            cc.fadeIn(G.fadeInDuration),
+            cc.callFunc(function() {
+                if (!this.numberObj) {
+                    this.isCounting = true;
+                }
+            }.bind(this))
          ));
 
         // generate wrong answers
@@ -172,6 +223,7 @@ cc.Class({
     onBackClicked: function() {
         this.node.runAction(cc.sequence(
             cc.delayTime( this.modalFinish.getComponent('ModalUI').hide() ),
+            cc.delayTime( this.modalGameOver.getComponent('ModalUI').hide() ),
             cc.fadeOut(G.fadeOutDuration),
             cc.callFunc(function() {
                 cc.director.loadScene('levels');
@@ -180,21 +232,23 @@ cc.Class({
     },
 
     chooseAnswer: function(answer) {
+        this.isCounting = false;
+        // this.counterTimer = 0;
+        this.countdown.progress = 0;
+        this.countdownLabel.string = '';
+
         this.audioMng.playButton();
         
         var answerIcon = this.answerCorrect;
         if (answer.correct) {
-            this.expressionLabel.string = this.currentQuestion.first.number 
-                + ' x ' + this.currentQuestion.second.number/* 
-                + ' = ' +  this.currentQuestion.answer*/;
-
-            // this.answerCorrect.active = true;
+            if (!this.numberObj) {
+                this.addScore(Math.ceil(G.answerTimeDuration - this.counterTimer));
+            }
         } else {
-            this.audioMng.playLose();
-            
             answerIcon = this.answerWrong;
-            this.wrongAnswerCounter++;
+            this.wrongAnswered();
         }
+        this.counterTimer = 0;
         
         answerIcon.scaleX = 0;
         answerIcon.scaleY = 0;
@@ -216,8 +270,54 @@ cc.Class({
         ));
     },
     
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
+    wrongAnswered: function() {
+        this.audioMng.playLose();
+        
+        this.wrongAnswerCounter++;
+        
+        if (!this.numberObj) {
+            this.hearts[this.hearts.length - this.wrongAnswerCounter].active = false;
+            if (this.wrongAnswerCounter === this.hearts.length) {
+                // game over
+                return false;
+            }
+        }
+        
+        return true;
+    },
+    
+    closeTimeoutAlert: function() {
+        this.node.runAction(cc.sequence(
+            cc.delayTime( this.modalTimeout.getComponent('ModalUI').hide() ),
+            cc.callFunc(function() {
+                this.showQuestion();
+            }.bind(this))
+        ));
+    },
+    
+    gameOver: function() {
+        this.modalGameOver.getComponent('ModalUI').show();
+    },
 
-    // },
+    update: function (dt) {
+        if (this.isCounting) {
+            this.countdown.progress = this.counterTimer/G.answerTimeDuration;
+            this.countdownLabel.string = Math.ceil(G.answerTimeDuration - this.counterTimer);
+            this.counterTimer += dt;
+            // console.log('this.counterTimer '+this.counterTimer+ ' -------- '+this.countdown.progress+ '    '+G.answerTimeDuration);
+            if (this.counterTimer >= G.answerTimeDuration) {
+                this.isCounting = false;
+                this.counterTimer = 0;
+                this.countdown.progress = 0;
+                this.countdownLabel.string = '';
+                
+                if (this.wrongAnswered()) {
+                    this.modalTimeout.getComponent('ModalUI').show();
+                } else {
+                    this.gameOver();
+                }
+            }
+        }
+    },
+
 });

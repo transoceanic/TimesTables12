@@ -58,7 +58,7 @@ cc.Class({
                 modalOut,
                 cc.callFunc(function() {
                     this.node.active = false;
-                })
+                }.bind(this))
             ));
             return 0.3;
         } else {

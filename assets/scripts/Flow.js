@@ -15,6 +15,9 @@ Flow.prototype.addStar = function(stars) {
     
     if (stars > 0 && G.levels.length > this.trainingNumberObj.index + 1) {
         G.levels[this.trainingNumberObj.index + 1].locked = false;
+    } else if (this.trainingNumberObj.index+1 === G.levels.length && !G.gameplay.allowed) {
+        G.gameplay.allowed = true;
+        G.save('gameplay');
     }
     
     G.save('levels');
@@ -28,6 +31,11 @@ Flow.prototype.setSettings = function(key, value) {
 }
 Flow.prototype.getSettings = function(key) {
     return G.settings[key];
+}
+
+
+Flow.prototype.isAllowed = function() {
+    return G.gameplay.allowed;
 }
 
 

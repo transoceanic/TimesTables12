@@ -6,13 +6,16 @@ cc.Class({
     properties: {
         audioMng: cc.Node,
 
-        musicOff: cc.Button,
-        musicOn: cc.Button,
+        musicOnOff: cc.Button,
+        soundOnOff: cc.Button,
+        playBtn: cc.Button,
         
         levelButtonGroupPrefab: {
             default: null,
             type: cc.Prefab
         },
+        
+        levelsContainer: cc.Node,
         
         currentLevel: {
             default: null
@@ -25,8 +28,11 @@ cc.Class({
         if (flow.getSettings('music')) {
             this.audioMng.playMusic();
         }
-        this.musicOff.node.active = flow.getSettings('music');
-        this.musicOn.node.active = !flow.getSettings('music');
+        this.musicOnOff.getComponent('ButtonMultiSprites')
+            .updateSprite(+flow.getSettings('music'));
+
+        this.soundOnOff.getComponent('ButtonMultiSprites')
+            .updateSprite(+flow.getSettings('sound'));
 
 
         flow.setTrainingNumber(null);
@@ -43,7 +49,7 @@ cc.Class({
         for (var i=0; i<G.levels.length; i++) {
             var newLevelButtonGroup = cc.instantiate(this.levelButtonGroupPrefab);
             // newLevelButtonGroup.parent = this.node;
-            this.node.addChild(newLevelButtonGroup);
+            this.levelsContainer.addChild(newLevelButtonGroup);
             newLevelButtonGroup.setPosition(G.levels[i].position);
     
             var newLevelButtonGroupScript = newLevelButtonGroup.getComponent('level-button-group');
@@ -51,6 +57,44 @@ cc.Class({
             newLevelButtonGroupScript.scene = this;
             
             // console.log(i+' '+G.levels[i].stars);
+        }
+        
+        if (flow.isAllowed()) {
+            this.playBtn.interactable = true;
+
+            var levelsOut = cc.MoveBy.create(0.8, cc.p(0, 900))
+                .easing(
+                    // cc.easeBounceOut()
+                    // cc.easeElasticOut(2.0)
+                    cc.easeCircleActionIn()
+                    // cc.easeQuarticActionInOut()    
+                    // cc.easeCubicActionOut()
+                );
+                
+            this.levelsContainer.runAction(cc.sequence(
+                cc.delayTime(0.2),
+                levelsOut,
+                cc.callFunc(function() {
+                    this.levelsContainer.active = false;
+                }.bind(this))
+            ));
+            
+            var playBtnIn = cc.MoveBy.create(0.8, cc.p(0, 200))
+                .easing(
+                    // cc.easeBounceOut()
+                    // cc.easeElasticOut(2.0)
+                    cc.easeCircleActionOut()
+                    // cc.easeQuarticActionInOut()    
+                    // cc.easeCubicActionOut()
+                );
+                
+            this.playBtn.node.runAction(cc.sequence(
+                cc.delayTime(0.4),
+                playBtnIn/*,
+                cc.callFunc(function() {
+                    this.playBtn.interactable = true;
+                }.bind(this))*/
+            ));
         }
     },
 
@@ -79,6 +123,21 @@ cc.Class({
         ));
     },
     
+    play: function() {
+        this.audioMng.playButton();
+
+        this.node.runAction(cc.sequence(
+            cc.fadeOut(G.fadeOutDuration),
+            cc.callFunc(function() {
+               
+                // cc.director.loadScene('one-number-table', function(err, data) {
+                //     // console.log('callback load='+data.children[0].getComponent('one-number-table-scene').number);
+                // });
+                cc.director.loadScene('training');
+            })
+        ));
+    },
+    
     onMusicButtonClicked: function() {
         var status = !flow.getSettings('music');
         flow.setSettings('music', status)
@@ -87,8 +146,17 @@ cc.Class({
         } else {
             this.audioMng.pauseMusic();
         }
-        this.musicOff.node.active = status;
-        this.musicOn.node.active = !status;
+
+        this.musicOnOff.getComponent('ButtonMultiSprites')
+            .updateSprite(+status);
+    },
+    
+    onSoundButtonClicked: function() {
+        var status = !flow.getSettings('sound');
+        flow.setSettings('sound', status)
+
+        this.soundOnOff.getComponent('ButtonMultiSprites')
+            .updateSprite(+status);
     }
 
     // called every frame, uncomment this function to activate update callback

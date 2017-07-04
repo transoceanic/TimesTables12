@@ -29,7 +29,7 @@ cc.Class({
     },
     
     show: function() {
-        console.log('show '+this.node.y);
+        this.mask.opacity = 0;
         this.node.y = 900;
         this.node.active = true;
         
@@ -41,7 +41,10 @@ cc.Class({
                 //cc.easeQuarticActionInOut()    //cc.easeCubicActionOut()
             );
             
-        this.node.runAction(modalIn);    
+        this.node.runAction(modalIn);
+        this.mask.runAction(cc.sequence(
+            cc.fadeIn(0.3)
+         ));
     },
     
     hide: function() {
@@ -60,6 +63,11 @@ cc.Class({
                     this.node.active = false;
                 }.bind(this))
             ));
+
+            this.mask.runAction(cc.sequence(
+                cc.fadeOut(0.2)
+             ));
+            
             return 0.3;
         } else {
             return 0.0;

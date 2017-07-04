@@ -74,6 +74,7 @@ cc.Class({
         this.countdown.node.active = !this.numberObj;
         
         this.scorePanel.active = !this.numberObj;
+        this.score = 0;
         this.addScore();
 
 
@@ -106,8 +107,31 @@ cc.Class({
     },
     
     addScore: function(score) {
-        this.score = (this.score || 0) + (score || 0);
-        this.scoreLabel.string = this.score;
+        score = score || 0;
+        this.score += score;
+
+        if (score > 0) {
+            this.scoreLabel.schedule(function() {
+                this.string = this.string + 1;
+            }, 0.1, score-1);
+            
+            this.countdownLabel.node.runAction( cc.sequence(
+                cc.spawn(
+                    cc.MoveBy.create(0.1, cc.p(-200, -20)).easing(cc.easeCircleActionOut()),
+                    cc.scaleTo(0.1, 0.7)
+                ),
+                cc.callFunc(function() {
+                    this.countdownLabel.string = '';
+                    this.countdownLabel.node.position = cc.p(0, 0);
+                    this.countdownLabel.node.scaleX = 1;
+                    this.countdownLabel.node.scaleY = 1;
+                }.bind(this))
+            ));
+
+        } else {
+            this.scoreLabel.string = this.score;
+            this.countdownLabel.string = '';
+        }
     },
     
     generateQuestions: function() {
@@ -235,7 +259,7 @@ cc.Class({
         this.isCounting = false;
         // this.counterTimer = 0;
         this.countdown.progress = 0;
-        this.countdownLabel.string = '';
+        // this.countdownLabel.string = '';
 
         this.audioMng.playButton();
         
@@ -243,8 +267,11 @@ cc.Class({
         if (answer.correct) {
             if (!this.numberObj) {
                 this.addScore(Math.ceil(G.answerTimeDuration - this.counterTimer));
+            } else {
+                this.countdownLabel.string = '';
             }
         } else {
+            this.countdownLabel.string = '';
             answerIcon = this.answerWrong;
             this.wrongAnswered();
         }
@@ -297,6 +324,7 @@ cc.Class({
     
     gameOver: function() {
         this.modalGameOver.getComponent('ModalUI').show();
+        this.modalGameOver.getComponent('modal-game-over').setScore(this.score);
     },
 
     update: function (dt) {

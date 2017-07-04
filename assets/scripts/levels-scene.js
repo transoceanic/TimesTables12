@@ -17,9 +17,7 @@ cc.Class({
         
         levelsContainer: cc.Node,
         
-        currentLevel: {
-            default: null
-        }
+        scoresContainer: cc.Node
     },
 
     // use this for initialization
@@ -79,21 +77,18 @@ cc.Class({
                 }.bind(this))
             ));
             
-            var playBtnIn = cc.MoveBy.create(0.8, cc.p(0, 200))
-                .easing(
-                    // cc.easeBounceOut()
-                    // cc.easeElasticOut(2.0)
-                    cc.easeCircleActionOut()
-                    // cc.easeQuarticActionInOut()    
-                    // cc.easeCubicActionOut()
-                );
-                
+            var playBtnIn = cc.MoveBy.create(0.8, cc.p(0, 200)).easing(cc.easeCircleActionOut());
+
             this.playBtn.node.runAction(cc.sequence(
                 cc.delayTime(0.4),
-                playBtnIn/*,
-                cc.callFunc(function() {
-                    this.playBtn.interactable = true;
-                }.bind(this))*/
+                playBtnIn
+            ));
+            
+            var scoreIn = cc.MoveBy.create(0.4, cc.p(0, -300)).easing(cc.easeCircleActionOut());
+                
+            this.scoresContainer.runAction(cc.sequence(
+                cc.delayTime(0.8),
+                scoreIn
             ));
         }
     },

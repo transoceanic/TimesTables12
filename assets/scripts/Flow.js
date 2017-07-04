@@ -39,6 +39,21 @@ Flow.prototype.isAllowed = function() {
 }
 
 
+Flow.prototype.setMyScore = function(score) {
+    if ((G.gameplay.bestScore || 0) < score) {
+        G.gameplay.bestScore = score;
+        G.save('gameplay');
+        
+        return true;
+    }
+    
+    return false;
+}
+Flow.prototype.getMyScore = function(score) {
+    return (G.gameplay.bestScore || 0);
+}
+
+
 Flow.prototype.setState = function(state) {
     this.state = state;
     console.log('setState '+this.state);

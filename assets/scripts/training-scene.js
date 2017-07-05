@@ -57,8 +57,6 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        Utils.load();
-        
         // initialization
         this.audioMng = this.audioMng.getComponent('AudioMng');
 
@@ -183,7 +181,7 @@ cc.Class({
             this.gameOver();
             return;
         }
-        
+
         if (this.questions.length === 0) {
             if (this.numberObj) {
                 // training number complete
@@ -219,7 +217,8 @@ cc.Class({
             }.bind(this)),
             cc.fadeIn(G.fadeInDuration),
             cc.callFunc(function() {
-                if (!this.numberObj) {
+                if (!this.numberObj
+                        && this.wrongAnswerCounter < this.hearts.length) {
                     this.isCounting = true;
                 }
             }.bind(this))
@@ -258,6 +257,11 @@ cc.Class({
     },
 
     chooseAnswer: function(answer) {
+
+        for (var i=0; i<this.buttons.length; i++) {
+            this.buttons[i].setInteractable(false);
+        }
+
         this.isCounting = false;
         // this.counterTimer = 0;
         this.countdown.progress = 0;
@@ -287,9 +291,9 @@ cc.Class({
             cc.scaleTo(0.1, 1.0, 1.0).easing(cc.easeOut(1.0))
         ));
 
-        for (var i=0; i<this.buttons.length; i++) {
-            this.buttons[i].setInteractable(false);
-        }
+        // for (var i=0; i<this.buttons.length; i++) {
+        //     this.buttons[i].setInteractable(false);
+        // }
 
         this.node.runAction(cc.sequence(
             cc.delayTime( 0.8 ),
@@ -300,19 +304,21 @@ cc.Class({
     },
     
     wrongAnswered: function() {
-        this.audioMng.playLose();
-        
-        this.wrongAnswerCounter++;
-        
-        if (!this.numberObj) {
-            this.hearts[this.hearts.length - this.wrongAnswerCounter].active = false;
-            if (this.wrongAnswerCounter === this.hearts.length) {
-                // game over
-                return false;
+        if (this.hearts.length > this.wrongAnswerCounter) {
+            this.audioMng.playLose();
+            
+            this.wrongAnswerCounter++;
+            
+            if (!this.numberObj) {
+                this.hearts[this.hearts.length - this.wrongAnswerCounter].active = false;
+                if (this.wrongAnswerCounter === this.hearts.length) {
+                    // game over
+                    return false;
+                }
             }
+            
+            return true;
         }
-        
-        return true;
     },
     
     closeTimeoutAlert: function() {
@@ -331,16 +337,21 @@ cc.Class({
 
     update: function (dt) {
         if (this.isCounting) {
+            this.counterTimer += dt;
             this.countdown.progress = this.counterTimer/G.answerTimeDuration;
             this.countdownLabel.string = Math.ceil(G.answerTimeDuration - this.counterTimer);
-            this.counterTimer += dt;
             // console.log('this.counterTimer '+this.counterTimer+ ' -------- '+this.countdown.progress+ '    '+G.answerTimeDuration);
             if (this.counterTimer >= G.answerTimeDuration) {
+
+                for (var i=0; i<this.buttons.length; i++) {
+                    this.buttons[i].setInteractable(false);
+                }
+
                 this.isCounting = false;
                 this.counterTimer = 0;
                 this.countdown.progress = 0;
                 this.countdownLabel.string = '';
-                
+
                 if (this.wrongAnswered()) {
                     this.modalTimeout.getComponent('ModalUI').show();
                 } else {

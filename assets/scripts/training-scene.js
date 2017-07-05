@@ -57,6 +57,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        Utils.load();
+        
         // initialization
         this.audioMng = this.audioMng.getComponent('AudioMng');
 

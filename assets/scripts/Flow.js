@@ -1,6 +1,11 @@
+var Utils = require('Utils');
+
+var DOMAIN = 'https://multiplication-table-server.herokuapp.com/multiplication-table/';
+
 var Flow = function() {
     this.trainingNumberObj = null;
-    this.state = null;
+    // this.state = null;
+    this.min = null;
 }
 
 Flow.prototype.setTrainingNumber = function(number) {
@@ -8,6 +13,19 @@ Flow.prototype.setTrainingNumber = function(number) {
 }
 Flow.prototype.getTrainingNumber = function() {
     return this.trainingNumberObj;
+}
+Flow.prototype.isSendScore = function(score) {
+    if (this.min) {
+        for (const period in (this.min || {})) {
+            if (this.min[period].min*0.9 < score) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    return true;
 }
 
 Flow.prototype.addStar = function(stars) {
@@ -54,12 +72,50 @@ Flow.prototype.getMyScore = function(score) {
 }
 
 
-Flow.prototype.setState = function(state) {
-    this.state = state;
-    console.log('setState '+this.state);
+Flow.prototype.getMinOfBestScores = function() {
+    if (!this.min) {
+        var self = this;
+        Utils.loadJson({
+            url: DOMAIN+'score/best',
+            method: 'GET',
+            // data: {name:'Andrey',"score":score},
+            success: function(res) {
+                console.log('score/best '+JSON.stringify(res));
+                self.min = res;
+            },
+            error: null
+        });
+    }
 }
-Flow.prototype.getState = function() {
-    return this.state;
+
+
+Flow.prototype.checkForBestScores = function(score, success, error) {
+    Utils.loadJson({
+        url: DOMAIN+'score/check',
+        method: 'POST',
+        data: {
+            name: G.settings.name,
+            score: score,
+            stat: G.stat
+        },
+        success: function(res) {
+            console.log('score/check '+JSON.stringify(res));
+            G.stat = res || {};
+            G.save('stat');
+
+            success(G.stat);
+        },
+        error: error
+    });
 }
+
+
+// Flow.prototype.setState = function(state) {
+//     this.state = state;
+//     console.log('setState '+this.state);
+// }
+// Flow.prototype.getState = function() {
+//     return this.state;
+// }
 
 module.exports = new Flow();

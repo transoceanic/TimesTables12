@@ -6,9 +6,11 @@ window.G = {
         allowed: false
     },
     settings: {
+        name: 'Guest',
         music: true,
         sound: true
     },
+    stat: {},
     levels: [
         {
             index: 0,
@@ -90,21 +92,33 @@ window.G = {
         // cc.sys.localStorage.removeItem('levels');
         // cc.sys.localStorage.removeItem('settings');
         // cc.sys.localStorage.removeItem('gameplay');
+        // cc.sys.localStorage.removeItem('stat');
         
-        var levels = cc.sys.localStorage.getItem('levels');
-        if (levels) {
-            this.levels = JSON.parse( levels );
+        for (const key of ['levels', 'settings', 'gameplay', 'stat']) {
+            let data = cc.sys.localStorage.getItem(key);
+            if (data) {
+                this[key] = JSON.parse( data );
+            }
         }
+        // var levels = cc.sys.localStorage.getItem('levels');
+        // if (levels) {
+        //     this.levels = JSON.parse( levels );
+        // }
 
-        var settings = cc.sys.localStorage.getItem('settings');
-        if (settings) {
-            this.settings = JSON.parse( settings );
-        }
+        // var settings = cc.sys.localStorage.getItem('settings');
+        // if (settings) {
+        //     this.settings = JSON.parse( settings );
+        // }
 
-        var gameplay = cc.sys.localStorage.getItem('gameplay');
-        if (gameplay) {
-            this.gameplay = JSON.parse( gameplay );
-        }
+        // var gameplay = cc.sys.localStorage.getItem('gameplay');
+        // if (gameplay) {
+        //     this.gameplay = JSON.parse( gameplay );
+        // }
+
+        // var stat = cc.sys.localStorage.getItem('stat');
+        // if (stat) {
+        //     this.stat = JSON.parse( stat );
+        // }
     }
 };
 

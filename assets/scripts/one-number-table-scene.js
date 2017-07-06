@@ -55,7 +55,7 @@ cc.Class({
     },
     
     trainingClicked: function() {
-        flow.setState(Types.State.training);
+        // flow.setState(Types.State.training);
         
         this.node.runAction(cc.sequence(
             cc.fadeOut(G.fadeOutDuration),

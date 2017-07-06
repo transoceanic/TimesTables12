@@ -34,14 +34,22 @@ Utils.prototype.loadJson = function(options) {
         }
     };
     
-    xhr.send(JSON.stringify(options.data));
+    if (options.data && typeof(options.data) === 'object') {
+        options.data.token = ((new Date().getTime())*1474).toString(16);
+        xhr.send(JSON.stringify(options.data));
+    } else {
+        xhr.send();
+    }
 }
 
 Utils.prototype.checkBestScore = function(score, success, error) {
     this.loadJson({
         url: 'https://multiplication-table-server.herokuapp.com/multiplication-table/api/save',
         method: 'POST',
-        data: {name:'Andrey',"score":score},
+        data: {
+            name:'Andrey',
+            score:score
+        },
         success: success,
         error: error
     });

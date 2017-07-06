@@ -1,5 +1,4 @@
 var flow = require('Flow');
-var Utils = require('Utils');
 
 cc.Class({
     extends: cc.Component,
@@ -21,8 +20,7 @@ cc.Class({
         this.score.string = score;
         this.isIncrease.node.active = flow.setMyScore(score);
         
-        // check if score allowed to save into best scores table
-        if (score > 0) {
+        if (flow.isSendScore(score) > 0) {
             this.continueContainer.active = false;
             this.bestScoreContainer.active = true;
             
@@ -30,9 +28,13 @@ cc.Class({
             this.loaderTimer = 0;
             this.isLoading = true;
             
-            Utils.checkBestScore(score, function(res) {
-                console.log('----------check '+JSON.stringify(res));
-            });
+            flow.checkForBestScores(score, 
+                function(res) {
+                    console.log('----------checkForBestScores '+JSON.stringify(res));
+                },
+                function() {
+                    console.log('----------checkForBestScores error');
+                });
 
         } else {
             this.continueContainer.active = true;

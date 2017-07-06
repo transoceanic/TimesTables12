@@ -22,6 +22,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        flow.getMinOfBestScores();
+
         this.audioMng = this.audioMng.getComponent('AudioMng');
         if (flow.getSettings('music')) {
             this.audioMng.playMusic();

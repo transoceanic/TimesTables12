@@ -98,6 +98,7 @@ window.G = {
             let data = cc.sys.localStorage.getItem(key);
             if (data) {
                 this[key] = JSON.parse( data );
+                console.log('restore '+key+' = '+JSON.stringify(this[key]));
             }
         }
         // var levels = cc.sys.localStorage.getItem('levels');

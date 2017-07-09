@@ -15,7 +15,6 @@ Utils.prototype.loadJson = function(options) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     
     xhr.onreadystatechange = function() {
-        console.log('----onreadystatechange xhr.readyState '+xhr.readyState);
         console.log('----onreadystatechange xhr.status '+xhr.status);
         if ( xhr.readyState == 4 ) {
             if ( xhr.status >= 200 && xhr.status <=207 ) {
@@ -40,19 +39,6 @@ Utils.prototype.loadJson = function(options) {
     } else {
         xhr.send();
     }
-}
-
-Utils.prototype.checkBestScore = function(score, success, error) {
-    this.loadJson({
-        url: 'https://multiplication-table-server.herokuapp.com/multiplication-table/api/save',
-        method: 'POST',
-        data: {
-            name:'Andrey',
-            score:score
-        },
-        success: success,
-        error: error
-    });
 }
 
 module.exports = new Utils();

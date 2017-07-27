@@ -91,7 +91,7 @@ Flow.prototype.getMinOfBestScores = function() {
 
 Flow.prototype.checkForBestScores = function(score, success, error) {
     Utils.loadJson({
-        url: DOMAIN+'score/check',
+        url: DOMAIN+'score/update',
         method: 'POST',
         data: {
             name: G.settings.name,
@@ -99,7 +99,6 @@ Flow.prototype.checkForBestScores = function(score, success, error) {
             stat: G.stat
         },
         success: function(res) {
-            console.log('score/check '+JSON.stringify(res));
             G.stat = res || {};
             G.save('stat');
 

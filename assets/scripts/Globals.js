@@ -98,28 +98,9 @@ window.G = {
             let data = cc.sys.localStorage.getItem(key);
             if (data) {
                 this[key] = JSON.parse( data );
-                console.log('restore '+key+' = '+JSON.stringify(this[key]));
+                // console.log('restore '+key+' = '+JSON.stringify(this[key]));
             }
         }
-        // var levels = cc.sys.localStorage.getItem('levels');
-        // if (levels) {
-        //     this.levels = JSON.parse( levels );
-        // }
-
-        // var settings = cc.sys.localStorage.getItem('settings');
-        // if (settings) {
-        //     this.settings = JSON.parse( settings );
-        // }
-
-        // var gameplay = cc.sys.localStorage.getItem('gameplay');
-        // if (gameplay) {
-        //     this.gameplay = JSON.parse( gameplay );
-        // }
-
-        // var stat = cc.sys.localStorage.getItem('stat');
-        // if (stat) {
-        //     this.stat = JSON.parse( stat );
-        // }
     }
 };
 

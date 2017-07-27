@@ -8,7 +8,13 @@ cc.Class({
         isIncrease: cc.Label,
         continueContainer: cc.Node,
         bestScoreContainer: cc.Node,
+        prizeContainer: cc.Node,
         loader: cc.ProgressBar,
+
+        prizes: {
+            default: [],
+            type: [cc.Node]
+        }
     },
 
     // use this for initialization
@@ -23,38 +29,58 @@ cc.Class({
         if (flow.isSendScore(score) > 0) {
             this.continueContainer.active = false;
             this.bestScoreContainer.active = true;
+            this.prizeContainer.active = false;
             
             this.loader.progress = 0;
             this.loaderTimer = 0;
             this.isLoading = true;
+
+            var self = this;
             
             flow.checkForBestScores(score, 
                 function(res) {
-                    console.log('----------checkForBestScores '+JSON.stringify(res));
+                    self.stopLoader();
+                    self.showPrize(res);
                 },
                 function() {
-                    console.log('----------checkForBestScores error');
+                    self.stopLoader();
                 });
 
         } else {
             this.continueContainer.active = true;
             this.bestScoreContainer.active = false;
+            this.prizeContainer.active = false;
         }
+    },
+
+    stopLoader: function() {
+        this.isLoading = false;
+        this.loaderTimer = 0;
+        this.loader.progress = 0;
+
+        this.continueContainer.active = true;
+        this.bestScoreContainer.active = false;
+    },
+
+    showPrize: function(stat) {
+        console.log('showPrize '+JSON.stringify(stat));
+
+        this.prizeContainer.active = true;
     },
 
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
         if (this.isLoading) {
             this.loader.progress = this.loaderTimer/10;
-            this.loaderTimer += dt;
-            // console.log('this.counterTimer '+this.counterTimer+ ' -------- '+this.countdown.progress+ '    '+G.answerTimeDuration);
-            if (this.loaderTimer >= 10) {
-                this.isLoading = false;
-                this.loaderTimer = 0;
-                this.loader.progress = 0;
 
-                this.continueContainer.active = true;
-                this.bestScoreContainer.active = false;
+            if (this.loaderTimer <= 9) {
+                this.loaderTimer += dt;
+                // this.isLoading = false;
+                // this.loaderTimer = 0;
+                // this.loader.progress = 0;
+
+                // this.continueContainer.active = true;
+                // this.bestScoreContainer.active = false;
             }
         }
     }

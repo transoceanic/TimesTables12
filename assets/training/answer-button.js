@@ -29,13 +29,13 @@ cc.Class({
         this.button.interactable = b;
 
         if (b) {
-            this.button.node.runAction(cc.sequence(
+            this.button.node.runAction(
                 cc.fadeIn(G.fadeInDuration)
-            ));
+            );
         } else {
-            this.button.node.runAction(cc.sequence(
+            this.button.node.runAction(
                 cc.fadeOut(G.fadeOutDuration)
-            ));
+            );
         }
     },
     

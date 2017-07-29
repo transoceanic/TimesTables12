@@ -1473,11 +1473,11 @@
       "__id__": 31
     },
     "_enabled": true,
+    "_N$totalLength": 1,
     "_N$barSprite": {
       "__id__": 36
     },
     "_N$mode": 2,
-    "_N$totalLength": 1,
     "_N$progress": 0,
     "_N$reverse": false
   },
@@ -3733,11 +3733,11 @@
       "__id__": 92
     },
     "_enabled": true,
+    "_N$totalLength": 300,
     "_N$barSprite": {
       "__id__": 94
     },
     "_N$mode": 0,
-    "_N$totalLength": 300,
     "_N$progress": 0.5,
     "_N$reverse": false
   },
@@ -3769,7 +3769,7 @@
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 0.5,
       "y": 0.5
     },
     "_contentSize": {
@@ -3783,7 +3783,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -250,
+      "x": 0,
       "y": -128
     },
     "_skewX": 0,

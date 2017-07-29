@@ -22,7 +22,9 @@ cc.Class({
         this.isLoading = false;
 
         this.awardsPanel = cc.instantiate(this.awardsPanelPrefab);
-        thi.awardsContainer.addChild(this.awardsPanel);
+        this.awardsPanel.height = this.awardsContainer.height;
+        this.awardsPanel.width = this.awardsContainer.width;
+        this.awardsContainer.addChild(this.awardsPanel);
     },
     
     setScore: function(score) {
@@ -70,7 +72,7 @@ cc.Class({
 
         this.awardsContainer.active = true;
         this.awardsPanel.getComponent('awards-panel')
-            .addAward();
+            .addAwards(stat);
     },
 
     // called every frame, uncomment this function to activate update callback

@@ -41,9 +41,9 @@ cc.Class({
  
         // this.canvas = cc.director.getScene().getChildByName('Canvas');
         this.node.opacity = 0;
-        this.node.runAction(cc.sequence(
+        this.node.runAction(
             cc.fadeIn(G.fadeInDuration)
-         ));
+         );
 
 
         for (var i=0; i<G.levels.length; i++) {

@@ -42,9 +42,9 @@ cc.Class({
             );
             
         this.node.runAction(modalIn);
-        this.mask.runAction(cc.sequence(
+        this.mask.runAction(
             cc.fadeIn(0.3)
-         ));
+         );
     },
     
     hide: function() {
@@ -64,9 +64,9 @@ cc.Class({
                 }.bind(this))
             ));
 
-            this.mask.runAction(cc.sequence(
+            this.mask.runAction(
                 cc.fadeOut(0.2)
-             ));
+             );
             
             return 0.3;
         } else {

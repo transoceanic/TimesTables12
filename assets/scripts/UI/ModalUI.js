@@ -33,7 +33,7 @@ cc.Class({
         this.node.y = 900;
         this.node.active = true;
         
-        var modalIn = cc.MoveBy.create(0.6, cc.p(0, -900))
+        var modalIn = cc.moveBy(0.6, cc.p(0, -900))
             .easing(
                 cc.easeBounceOut()
                 // cc.easeElasticOut(2.0)
@@ -49,7 +49,7 @@ cc.Class({
     
     hide: function() {
         if (this.node.active) {
-            var modalOut = cc.MoveBy.create(0.6, cc.p(0, 900))
+            var modalOut = cc.moveBy(0.6, cc.p(0, 900))
                 .easing(
                     // cc.easeBounceOut()
                     cc.easeElasticOut(2.0)

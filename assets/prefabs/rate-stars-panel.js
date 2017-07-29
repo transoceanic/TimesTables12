@@ -29,7 +29,6 @@ cc.Class({
     },
     
     setStars: function(stars, isAnimate) {
-        console.log('stars to show '+stars+' isAnimate '+isAnimate);
         for (var i=0; i<this.nodes.length; i++) {
             if (i < stars) {
                 this.stars[i].getComponent('rate-star').show(isAnimate ? i : null);

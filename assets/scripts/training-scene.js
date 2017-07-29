@@ -117,7 +117,7 @@ cc.Class({
             
             this.countdownLabel.node.runAction( cc.sequence(
                 cc.spawn(
-                    cc.MoveBy.create(0.1, cc.p(-200, -20)).easing(cc.easeCircleActionOut()),
+                    cc.moveBy(0.1, cc.p(-200, -20)).easing(cc.easeCircleActionOut()),
                     cc.scaleTo(0.1, 0.7)
                 ),
                 cc.callFunc(function() {

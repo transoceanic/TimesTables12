@@ -8,18 +8,21 @@ cc.Class({
         isIncrease: cc.Label,
         continueContainer: cc.Node,
         bestScoreContainer: cc.Node,
-        prizeContainer: cc.Node,
         loader: cc.ProgressBar,
 
-        prizes: {
-            default: [],
-            type: [cc.Node]
+        awardsContainer: cc.Node,
+        awardsPanelPrefab: {
+            default: null,
+            type: cc.Prefab
         }
     },
 
     // use this for initialization
     onLoad: function () {
         this.isLoading = false;
+
+        this.awardsPanel = cc.instantiate(this.awardsPanelPrefab);
+        thi.awardsContainer.addChild(this.awardsPanel);
     },
     
     setScore: function(score) {
@@ -29,7 +32,7 @@ cc.Class({
         if (flow.isSendScore(score) > 0) {
             this.continueContainer.active = false;
             this.bestScoreContainer.active = true;
-            this.prizeContainer.active = false;
+            this.awardsContainer.active = false;
             
             this.loader.progress = 0;
             this.loaderTimer = 0;
@@ -40,7 +43,7 @@ cc.Class({
             flow.checkForBestScores(score, 
                 function(res) {
                     self.stopLoader();
-                    self.showPrize(res);
+                    self.showAwards(res);
                 },
                 function() {
                     self.stopLoader();
@@ -49,7 +52,7 @@ cc.Class({
         } else {
             this.continueContainer.active = true;
             this.bestScoreContainer.active = false;
-            this.prizeContainer.active = false;
+            this.awardsContainer.active = false;
         }
     },
 
@@ -62,10 +65,12 @@ cc.Class({
         this.bestScoreContainer.active = false;
     },
 
-    showPrize: function(stat) {
-        console.log('showPrize '+JSON.stringify(stat));
+    showAwards: function(stat) {
+        console.log('showAwards '+JSON.stringify(stat));
 
-        this.prizeContainer.active = true;
+        this.awardsContainer.active = true;
+        this.awardsPanel.getComponent('awards-panel')
+            .addAward();
     },
 
     // called every frame, uncomment this function to activate update callback

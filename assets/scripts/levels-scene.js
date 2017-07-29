@@ -62,7 +62,7 @@ cc.Class({
         if (flow.isAllowed()) {
             this.playBtn.interactable = true;
 
-            var levelsOut = cc.MoveBy.create(0.8, cc.p(0, 900))
+            var levelsOut = cc.moveBy(0.8, cc.p(0, 900))
                 .easing(
                     // cc.easeBounceOut()
                     // cc.easeElasticOut(2.0)
@@ -79,14 +79,14 @@ cc.Class({
                 }.bind(this))
             ));
             
-            var playBtnIn = cc.MoveBy.create(0.8, cc.p(0, 200)).easing(cc.easeCircleActionOut());
+            var playBtnIn = cc.moveBy(0.8, cc.p(0, 200)).easing(cc.easeCircleActionOut());
 
             this.playBtn.node.runAction(cc.sequence(
                 cc.delayTime(0.4),
                 playBtnIn
             ));
             
-            var scoreIn = cc.MoveBy.create(0.4, cc.p(0, -300)).easing(cc.easeCircleActionOut());
+            var scoreIn = cc.moveBy(0.4, cc.p(0, -300)).easing(cc.easeCircleActionOut());
                 
             this.scoresContainer.runAction(cc.sequence(
                 cc.delayTime(0.8),

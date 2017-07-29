@@ -14,7 +14,6 @@ cc.Class({
     },
 
     show: function(queue) {
-        console.log('queue '+queue);
         this.star.active = true;
 
         if (queue === null) {

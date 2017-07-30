@@ -23,8 +23,8 @@ cc.Class({
         artifact.scaleY = 0;
         let ratio = this.node.height / artifact.height;
         artifact.runAction(cc.sequence(
-            cc.scaleTo(0.2, 1.2, 1.2).easing(cc.easeBackInOut()),
-            cc.scaleTo(0.1, ratio, ratio).easing(cc.easeOut(1.0))
+            cc.scaleTo(2, 1.2, 1.2).easing(cc.easeIn(1.0)),
+            cc.scaleTo(1, ratio, ratio).easing(cc.easeOut(1.0))
         ));
     }
 

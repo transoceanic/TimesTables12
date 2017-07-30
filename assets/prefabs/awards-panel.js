@@ -28,8 +28,15 @@ cc.Class({
                 // this.node.addChild(award);
                 this.scrollView.content.addChild(award);
 
-                award.getComponent('award')
-                    .setOrder(1);
+                this.node.runAction(cc.sequence(
+                    cc.delayTime(3 * (i - 0.5)),
+                    cc.callFunc(function() {
+                        award.getComponent('award')
+                            .setOrder(1);
+                    })
+                ));
+                // award.getComponent('award')
+                //     .setOrder(1);
 
                 i++;
             }

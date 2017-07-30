@@ -14,32 +14,28 @@ cc.Class({
     onLoad: function () {
     },
 
-    addAwards: function(stat) {
+    addAwards: function(awards) {
         let i = 0.5,
         height = this.node.height,
         width = this.node.height;
-        for (const category of ['day', 'week', 'month', 'year', 'century']) {
-            if (stat[category]) {
+        for (const award of awards) {
 
-                let award = cc.instantiate(this.awardPrefab);
-                award.height = height;
-                award.width = width;
-                award.setPosition(cc.p(width * i, award.position.y));
-                // this.node.addChild(award);
-                this.scrollView.content.addChild(award);
+            let instace = cc.instantiate(this.awardPrefab);
+            instace.height = height;
+            instace.width = width;
+            instace.setPosition(cc.p(width * i, instace.position.y));
+            // this.node.addChild(award);
+            this.scrollView.content.addChild(instace);
 
-                this.node.runAction(cc.sequence(
-                    cc.delayTime(3 * (i - 0.5)),
-                    cc.callFunc(function() {
-                        award.getComponent('award')
-                            .setOrder(1);
-                    })
-                ));
-                // award.getComponent('award')
-                //     .setOrder(1);
+            this.node.runAction(cc.sequence(
+                cc.delayTime(0.3 + (i - 0.5) * 0.2),
+                cc.callFunc(function() {
+                    instace.getComponent('award')
+                        .show(award);
+                })
+            ));
 
-                i++;
-            }
+            i++;
         }
         this.scrollView.content.width = width * (i - 0.5);
     }

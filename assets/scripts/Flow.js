@@ -102,7 +102,24 @@ Flow.prototype.checkForBestScores = function(score, success, error) {
             G.stat = res || {};
             G.save('stat');
 
-            success(G.stat);
+
+            let awards = [];
+            for (let category of ["century", "year", "month", "week", "day"]) {
+                let order = parseInt((G.stat[category] || {}).order);
+                if (!isNaN(order) && order < 100) {
+                    awards.push({
+                        top: order <= 3 ? order : Math.ceil(order / 10) * 10,
+                        sprite: order <= 3 ? order - 1 : 3,
+                        date: new Date().toLocaleDateString(),
+                        period: category
+                    });
+                }
+            }
+
+            G.gameplay.awards = awards.concat(G.gameplay.awards || []);
+            G.save('gameplay');
+
+            success(awards);
         },
         error: error
     });

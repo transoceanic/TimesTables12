@@ -15,16 +15,16 @@ cc.Class({
         }
     },
 
-    setOrder: function(order) {
-        let artifact = this.artifacts[0];
+    show: function(award) {
+        let artifact = this.artifacts[award.sprite];
         artifact.active = true;
 
         artifact.scaleX = 0;
         artifact.scaleY = 0;
         let ratio = this.node.height / artifact.height;
         artifact.runAction(cc.sequence(
-            cc.scaleTo(2, 1.2, 1.2).easing(cc.easeIn(1.0)),
-            cc.scaleTo(1, ratio, ratio).easing(cc.easeOut(1.0))
+            cc.scaleTo(0.3, ratio * 1.4, ratio * 1.4).easing(cc.easeBackInOut()),
+            cc.scaleTo(0.1, ratio, ratio).easing(cc.easeOut(1.0))
         ));
     }
 

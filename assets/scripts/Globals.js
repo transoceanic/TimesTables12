@@ -3,7 +3,15 @@ window.G = {
     fadeOutDuration: 0.2,
     answerTimeDuration: 5,
     gameplay: {
-        allowed: false
+        allowed: false,
+        bestScore: null,
+        awards: []
+        // {
+        //     sprite: 0..3, // gold, silver, bronze, medal
+        //     date: '30 jul 2017',
+        //     top: 1, // 1,2,3,10,20,30..100
+        //     period: 'week', // day, week, month, year, century
+        // }
     },
     settings: {
         name: 'Guest',

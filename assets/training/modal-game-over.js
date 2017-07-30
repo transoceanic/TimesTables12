@@ -43,9 +43,9 @@ cc.Class({
             var self = this;
             
             flow.checkForBestScores(score, 
-                function(res) {
+                function(awards) {
                     self.stopLoader();
-                    self.showAwards(res);
+                    self.showAwards(awards);
                 },
                 function() {
                     self.stopLoader();
@@ -67,12 +67,12 @@ cc.Class({
         this.bestScoreContainer.active = false;
     },
 
-    showAwards: function(stat) {
-        console.log('showAwards '+JSON.stringify(stat));
+    showAwards: function(awards) {
+        console.log('showAwards '+JSON.stringify(awards));
 
         this.awardsContainer.active = true;
         this.awardsPanel.getComponent('awards-panel')
-            .addAwards(stat);
+            .addAwards(awards);
     },
 
     // called every frame, uncomment this function to activate update callback

@@ -1665,6 +1665,12 @@
     },
     "scoresContainer": {
       "__id__": 33
+    },
+    "awardsContainer": {
+      "__id__": 42
+    },
+    "awardsPanelPrefab": {
+      "__uuid__": "8e045269-f5e7-4e22-b807-5285f0255816"
     }
   },
   {

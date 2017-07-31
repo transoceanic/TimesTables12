@@ -17,7 +17,13 @@ cc.Class({
         
         levelsContainer: cc.Node,
         
-        scoresContainer: cc.Node
+        scoresContainer: cc.Node,
+
+        awardsContainer: cc.Node,
+        awardsPanelPrefab: {
+            default: null,
+            type: cc.Prefab
+        }
     },
 
     // use this for initialization
@@ -85,6 +91,17 @@ cc.Class({
                 cc.delayTime(0.4),
                 playBtnIn
             ));
+
+
+            let awardsPanel = cc.instantiate(this.awardsPanelPrefab);
+            awardsPanel.height = this.awardsContainer.height;
+            awardsPanel.width = this.awardsContainer.width;
+            this.awardsContainer.addChild(awardsPanel);
+
+            this.awardsContainer.active = true;
+            awardsPanel.getComponent('awards-panel')
+                .addAwards(G.gameplay.awards);
+
             
             var scoreIn = cc.moveBy(0.4, cc.p(0, -300)).easing(cc.easeCircleActionOut());
                 

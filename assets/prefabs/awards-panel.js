@@ -14,32 +14,41 @@ cc.Class({
     onLoad: function () {
     },
 
-    addAwards: function(awards) {
-        let i = 0.5,
+    addAwards: function(awards, animate) {
+        let i = 0,
         height = this.node.height / 2,
-        width = this.node.height / 2;
+        width = this.node.height / 2,
+        self = this;
         for (const award of awards) {
 
             let instace = cc.instantiate(this.awardPrefab);
             instace.height = height;
             instace.width = width;
-            instace.setPosition(cc.p(width * i, instace.position.y));
+            instace.setPosition(cc.p(width * (i + 0.5), instace.position.y));
             // this.node.addChild(award);
             this.scrollView.content.addChild(instace);
 
-            this.node.runAction(cc.sequence(
-                // cc.delayTime(0.3 + (i - 0.5) * 0.2),
-                cc.delayTime(3 + (i - 0.5) * 2),
-                cc.callFunc(function() {
-                    instace.getComponent('award')
-                        .show(award);
-                })
-            ));
+            if (animate) {
+                this.node.runAction(cc.sequence(
+                    cc.delayTime(i * 1.1),
+                    // cc.delayTime(3 + i * 2),
+                    cc.callFunc(function(j){
+                        return function() {
+                            self.scrollView.scrollTo(cc.p(j / awards.length , 0), 1.0);
+                            instace.getComponent('award')
+                                .show(award);
+                        };
+                    }(i))
+                ));
+            } else {
+                instace.getComponent('award')
+                    .show(award);
+            }
 
             i++;
         }
-        // this.scrollView.content.height = height
-        this.scrollView.content.width = width * (i - 0.5);
+
+        this.scrollView.content.width = width * i;
     }
 
     // called every frame, uncomment this function to activate update callback

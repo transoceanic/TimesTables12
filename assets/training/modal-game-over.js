@@ -72,7 +72,7 @@ cc.Class({
 
         this.awardsContainer.active = true;
         this.awardsPanel.getComponent('awards-panel')
-            .addAwards(awards);
+            .addAwards(awards, true);
     },
 
     // called every frame, uncomment this function to activate update callback

@@ -16,8 +16,8 @@ cc.Class({
 
     addAwards: function(awards) {
         let i = 0.5,
-        height = this.node.height,
-        width = this.node.height;
+        height = this.node.height / 2,
+        width = this.node.height / 2;
         for (const award of awards) {
 
             let instace = cc.instantiate(this.awardPrefab);
@@ -28,7 +28,8 @@ cc.Class({
             this.scrollView.content.addChild(instace);
 
             this.node.runAction(cc.sequence(
-                cc.delayTime(0.3 + (i - 0.5) * 0.2),
+                // cc.delayTime(0.3 + (i - 0.5) * 0.2),
+                cc.delayTime(3 + (i - 0.5) * 2),
                 cc.callFunc(function() {
                     instace.getComponent('award')
                         .show(award);
@@ -37,6 +38,7 @@ cc.Class({
 
             i++;
         }
+        // this.scrollView.content.height = height
         this.scrollView.content.width = width * (i - 0.5);
     }
 

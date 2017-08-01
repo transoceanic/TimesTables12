@@ -15,11 +15,14 @@ cc.Class({
     },
 
     addAwards: function(awards, animate) {
+        awards = awards || [];
+
         let i = 0,
-        height = this.node.height / 2,
-        width = this.node.height / 2,
+        height = this.node.height / 1.3,
+        width = this.node.height / 1.3,
         self = this;
-        for (const award of awards) {
+        // for (const award of awards) {
+        for (i=0; i<awards.length; i++) {
 
             let instace = cc.instantiate(this.awardPrefab);
             instace.height = height;
@@ -36,16 +39,16 @@ cc.Class({
                         return function() {
                             self.scrollView.scrollTo(cc.p(j / awards.length , 0), 1.0);
                             instace.getComponent('award')
-                                .show(award);
+                                .show(awards[j]);
                         };
                     }(i))
                 ));
             } else {
                 instace.getComponent('award')
-                    .show(award);
+                    .show(awards[i]);
             }
 
-            i++;
+            // i++;
         }
 
         this.scrollView.content.width = width * i;

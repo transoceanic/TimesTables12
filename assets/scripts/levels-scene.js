@@ -49,7 +49,7 @@ cc.Class({
         this.node.opacity = 0;
         this.node.runAction(
             cc.fadeIn(G.fadeInDuration)
-         );
+        );
 
 
         for (var i=0; i<G.levels.length; i++) {
@@ -101,6 +101,8 @@ cc.Class({
             this.awardsContainer.active = true;
             awardsPanel.getComponent('awards-panel')
                 .addAwards(G.gameplay.awards);
+
+            // this.awardsContainer.height = this.awardsContainer.height / 2;
 
             
             var scoreIn = cc.moveBy(0.4, cc.p(0, -300)).easing(cc.easeCircleActionOut());

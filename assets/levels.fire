@@ -1536,7 +1536,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 640,
-      "height": 240
+      "height": 160
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1568,7 +1568,7 @@
     "_left": 0,
     "_right": 0,
     "_top": 0,
-    "_bottom": -60,
+    "_bottom": -20,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,

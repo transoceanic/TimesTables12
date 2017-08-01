@@ -10,8 +10,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        for (let artifact of this.artifacts) {
-            artifact.active = false;
+        for (let i=0; i<this.artifacts.length; i++) {
+            this.artifacts[i].active = false;
         }
     },
 
@@ -27,7 +27,7 @@ cc.Class({
         artifact.scaleY = 0;
         let ratio = this.node.height / artifact.height;
         artifact.runAction(cc.sequence(
-            cc.scaleTo(0.6, ratio * 2, ratio * 2).easing(cc.easeBackInOut()),
+            cc.scaleTo(0.6, ratio * 1.3, ratio * 1.3).easing(cc.easeBackInOut()),
             cc.scaleTo(0.2, ratio, ratio).easing(cc.easeOut(1.0))
         ));
     }

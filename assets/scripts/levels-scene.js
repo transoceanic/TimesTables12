@@ -102,8 +102,6 @@ cc.Class({
             awardsPanel.getComponent('awards-panel')
                 .addAwards(G.gameplay.awards);
 
-            // this.awardsContainer.height = this.awardsContainer.height / 2;
-
             
             var scoreIn = cc.moveBy(0.4, cc.p(0, -300)).easing(cc.easeCircleActionOut());
                 

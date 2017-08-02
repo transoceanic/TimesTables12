@@ -103,7 +103,7 @@ cc.Class({
                 .addAwards(G.gameplay.awards);
 
             
-            var scoreIn = cc.moveBy(0.4, cc.p(0, -300)).easing(cc.easeCircleActionOut());
+            var scoreIn = cc.moveBy(0.4, cc.p(0, -this.scoresContainer.height)).easing(cc.easeCircleActionOut());
                 
             this.scoresContainer.runAction(cc.sequence(
                 cc.delayTime(0.8),

@@ -24,6 +24,7 @@ cc.Class({
             default: null,
             type: cc.Prefab
         }
+
     },
 
     // use this for initialization

@@ -126,6 +126,19 @@ Flow.prototype.checkForBestScores = function(score, success, error) {
 }
 
 
+
+Flow.prototype.getHighScores = function(period, success, error) {
+    Utils.loadJson({
+        url: DOMAIN+'score/list/'+period,
+        method: 'GET',
+        success: function(res) {
+            success(res);
+        },
+        error: error
+    });
+}
+
+
 // Flow.prototype.setState = function(state) {
 //     this.state = state;
 //     console.log('setState '+this.state);

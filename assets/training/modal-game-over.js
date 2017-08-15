@@ -10,7 +10,7 @@ cc.Class({
         nameRequestContainer: cc.Node,
         // bestScoreContainer: cc.Node,
         // loader: cc.ProgressBar,
-        loader: cc.Node,
+        loaderPrefab: cc.Prefab,
 
         awardsContainer: cc.Node,
         awardsPanelPrefab: {
@@ -22,7 +22,10 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         // this.isLoading = false;
+        this.loader = cc.instantiate(this.loaderPrefab);
+        this.node.addChild(this.loader);
         this.loader.active = false;
+
         this.nameRequestContainer.active = false;
 
         this.awardsPanel = cc.instantiate(this.awardsPanelPrefab);
@@ -72,10 +75,13 @@ cc.Class({
     },
 
     updateName: function() {
-        this.nameRequestContainer.active = false;
-        flow.setSettings('name', 'Andrey');
+        let name = (this.nameRequestContainer.getChildByName('editbox').getComponent(cc.EditBox).string || '').replace(/^\s*|\s*$/g, '');
+        if (name) {
+            this.nameRequestContainer.active = false;
+            flow.setSettings('name', name);
 
-        this.requestForBestScore();
+            this.requestForBestScore();
+        }
     },
 
     stopLoader: function() {

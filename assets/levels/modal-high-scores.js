@@ -4,7 +4,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-    	loader: cc.Node,
+        loaderPrefab: cc.Prefab,
         scrollView: cc.ScrollView,
     	listLabel: cc.Label,
     	errorLabel: cc.Label
@@ -15,6 +15,8 @@ cc.Class({
 
 	    this.awardsCache = {};
 
+        this.loader = cc.instantiate(this.loaderPrefab);
+        this.node.addChild(this.loader);
     	this.loader.active = false;
 
     	this.tabPressed(null, 'week');

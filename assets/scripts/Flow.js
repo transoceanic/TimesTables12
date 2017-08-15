@@ -94,7 +94,7 @@ Flow.prototype.checkForBestScores = function(score, success, error) {
         url: DOMAIN+'score/update',
         method: 'POST',
         data: {
-            name: G.settings.name,
+            name: G.getName(),
             score: score,
             stat: G.stat
         },

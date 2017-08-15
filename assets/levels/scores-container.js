@@ -8,6 +8,7 @@ cc.Class({
 
         myScore: cc.Label,
         highScoresBtn: cc.Button,
+        nameLabel: cc.Label,
 
         modalHighScores: {
             default: null,
@@ -20,6 +21,8 @@ cc.Class({
         this.audioMng = this.audioMng.getComponent('AudioMng');
 
         this.myScore.string = flow.getMyScore();
+
+        this.nameLabel.string = 'Hello ' + G.getName() + '!!!';
     },
     
     highScores: function() {

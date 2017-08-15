@@ -4,36 +4,62 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+    	loader: cc.Node,
         scrollView: cc.ScrollView,
-    	listLabel: cc.Label
+    	listLabel: cc.Label,
+    	errorLabel: cc.Label
     },
 
     // use this for initialization
     onLoad: function () {
 
+	    this.awardsCache = {};
+
+    	this.loader.active = false;
+
+    	this.tabPressed(null, 'week');
     },
 
     tabPressed: function(event, period) {
+    	// this.loader.stop('loader');
+
     	this.listLabel.string = '';
+    	this.errorLabel.string = '';
+        this.scrollView.content.height = 200;
 
-    	let self = this;
+        if (this.awardsCache[period]) {
 
-	    flow.getHighScores(period, 
-            function(list) {
-            	// console.log('tabPressed '+JSON.stringify(list));
-                // self.stopLoader();
-                // self.showAwards(awards);
-                self.listLabel.string = list.reduce(function(str, person) {
-                	return str + person.score + ' - ' + person.name + '\n';
-                }, '');
+        	this.listLabel.string = this.awardsCache[period];
+        	this.scrollView.content.height = this.listLabel.node.height;
 
-                self.scrollView.content.height = self.listLabel.node.height;
-            },
-            function() {
-            	console.log('tabPressed error');
-                // self.stopLoader();
-            });
+        } else {
 
+	    	this.loader.active = true;
+	    	let self = this;
+
+		    flow.getHighScores(period, 
+	            function(list) {
+			    	self.loader.active = false;
+	            	// console.log('tabPressed '+JSON.stringify(list));
+	                // self.stopLoader();
+	                // self.showAwards(awards);
+	                self.listLabel.string = list.reduce(function(str, person) {
+	                	return str + person.score + ' - ' + person.name + '\n';
+	                }, '');
+
+	                if (!self.listLabel.string) {
+		                self.errorLabel.string = 'No competitors';
+	                } else {
+	                	self.awardsCache[period] = self.listLabel.string;
+		                self.scrollView.content.height = self.listLabel.node.height;
+	                }
+	            },
+	            function() {
+			    	self.loader.active = false;
+	                self.errorLabel.string = 'Ups... Try again later';
+	                // self.stopLoader();
+	            });
+		}
     }
 
     // called every frame, uncomment this function to activate update callback

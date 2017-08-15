@@ -7,8 +7,10 @@ cc.Class({
         score: cc.Label,
         isIncrease: cc.Label,
         continueContainer: cc.Node,
-        bestScoreContainer: cc.Node,
-        loader: cc.ProgressBar,
+        nameRequestContainer: cc.Node,
+        // bestScoreContainer: cc.Node,
+        // loader: cc.ProgressBar,
+        loader: cc.Node,
 
         awardsContainer: cc.Node,
         awardsPanelPrefab: {
@@ -19,7 +21,9 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.isLoading = false;
+        // this.isLoading = false;
+        this.loader.active = false;
+        this.nameRequestContainer.active = false;
 
         this.awardsPanel = cc.instantiate(this.awardsPanelPrefab);
         this.awardsPanel.height = this.awardsContainer.height;
@@ -33,62 +37,80 @@ cc.Class({
         
         if (flow.isSendScore(score) > 0) {
             this.continueContainer.active = false;
-            this.bestScoreContainer.active = true;
+            // this.bestScoreContainer.active = true;
             this.awardsContainer.active = false;
             
-            this.loader.progress = 0;
-            this.loaderTimer = 0;
-            this.isLoading = true;
-
-            var self = this;
-            
-            flow.checkForBestScores(score, 
-                function(awards) {
-                    self.stopLoader();
-                    self.showAwards(awards);
-                },
-                function() {
-                    self.stopLoader();
-                });
+            if (!G.settings.name) {
+                this.nameRequestContainer.active = true;
+            } else {
+                this.requestForBestScore();
+            }
 
         } else {
             this.continueContainer.active = true;
-            this.bestScoreContainer.active = false;
+            // this.bestScoreContainer.active = false;
             this.awardsContainer.active = false;
         }
     },
 
+    requestForBestScore: function() {
+        // this.loader.progress = 0;
+        // this.loaderTimer = 0;
+        // this.isLoading = true;
+        this.loader.active = true;
+
+        var self = this;
+        
+        flow.checkForBestScores(this.score.string, 
+            function(awards) {
+                self.stopLoader();
+                self.showAwards(awards);
+            },
+            function() {
+                self.stopLoader();
+            });
+    },
+
+    updateName: function() {
+        this.nameRequestContainer.active = false;
+        flow.setSettings('name', 'Andrey');
+
+        this.requestForBestScore();
+    },
+
     stopLoader: function() {
-        this.isLoading = false;
-        this.loaderTimer = 0;
-        this.loader.progress = 0;
+        // this.isLoading = false;
+        // this.loaderTimer = 0;
+        // this.loader.progress = 0;
+        this.loader.active = false;
 
         this.continueContainer.active = true;
-        this.bestScoreContainer.active = false;
+        // this.bestScoreContainer.active = false;
     },
 
     showAwards: function(awards) {
-        console.log('showAwards '+JSON.stringify(awards));
-
-        this.awardsContainer.active = true;
-        this.awardsPanel.getComponent('awards-panel')
-            .addAwards(awards, true);
+        // console.log('showAwards '+JSON.stringify(awards));
+        if (awards.length > 0) {
+            this.awardsContainer.active = true;
+            this.awardsPanel.getComponent('awards-panel')
+                .addAwards(awards, true);
+        }
     },
 
     // called every frame, uncomment this function to activate update callback
-    update: function (dt) {
-        if (this.isLoading) {
-            this.loader.progress = this.loaderTimer/10;
+    // update: function (dt) {
+    //     if (this.isLoading) {
+    //         this.loader.progress = this.loaderTimer/10;
 
-            if (this.loaderTimer <= 9) {
-                this.loaderTimer += dt;
-                // this.isLoading = false;
-                // this.loaderTimer = 0;
-                // this.loader.progress = 0;
+    //         if (this.loaderTimer <= 9) {
+    //             this.loaderTimer += dt;
+    //             // this.isLoading = false;
+    //             // this.loaderTimer = 0;
+    //             // this.loader.progress = 0;
 
-                // this.continueContainer.active = true;
-                // this.bestScoreContainer.active = false;
-            }
-        }
-    }
+    //             // this.continueContainer.active = true;
+    //             // this.bestScoreContainer.active = false;
+    //         }
+    //     }
+    // }
 });

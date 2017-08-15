@@ -1,4 +1,6 @@
 window.G = {
+    debug: true,
+    
     fadeInDuration: 0.2,
     fadeOutDuration: 0.2,
     answerTimeDuration: 5,
@@ -14,7 +16,7 @@ window.G = {
         // }
     },
     settings: {
-        name: 'Guest',
+        name: null,
         music: true,
         sound: true
     },
@@ -91,6 +93,10 @@ window.G = {
             stars: {count: 0, isNew: false}
         }
     ],
+
+    getName: function() {
+        return this.settings.name || 'Guest';
+    },
     
     save: function(key) {
         cc.sys.localStorage.setItem(key, JSON.stringify(this[key]));

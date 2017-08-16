@@ -189,7 +189,7 @@ cc.Class({
                 var stars = this.wrongAnswerCounter < 10 ? 
                     (this.wrongAnswerCounter < 5 ?
                         (this.wrongAnswerCounter > 0 ? 2 : 3) : 1) : 0;
-                        
+
                 flow.addStar(stars);
                 
                 this.modalFinish.getComponent('ModalUI').show();
@@ -304,7 +304,7 @@ cc.Class({
     },
     
     wrongAnswered: function() {
-        if (this.hearts.length > this.wrongAnswerCounter) {
+        if (this.numberObj || this.hearts.length > this.wrongAnswerCounter) {
             this.audioMng.playLose();
             
             this.wrongAnswerCounter++;

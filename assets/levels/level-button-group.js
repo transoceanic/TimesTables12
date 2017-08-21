@@ -39,6 +39,7 @@ cc.Class({
         G.save('levels');
             
         this.button.interactable = !this.numberObj.locked;
+        this.rateStarsPlaceholder.active = !this.numberObj.locked;
 
     },
     

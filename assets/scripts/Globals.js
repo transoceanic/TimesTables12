@@ -26,70 +26,70 @@ window.G = {
             index: 0,
             number: 1,
             locked: false,
-            position: cc.p(-200, 340),
+            position: cc.p(-160, -250),
             stars: {count: 0, isNew: false}
         },
         {
             index: 1,
             number: 2,
             locked: true,
-            position: cc.p(0, 340),
+            position: cc.p(-20, -210),
             stars: {count: 0, isNew: false}
         },
         {
             index: 2,
             number: 3,
             locked: true,
-            position: cc.p(200, 340),
+            position: cc.p(120, -200),
             stars: {count: 0, isNew: false}
         },
         {
             index: 3,
             number: 4,
             locked: true,
-            position: cc.p(-200, 140),
+            position: cc.p(-145, -400),
             stars: {count: 0, isNew: false}
         },
         {
             index: 4,
             number: 5,
             locked: true,
-            position: cc.p(0, 140),
+            position: cc.p(-15, -360),
             stars: {count: 0, isNew: false}
         },
         {
             index: 5,
             number: 6,
             locked: true,
-            position: cc.p(200, 140),
+            position: cc.p(120, -350),
             stars: {count: 0, isNew: false}
         },
         {
             index: 6,
             number: 7,
             locked: true,
-            position: cc.p(-200, -60),
+            position: cc.p(-130, -550),
             stars: {count: 0, isNew: false}
         },
         {
             index: 7,
             number: 8,
             locked: true,
-            position: cc.p(0, -60),
+            position: cc.p(5, -510),
             stars: {count: 0, isNew: false}
         },
         {
             index: 8,
             number: 9,
             locked: true,
-            position: cc.p(200, -60),
+            position: cc.p(120, -500),
             stars: {count: 0, isNew: false}
         },
         {
             index: 9,
             number: 10,
             locked: true,
-            position: cc.p(0, -260),
+            position: cc.p(10, -660),
             stars: {count: 0, isNew: false}
         }
     ],

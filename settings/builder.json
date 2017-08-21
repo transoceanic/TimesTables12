@@ -23,5 +23,6 @@
   "webOrientation": "portrait",
   "includeSDKBox": false,
   "inlineSpriteFrames_native": true,
-  "optimizeHotUpdate": false
+  "optimizeHotUpdate": false,
+  "md5Cache": false
 }

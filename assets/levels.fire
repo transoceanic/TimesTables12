@@ -1087,7 +1087,7 @@
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 1
     },
     "_contentSize": {
       "__type__": "cc.Size",
@@ -1101,7 +1101,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 480
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1147,7 +1147,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 640,
-      "height": 800
+      "height": 900
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1156,7 +1156,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 108
+      "y": -450
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1174,7 +1174,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "6874347f-b8d3-442a-9610-8b77f08c1344"
+      "__uuid__": "9f65efa9-d025-478b-8f8a-b751d2f5352e"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -1204,7 +1204,7 @@
     "_alignFlags": 1,
     "_left": 0,
     "_right": 0,
-    "_top": -28,
+    "_top": 0,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -1335,9 +1335,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 33,
-      "g": 33,
-      "b": 33,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1348,8 +1348,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 260.08,
-      "height": 40
+      "width": 421.2,
+      "height": 24
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1452,12 +1452,14 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
+    "_actualFontSize": 60,
+    "_fontSize": 60,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "608b8290-893e-4ec9-baa4-b19c610eec9b"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "My Best Score",
     "_N$horizontalAlign": 1,
@@ -1814,8 +1816,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 127.78,
-      "height": 55.56
+      "width": 133,
+      "height": 20
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1847,7 +1849,7 @@
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "5e0e35bf-ee2e-4c19-9e0a-f3007de29c6e"
+      "__uuid__": "608b8290-893e-4ec9-baa4-b19c610eec9b"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,

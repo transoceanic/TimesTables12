@@ -75,7 +75,7 @@ window.G = {
             index: 7,
             number: 8,
             locked: true,
-            position: cc.p(5, -510),
+            position: cc.p(-8, -510),
             stars: {count: 0, isNew: false}
         },
         {
@@ -89,7 +89,7 @@ window.G = {
             index: 9,
             number: 10,
             locked: true,
-            position: cc.p(10, -660),
+            position: cc.p(0, -660),
             stars: {count: 0, isNew: false}
         }
     ],

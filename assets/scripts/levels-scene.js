@@ -88,7 +88,7 @@ cc.Class({
                 }.bind(this))
             ));
             
-            var playBtnIn = cc.moveBy(0.8, cc.p(0, 200)).easing(cc.easeCircleActionOut());
+            var playBtnIn = cc.moveBy(0.8, cc.p(0, 150)).easing(cc.easeCircleActionOut());
 
             this.playBtn.node.runAction(cc.sequence(
                 cc.delayTime(0.4),

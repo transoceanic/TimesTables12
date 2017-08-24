@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "5aa75b8b-37df-471a-8e37-ef2b40abe9d7",
+  "uuid": "5073ad1d-0dc5-4a5a-8276-91473737619b",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "music-off-icon": {
+    "cooper_FFFFFF_704353": {
       "ver": "1.0.3",
-      "uuid": "00d1a61e-bf67-472e-9f0a-6d2cbde678c6",
-      "rawTextureUuid": "5aa75b8b-37df-471a-8e37-ef2b40abe9d7",
+      "uuid": "42503eb0-2798-4ade-9d89-3ff2c61528c3",
+      "rawTextureUuid": "5073ad1d-0dc5-4a5a-8276-91473737619b",
       "trimType": "custom",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 391,
-      "height": 231,
-      "rawWidth": 391,
-      "rawHeight": 231,
+      "width": 1452,
+      "height": 512,
+      "rawWidth": 1452,
+      "rawHeight": 512,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

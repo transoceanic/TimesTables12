@@ -22,7 +22,7 @@ cc.Class({
 
         this.myScore.string = flow.getMyScore();
 
-        this.nameLabel.string = 'Hello ' + G.getName() + '!!!';
+        this.nameLabel.string = 'Hello\n' + G.getName() + '!!!';
     },
     
     highScores: function() {

@@ -18,8 +18,8 @@ cc.Class({
         awards = awards || [];
 
         let i = 0,
-        height = this.node.height / 1.3,
-        width = this.node.height / 1.3,
+        height = this.node.height / 1.4,
+        width = this.node.height / 0.9,
         self = this;
         // for (const award of awards) {
         for (i=0; i<awards.length; i++) {

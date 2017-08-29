@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "a7085730-a718-4e42-8922-a7b92796eeda",
+  "uuid": "5079854d-d7d2-4399-bffd-fa0180ffa0fa",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "answer-correct": {
+    "golblet-bronze": {
       "ver": "1.0.3",
-      "uuid": "8d0a6ae9-8986-4808-9187-f3a1d0926345",
-      "rawTextureUuid": "a7085730-a718-4e42-8922-a7b92796eeda",
+      "uuid": "75a441d5-ff9c-48a9-a3da-8cc59fb86678",
+      "rawTextureUuid": "5079854d-d7d2-4399-bffd-fa0180ffa0fa",
       "trimType": "custom",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 330,
-      "height": 400,
-      "rawWidth": 330,
-      "rawHeight": 400,
+      "width": 245,
+      "height": 273,
+      "rawWidth": 245,
+      "rawHeight": 273,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

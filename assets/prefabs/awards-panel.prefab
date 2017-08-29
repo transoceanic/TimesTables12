@@ -328,9 +328,7 @@
     "bounceDuration": 0.23,
     "scrollEvents": [],
     "cancelInnerEvents": true,
-    "_N$horizontalScrollBar": {
-      "__id__": 7
-    },
+    "_N$horizontalScrollBar": null,
     "_N$verticalScrollBar": null
   },
   {

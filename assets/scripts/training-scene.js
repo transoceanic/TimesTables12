@@ -86,11 +86,12 @@ cc.Class({
 
 
         this.buttons = [];
-        var quartWidth = this.node.width / 4;
+        var quartWidth = this.node.width / 4,
+        quartHeight = (this.node.height - 460) / 4;
         for (let i=0; i<4; i++) {
             var newButtonGroup = cc.instantiate(this.answerButtonPrefab);
             this.gameUI.addChild(newButtonGroup);
-            newButtonGroup.setPosition( cc.p(quartWidth*(-1+i%2*2),-250*(parseInt(i/2))) );
+            newButtonGroup.setPosition( cc.p(quartWidth*(-1+i%2*2), quartHeight*(1+2*parseInt(i/2))) );
     
             var newButtonGroupScript = newButtonGroup.getComponent('answer-button');
             // newButtonGroupScript.setAnswer();
@@ -114,15 +115,17 @@ cc.Class({
             this.scoreLabel.schedule(function() {
                 this.string = this.string + 1;
             }, 0.1, score-1);
+
+            const pos = this.countdownLabel.node.position;
             
             this.countdownLabel.node.runAction( cc.sequence(
                 cc.spawn(
-                    cc.moveBy(0.1, cc.p(-200, -20)).easing(cc.easeCircleActionOut()),
+                    cc.moveBy(0.1, cc.p(-160, -12)).easing(cc.easeCircleActionOut()),
                     cc.scaleTo(0.1, 0.7)
                 ),
                 cc.callFunc(function() {
                     this.countdownLabel.string = '';
-                    this.countdownLabel.node.position = cc.p(0, 0);
+                    this.countdownLabel.node.position = pos;
                     this.countdownLabel.node.scaleX = 1;
                     this.countdownLabel.node.scaleY = 1;
                 }.bind(this))
@@ -339,7 +342,7 @@ cc.Class({
         if (this.isCounting) {
             this.counterTimer += dt;
             this.countdown.progress = this.counterTimer/G.answerTimeDuration;
-            this.countdownLabel.string = Math.ceil(G.answerTimeDuration - this.counterTimer);
+            this.countdownLabel.string = parseInt(Math.ceil(G.answerTimeDuration - this.counterTimer), 10);
             // console.log('this.counterTimer '+this.counterTimer+ ' -------- '+this.countdown.progress+ '    '+G.answerTimeDuration);
             if (this.counterTimer >= G.answerTimeDuration) {
 

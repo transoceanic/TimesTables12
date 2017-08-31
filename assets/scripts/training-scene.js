@@ -86,14 +86,19 @@ cc.Class({
 
 
         this.buttons = [];
-        var quartWidth = this.node.width / 4,
-        quartHeight = (this.node.height - 460) / 4;
         for (let i=0; i<4; i++) {
-            var newButtonGroup = cc.instantiate(this.answerButtonPrefab);
+            let newButtonGroup = cc.instantiate(this.answerButtonPrefab);
+
+            let deltaWidth = (this.node.width/2 - newButtonGroup.width) / 3 + newButtonGroup.width/2;
+            let deltaHeight = ((this.node.height - 460) - 2*newButtonGroup.height) / 3;
+
             this.gameUI.addChild(newButtonGroup);
-            newButtonGroup.setPosition( cc.p(quartWidth*(-1+i%2*2), quartHeight*(1+2*parseInt(i/2))) );
+            newButtonGroup.setPosition( cc.p(
+                deltaWidth*(-1+i%2*2), 
+                deltaHeight*(1+parseInt(i/2)) + newButtonGroup.height * (1+2*parseInt(i/2)) / 2
+        ) );
     
-            var newButtonGroupScript = newButtonGroup.getComponent('answer-button');
+            let newButtonGroupScript = newButtonGroup.getComponent('answer-button');
             // newButtonGroupScript.setAnswer();
             newButtonGroupScript.scene = this;
             

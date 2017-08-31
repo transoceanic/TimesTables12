@@ -5,7 +5,7 @@ cc.Class({
 
     properties: {
         score: cc.Label,
-        isIncrease: cc.Label,
+        // isIncrease: cc.Label,
         continueContainer: cc.Node,
         nameRequestContainer: cc.Node,
         // bestScoreContainer: cc.Node,
@@ -36,7 +36,8 @@ cc.Class({
     
     setScore: function(score) {
         this.score.string = score;
-        this.isIncrease.node.active = flow.setMyScore(score);
+        // this.isIncrease.node.active = 
+        flow.setMyScore(score);
         
         if (flow.isSendScore(score) > 0) {
             this.continueContainer.active = false;

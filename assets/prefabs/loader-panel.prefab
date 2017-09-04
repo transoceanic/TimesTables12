@@ -16,17 +16,20 @@
     "_children": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 6
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 6
+        "__id__": 9
       }
     ],
     "_prefab": {
-      "__id__": 7
+      "__id__": 10
     },
     "_id": "",
     "_opacity": 255,
@@ -45,8 +48,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 250,
-      "height": 200
+      "width": 265,
+      "height": 265
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -102,8 +105,117 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
+      "width": 165,
+      "height": 163
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 4.2,
+      "y": 19.3
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "dae4a477-f3f3-46a8-ae5b-70a749d13e22"
+    },
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "fed3fdb2-f5fe-451c-8ecb-8c2df10eb2d7"
+    },
+    "_clips": [
+      {
+        "__uuid__": "fed3fdb2-f5fe-451c-8ecb-8c2df10eb2d7"
+      }
+    ],
+    "playOnLoad": true
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "eb448310-e5c3-457d-bf12-6a91826cb2cd"
+    },
+    "fileId": "6a5f94EkXBLeL/xPlLypw9F",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "home",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 7
+      }
+    ],
+    "_prefab": {
+      "__id__": 8
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
       "width": 170,
-      "height": 115
+      "height": 265
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -126,14 +238,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 2
+      "__id__": 6
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "5b74d3f3-3d48-4c8e-87ed-338a14daab74"
+      "__uuid__": "a60c24c1-0301-4924-a75b-c755bdb1e126"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -145,27 +257,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "062b5078-6794-44bc-b8ca-2dd1f2d559cd"
-    }
-  },
-  {
-    "__type__": "cc.Animation",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "d095c525-19c5-4d6c-8b57-32bdc75cfa76"
-    },
-    "_clips": [
-      {
-        "__uuid__": "d095c525-19c5-4d6c-8b57-32bdc75cfa76"
-      }
-    ],
-    "playOnLoad": true
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -175,7 +267,7 @@
     "asset": {
       "__uuid__": "eb448310-e5c3-457d-bf12-6a91826cb2cd"
     },
-    "fileId": "6a5f94EkXBLeL/xPlLypw9F",
+    "fileId": "8fvDv7xrpHOZ3t4ZY2aRkh",
     "sync": false
   },
   {
@@ -186,9 +278,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "116c06f6-8c60-488e-a26b-8038e56b5ce7"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,

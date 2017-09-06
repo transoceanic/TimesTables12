@@ -53,7 +53,7 @@ Flow.prototype.getSettings = function(key) {
 
 
 Flow.prototype.isAllowed = function() {
-    return G.gameplay.allowed || !!G.debug;
+    return G.gameplay.allowed;
 }
 
 

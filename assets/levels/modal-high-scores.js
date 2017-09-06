@@ -5,6 +5,7 @@ cc.Class({
 
     properties: {
         loaderPrefab: cc.Prefab,
+        periodLabel: cc.Label,
         scrollView: cc.ScrollView,
     	listLabel: cc.Label,
     	errorLabel: cc.Label
@@ -19,7 +20,7 @@ cc.Class({
         this.node.addChild(this.loader);
     	this.loader.active = false;
 
-    	this.tabPressed(null, 'week');
+    	this.tabPressed(null, 'day');
     },
 
     tabPressed: function(event, period) {
@@ -28,6 +29,8 @@ cc.Class({
     	this.listLabel.string = '';
     	this.errorLabel.string = '';
         this.scrollView.content.height = 200;
+
+        this.periodLabel.string = 'of ' + period.charAt(0).toUpperCase() + period.slice(1).toLowerCase();
 
         if (this.awardsCache[period]) {
 
@@ -46,12 +49,13 @@ cc.Class({
 	                // self.stopLoader();
 	                // self.showAwards(awards);
 	                self.listLabel.string = list.reduce(function(str, person) {
-	                	return str + person.score + ' - ' + person.name + '\n';
+	                	return str + '\n' + person.score + ' - ' + person.name;
 	                }, '');
 
 	                if (!self.listLabel.string) {
 		                self.errorLabel.string = 'No competitors';
 	                } else {
+                        self.listLabel.string = '\n' + self.listLabel.string + '\n';
 	                	self.awardsCache[period] = self.listLabel.string;
 		                self.scrollView.content.height = self.listLabel.node.height;
 	                }

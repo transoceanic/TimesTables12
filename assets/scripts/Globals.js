@@ -115,6 +115,13 @@ window.G = {
                 // console.log('restore '+key+' = '+JSON.stringify(this[key]));
             }
         }
+
+        if (this.debug) {
+            // this.gameplay.allowed = false;
+            for (let i=0; i<10; i++) {
+                this.levels[i].locked = false;
+            }
+        }
     }
 };
 

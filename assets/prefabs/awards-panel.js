@@ -37,7 +37,7 @@ cc.Class({
                     // cc.delayTime(3 + i * 2),
                     cc.callFunc(function(j){
                         return function() {
-                            self.scrollView.scrollTo(cc.p(j / awards.length , 0), 1.0);
+                            self.scrollView.scrollTo(cc.p(j / (awards.length * 0.85) , 0), 1.0);
                             instace.getComponent('award')
                                 .show(awards[j]);
                         };

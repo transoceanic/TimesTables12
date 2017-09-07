@@ -5,7 +5,7 @@ cc.Class({
 
     properties: {
         score: cc.Label,
-        // isIncrease: cc.Label,
+        message: cc.Label,
         continueContainer: cc.Node,
         nameRequestContainer: cc.Node,
         // bestScoreContainer: cc.Node,
@@ -22,6 +22,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         // this.isLoading = false;
+        this.isIncrease = false;
         this.loader = cc.instantiate(this.loaderPrefab);
         this.node.addChild(this.loader);
         this.loader.active = false;
@@ -36,8 +37,9 @@ cc.Class({
     
     setScore: function(score) {
         this.score.string = score;
-        // this.isIncrease.node.active = 
-        flow.setMyScore(score);
+        this.isIncrease = flow.setMyScore(score);
+
+
         
         if (flow.isSendScore(score) > 0) {
             this.continueContainer.active = false;
@@ -52,6 +54,12 @@ cc.Class({
 
         } else {
             this.continueContainer.active = true;
+            if (this.isIncrease) {
+                this.message.string = 'Congratulations!\nYou improved\nyour score';
+            } else {
+                this.message.string = 'Good try';
+            }
+
             // this.bestScoreContainer.active = false;
             this.awardsContainer.active = false;
         }
@@ -67,7 +75,7 @@ cc.Class({
         
         flow.checkForBestScores(this.score.string, 
             function(awards) {
-                self.stopLoader();
+                self.stopLoader(awards);
                 self.showAwards(awards);
             },
             function() {
@@ -85,10 +93,15 @@ cc.Class({
         }
     },
 
-    stopLoader: function() {
-        // this.isLoading = false;
-        // this.loaderTimer = 0;
-        // this.loader.progress = 0;
+    stopLoader: function(awards) {
+        if (!awards || awards.length === 0) {
+            if (this.isIncrease) {
+                this.message.string = 'Congratulations!\nYou improved\nyour score';
+            } else {
+                this.message.string = 'Good try';
+            }
+        }
+
         this.loader.active = false;
 
         this.continueContainer.active = true;

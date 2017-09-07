@@ -201,7 +201,8 @@ cc.Class({
                 flow.addStar(stars);
                 
                 this.modalFinish.getComponent('ModalUI').show();
-                this.modalFinish.getComponent('modal-finish-dialog').setStars(stars);
+                this.modalFinish.getComponent('modal-finish-dialog').setStars(stars,
+                    this.numberObj.index+1 === G.levels.length);
                 return;
             } else {
                 this.generateQuestions();

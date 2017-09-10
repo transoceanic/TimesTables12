@@ -255,6 +255,8 @@ cc.Class({
     },
 
     onBackClicked: function() {
+        this.audioMng.playButton();
+
         this.node.runAction(cc.sequence(
             cc.delayTime( this.modalFinish.getComponent('ModalUI').hide() ),
             cc.delayTime( this.modalGameOver.getComponent('ModalUI').hide() ),
@@ -331,6 +333,8 @@ cc.Class({
     },
     
     closeTimeoutAlert: function() {
+        this.audioMng.playButton();
+
         this.node.runAction(cc.sequence(
             cc.delayTime( this.modalTimeout.getComponent('ModalUI').hide() ),
             cc.callFunc(function() {

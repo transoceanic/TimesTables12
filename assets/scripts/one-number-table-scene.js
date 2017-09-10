@@ -5,7 +5,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // number: null,
+        audioMng: cc.Node,
         
         labelPrefab: {
             default: null,
@@ -16,6 +16,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        this.audioMng = this.audioMng.getComponent('AudioMng');
+
         this.numberObj = flow.getTrainingNumber();
         // console.log('-----scene one number table for ' + this.number);
         
@@ -46,6 +48,8 @@ cc.Class({
     },
     
     onBackClicked: function() {
+        this.audioMng.playButton();
+
         this.node.runAction(cc.sequence(
             cc.fadeOut(G.fadeOutDuration),
             cc.callFunc(function() {
@@ -55,7 +59,7 @@ cc.Class({
     },
     
     trainingClicked: function() {
-        // flow.setState(Types.State.training);
+        this.audioMng.playButton();
         
         this.node.runAction(cc.sequence(
             cc.fadeOut(G.fadeOutDuration),

@@ -31,6 +31,7 @@ cc.Class({
      },
     
     closeHighScores: function() {
+        this.audioMng.playButton();
         this.modalHighScores.getComponent('ModalUI').hide();
     },
 

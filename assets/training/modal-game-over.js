@@ -4,6 +4,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        audioMng: cc.Node,
+
         score: cc.Label,
         message: cc.Label,
         continueContainer: cc.Node,
@@ -21,7 +23,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        // this.isLoading = false;
+        this.audioMng = this.audioMng.getComponent('AudioMng');
+
         this.isIncrease = false;
         this.loader = cc.instantiate(this.loaderPrefab);
         this.node.addChild(this.loader);
@@ -84,6 +87,8 @@ cc.Class({
     },
 
     updateName: function() {
+        this.audioMng.playButton();
+
         let name = (this.nameRequestContainer.getChildByName('editbox').getComponent(cc.EditBox).string || '').replace(/^\s*|\s*$/g, '');
         if (name) {
             this.nameRequestContainer.active = false;
@@ -111,6 +116,8 @@ cc.Class({
     showAwards: function(awards) {
         // console.log('showAwards '+JSON.stringify(awards));
         if (awards.length > 0) {
+            this.audioMng.playWin();
+            
             this.awardsContainer.active = true;
             this.awardsPanel.getComponent('awards-panel')
                 .addAwards(awards, true);

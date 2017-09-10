@@ -27,6 +27,7 @@ cc.Class({
             this.star.scaleX = 1.0 * correct;
             this.star.scaleY = 1.0 * correct;
         } else {
+            // let self = this;
             this.star.runAction(cc.sequence(
                 cc.delayTime(0.3 + queue * 0.2),
                 cc.scaleTo(0.3, 2.0 * correct, 2.0 * correct).easing(cc.easeBackInOut()),

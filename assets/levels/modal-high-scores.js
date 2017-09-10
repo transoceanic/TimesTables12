@@ -4,6 +4,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        audioMng: cc.Node,
+
         loaderPrefab: cc.Prefab,
         periodLabel: cc.Label,
         scrollView: cc.ScrollView,
@@ -13,6 +15,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        this.audioMng = this.audioMng.getComponent('AudioMng');
 
 	    this.awardsCache = {};
 
@@ -24,7 +27,7 @@ cc.Class({
     },
 
     tabPressed: function(event, period) {
-    	// this.loader.stop('loader');
+        this.audioMng.playButton();
 
     	this.listLabel.string = '';
     	this.errorLabel.string = '';
@@ -53,7 +56,7 @@ cc.Class({
 	                }, '');
 
 	                if (!self.listLabel.string) {
-		                self.errorLabel.string = 'No competitors';
+		                self.errorLabel.string = 'No\ncompetitors';
 	                } else {
                         self.listLabel.string = '\n' + self.listLabel.string + '\n';
 	                	self.awardsCache[period] = self.listLabel.string;
@@ -62,7 +65,7 @@ cc.Class({
 	            },
 	            function() {
 			    	self.loader.active = false;
-	                self.errorLabel.string = 'Ups... Try again later';
+	                self.errorLabel.string = 'Ups...\nTry again\nlater';
 	                // self.stopLoader();
 	            });
 		}

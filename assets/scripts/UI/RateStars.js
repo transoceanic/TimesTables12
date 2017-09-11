@@ -21,8 +21,8 @@ cc.Class({
         // newLevelButtonGroupScript.scene = this;
     },
     
-    setStars: function(stars, isAnimate) {
-        this.panel.getComponent('rate-stars-panel').setStars(stars, isAnimate);
+    setStars: function(stars, isAnimate, audioMng) {
+        this.panel.getComponent('rate-stars-panel').setStars(stars, isAnimate, audioMng);
     }
 
     // called every frame, uncomment this function to activate update callback

@@ -116,6 +116,15 @@ cc.Class({
     },
 
     chooseLevel: function(numberObj) {
+        flow.cacheInterstitial();
+        flow.showInterstitial();
+        return;
+
+
+
+
+
+
         this.audioMng.playButton();
         
         flow.setTrainingNumber(numberObj);

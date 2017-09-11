@@ -9,6 +9,11 @@ cc.Class({
             url: cc.AudioClip
         },
 
+        starAudio: {
+            default: null,
+            url: cc.AudioClip
+        },
+
         loseAudio: {
             default: null,
             url: cc.AudioClip
@@ -50,6 +55,10 @@ cc.Class({
 
     playWin: function() {
         this._playSFX(this.winAudio);
+    },
+
+    playStar: function() {
+        this._playSFX(this.starAudio);
     },
 
     playLose: function() {

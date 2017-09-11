@@ -18,7 +18,7 @@ cc.Class({
         this.index = index;
     },
 
-    show: function(queue) {
+    show: function(queue, audioMng) {
         this.star.getComponent(cc.Sprite).spriteFrame = this.fullStar[this.index];
 
         let correct = this.index == 1 ? 1.0 : 0.8;
@@ -30,6 +30,11 @@ cc.Class({
             // let self = this;
             this.star.runAction(cc.sequence(
                 cc.delayTime(0.3 + queue * 0.2),
+                cc.callFunc(function() {
+                    if (audioMng) {
+                        audioMng.playStar();
+                    }
+                }),
                 cc.scaleTo(0.3, 2.0 * correct, 2.0 * correct).easing(cc.easeBackInOut()),
                 cc.scaleTo(0.1, 1.0 * correct, 1.0 * correct).easing(cc.easeOut(1.0))
             ));

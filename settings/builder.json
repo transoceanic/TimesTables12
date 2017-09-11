@@ -3,12 +3,16 @@
   "appSecret": "",
   "excludeScenes": [],
   "includeAnySDK": false,
+  "includeSDKBox": false,
   "includeSdk": [
     "anysdk"
   ],
   "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "md5Cache": false,
   "mergeStartScene": false,
   "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
   "orientation": {
     "landscapeLeft": false,
     "landscapeRight": false,
@@ -20,9 +24,5 @@
   "renderMode": "0",
   "startScene": "1194f53f-be08-4b1e-904a-67e1898815e0",
   "title": "MultiplicationTable-Client",
-  "webOrientation": "portrait",
-  "includeSDKBox": false,
-  "inlineSpriteFrames_native": true,
-  "optimizeHotUpdate": false,
-  "md5Cache": false
+  "webOrientation": "portrait"
 }

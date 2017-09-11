@@ -29,10 +29,10 @@ cc.Class({
         }
     },
     
-    setStars: function(stars, isAnimate) {
+    setStars: function(stars, isAnimate, audioMng) {
         for (var i=0; i<this.nodes.length; i++) {
             if (i < stars) {
-                this.stars[i].getComponent('rate-star').show(isAnimate ? i : null);
+                this.stars[i].getComponent('rate-star').show(isAnimate ? i : null, audioMng);
             } else {
                 this.stars[i].getComponent('rate-star').empty();
                 // break;

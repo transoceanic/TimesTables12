@@ -6,7 +6,45 @@ var Flow = function() {
     this.trainingNumberObj = null;
     // this.state = null;
     this.min = null;
+
+
+    if(cc.sys.isMobile) {
+        var self = this;
+        sdkbox.PluginAdMob.setListener({
+            adViewDidReceiveAd: function(name) {
+                self.showInfo('adViewDidReceiveAd name=' + name);
+            },
+            adViewDidFailToReceiveAdWithError: function(name, msg) {
+                self.showInfo('adViewDidFailToReceiveAdWithError name=' + name + ' msg=' + msg);
+            },
+            adViewWillPresentScreen: function(name) {
+                self.showInfo('adViewWillPresentScreen name=' + name);
+            },
+            adViewDidDismissScreen: function(name) {
+                self.showInfo('adViewDidDismissScreen name=' + name);
+            },
+            adViewWillDismissScreen: function(name) {
+                self.showInfo('adViewWillDismissScreen=' + name);
+            },
+            adViewWillLeaveApplication: function(name) {
+                self.showInfo('adViewWillLeaveApplication=' + name);
+            }
+        });
+        sdkbox.PluginAdMob.init();
+    }
 }
+
+Flow.prototype.cacheInterstitial = function() {
+    if(cc.sys.isMobile) {
+        sdkbox.PluginAdMob.cache('gameover');
+    }
+},
+
+Flow.prototype.showInterstitial = function() {
+    if(cc.sys.isMobile) {
+        sdkbox.PluginAdMob.show('gameover');
+    }
+},
 
 Flow.prototype.setTrainingNumber = function(number) {
     this.trainingNumberObj = number;

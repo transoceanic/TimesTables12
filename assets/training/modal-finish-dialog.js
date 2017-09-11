@@ -2,6 +2,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        audioMng: cc.Node,
+
         rateStarsPlaceholder: cc.Node,
         lockOpened: cc.Node,
         lockClosed: cc.Node,
@@ -10,11 +12,12 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        this.audioMng = this.audioMng.getComponent('AudioMng');
     },
     
     setStars: function(stars, isEndOfTraining) {
         this.rateStarsPlaceholder.getComponent('RateStars')
-            .setStars(stars, true);
+            .setStars(stars, true, this.audioMng);
 
         switch (stars) {
             case 0:

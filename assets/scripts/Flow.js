@@ -7,42 +7,55 @@ var Flow = function() {
     // this.state = null;
     this.min = null;
 
+    this.adStatuses = {};
+    this.adCurrent = null;
+    this.adDismissCallback = null;
+    this.adDismissCallbackContext = null;
 
     if(cc.sys.isMobile) {
         var self = this;
         sdkbox.PluginAdMob.setListener({
             adViewDidReceiveAd: function(name) {
-                self.showInfo('adViewDidReceiveAd name=' + name);
+                console.log('---------------adViewDidReceiveAd name=' + name);
+                self.adStatuses[name] = true;
             },
             adViewDidFailToReceiveAdWithError: function(name, msg) {
-                self.showInfo('adViewDidFailToReceiveAdWithError name=' + name + ' msg=' + msg);
+                console.log('---------------adViewDidFailToReceiveAdWithError name=' + name + ' msg=' + msg);
             },
             adViewWillPresentScreen: function(name) {
-                self.showInfo('adViewWillPresentScreen name=' + name);
+                console.log('---------------adViewWillPresentScreen name=' + name);
             },
             adViewDidDismissScreen: function(name) {
-                self.showInfo('adViewDidDismissScreen name=' + name);
+                console.log('---------------adViewDidDismissScreen name=' + name);
             },
             adViewWillDismissScreen: function(name) {
-                self.showInfo('adViewWillDismissScreen=' + name);
+                console.log('---------------adViewWillDismissScreen=' + name);
+                if (self.adCurrent) {
+                    sdkbox.PluginAdMob.cache(self.adCurrent);
+                    self.adCurrent = null;
+                    if (self.adDismissCallback) {
+                        self.adDismissCallback.call(self.adDismissCallbackContext || this);
+                    }
+                }
             },
             adViewWillLeaveApplication: function(name) {
-                self.showInfo('adViewWillLeaveApplication=' + name);
+                console.log('---------------adViewWillLeaveApplication=' + name);
             }
         });
         sdkbox.PluginAdMob.init();
     }
 }
 
-Flow.prototype.cacheInterstitial = function() {
-    if(cc.sys.isMobile) {
-        sdkbox.PluginAdMob.cache('gameover');
-    }
+Flow.prototype.isAdAvailable = function(name) {
+    return !!this.adStatuses[name];
 },
-
-Flow.prototype.showInterstitial = function() {
-    if(cc.sys.isMobile) {
-        sdkbox.PluginAdMob.show('gameover');
+Flow.prototype.showAd = function(name, callback, context) {
+    if(cc.sys.isMobile && this.adStatuses[name]) {
+        sdkbox.PluginAdMob.show(name);
+        this.adCurrent = name;
+        this.adStatuses[name] = false;
+        this.adDismissCallback = callback;
+        this.adDismissCallbackContext = context;
     }
 },
 

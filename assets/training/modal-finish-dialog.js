@@ -21,11 +21,11 @@ cc.Class({
 
         switch (stars) {
             case 0:
-                this.label.string = 'Ups...\nTry again';
+                this.label.string = 'Ups...\nTry Again';
                 this.lockClosed.active = true;
                 break;
             default:
-                this.label.string = isEndOfTraining ? 'A you ready\nto play now?' : 'Next level\nis open';
+                this.label.string = isEndOfTraining ? 'You are ready\nto play now' : 'Next level\nis open';
                 this.lockOpened.active = true;
                 break;
         }

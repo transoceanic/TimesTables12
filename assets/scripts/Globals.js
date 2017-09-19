@@ -4,6 +4,7 @@ window.G = {
     fadeInDuration: 0.2,
     fadeOutDuration: 0.2,
     answerTimeDuration: 5,
+    rewardedAnswerTimeDuration: 0,
     gameplay: {
         allowed: false,
         bestScore: null,
@@ -117,7 +118,7 @@ window.G = {
         }
 
         if (this.debug) {
-            this.gameplay.allowed = false;
+            // this.gameplay.allowed = false;
             for (let i=0; i<10; i++) {
                 this.levels[i].locked = false;
             }

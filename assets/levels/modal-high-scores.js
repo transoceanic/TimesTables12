@@ -20,7 +20,7 @@ cc.Class({
 	    this.awardsCache = {};
 
         this.loader = cc.instantiate(this.loaderPrefab);
-        this.node.addChild(this.loader);
+        this.errorLabel.node.addChild(this.loader);
     	this.loader.active = false;
 
     	this.tabPressed(null, 'day');
@@ -56,7 +56,7 @@ cc.Class({
 	                }, '');
 
 	                if (!self.listLabel.string) {
-		                self.errorLabel.string = 'No\ncompetitors';
+		                self.errorLabel.string = 'No\nCompetitors';
 	                } else {
                         self.listLabel.string = '\n' + self.listLabel.string + '\n';
 	                	self.awardsCache[period] = self.listLabel.string;
@@ -65,7 +65,7 @@ cc.Class({
 	            },
 	            function() {
 			    	self.loader.active = false;
-	                self.errorLabel.string = 'Ups...\nTry again\nlater';
+	                self.errorLabel.string = 'Ups...\nTry Again\nLater';
 	                // self.stopLoader();
 	            });
 		}

@@ -3601,8 +3601,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 343.33000000000004,
-      "height": 593.33
+      "width": 0,
+      "height": 55
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -3610,7 +3610,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 22,
+      "x": 19,
       "y": 61.00000000000006
     },
     "_skewX": 0,
@@ -3629,8 +3629,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 60,
-    "_fontSize": 60,
+    "_actualFontSize": 55,
+    "_fontSize": 55,
     "_lineHeight": 100,
     "_enableWrapText": true,
     "_N$file": {
@@ -3655,10 +3655,10 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 45,
-    "_left": 100.33499999999998,
-    "_right": 56.33499999999998,
-    "_top": -57.66500000000005,
-    "_bottom": 64.33500000000002,
+    "_left": 97.33499999999998,
+    "_right": 59.33499999999998,
+    "_top": -55.16500000000005,
+    "_bottom": 66.83500000000002,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,

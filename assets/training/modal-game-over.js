@@ -58,9 +58,9 @@ cc.Class({
         } else {
             this.continueContainer.active = true;
             if (this.isIncrease) {
-                this.message.string = 'Congratulations!\nYou improved\nyour score';
+                this.message.string = 'Congrats!\nYou improved\nyour score';
             } else {
-                this.message.string = 'Good try';
+                this.message.string = 'Good Try';
             }
 
             // this.bestScoreContainer.active = false;
@@ -101,9 +101,9 @@ cc.Class({
     stopLoader: function(awards) {
         if (!awards || awards.length === 0) {
             if (this.isIncrease) {
-                this.message.string = 'Congratulations!\nYou improved\nyour score';
+                this.message.string = 'Congrats!\nYou improved\nyour score';
             } else {
-                this.message.string = 'Good try';
+                this.message.string = 'Good Try';
             }
         }
 

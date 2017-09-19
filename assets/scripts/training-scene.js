@@ -57,6 +57,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        G.rewardedAnswerTimeDuration = 0;
+
         // initialization
         this.audioMng = this.audioMng.getComponent('AudioMng');
 
@@ -283,7 +285,7 @@ cc.Class({
         var answerIcon = this.answerCorrect;
         if (answer.correct) {
             if (!this.numberObj) {
-                this.addScore(Math.ceil(G.answerTimeDuration - this.counterTimer));
+                this.addScore( Math.max( Math.ceil(G.answerTimeDuration - this.counterTimer), 0) );
             } else {
                 this.countdownLabel.string = '';
             }
@@ -351,10 +353,11 @@ cc.Class({
     update: function (dt) {
         if (this.isCounting) {
             this.counterTimer += dt;
-            this.countdown.progress = this.counterTimer/G.answerTimeDuration;
-            this.countdownLabel.string = parseInt(Math.ceil(G.answerTimeDuration - this.counterTimer), 10);
+            this.countdown.progress = this.counterTimer/(G.answerTimeDuration + G.rewardedAnswerTimeDuration);
+            this.countdownLabel.string = 
+                parseInt(Math.ceil((G.answerTimeDuration + G.rewardedAnswerTimeDuration) - this.counterTimer), 10);
             // console.log('this.counterTimer '+this.counterTimer+ ' -------- '+this.countdown.progress+ '    '+G.answerTimeDuration);
-            if (this.counterTimer >= G.answerTimeDuration) {
+            if (this.counterTimer >= (G.answerTimeDuration + G.rewardedAnswerTimeDuration)) {
 
                 for (var i=0; i<this.buttons.length; i++) {
                     this.buttons[i].setInteractable(false);
@@ -367,6 +370,7 @@ cc.Class({
 
                 if (this.wrongAnswered()) {
                     this.modalTimeout.getComponent('ModalUI').show();
+                    this.modalTimeout.getComponent('modal-timeout').prepare();
                 } else {
                     this.gameOver();
                 }

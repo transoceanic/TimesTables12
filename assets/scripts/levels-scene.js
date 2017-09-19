@@ -29,8 +29,6 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        console.log('anySDK '+(typeof anysdk));
-
         flow.getMinOfBestScores();
 
         this.audioMng = this.audioMng.getComponent('AudioMng');
@@ -116,14 +114,9 @@ cc.Class({
     },
 
     chooseLevel: function(numberObj) {
-        flow.cacheInterstitial();
-        flow.showInterstitial();
-        return;
-
-
-
-
-
+        // flow.cacheInterstitial();
+        // flow.showInterstitial();
+        // return;
 
         this.audioMng.playButton();
         

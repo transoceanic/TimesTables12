@@ -6,6 +6,8 @@ var Flow = function() {
     this.trainingNumberObj = null;
     // this.state = null;
     this.min = null;
+    this.rewardedTimeout = 0;
+    this.isGameOver = false;
 
     this.adStatuses = {};
     this.adCurrent = null;
@@ -187,6 +189,17 @@ Flow.prototype.getHighScores = function(period, success, error) {
         },
         error: error
     });
+}
+
+
+Flow.prototype.setRewardedTimeout = function() {
+    this.rewardedTimeout = G.rewardedAnswerTimeDuration;
+}
+Flow.prototype.clearRewardedTimeout = function() {
+    this.rewardedTimeout = 0;
+}
+Flow.prototype.getRewardedTimeout = function(key) {
+    return this.rewardedTimeout;
 }
 
 

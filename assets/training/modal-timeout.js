@@ -14,7 +14,7 @@ cc.Class({
     },
 
     prepare: function () {
-        G.rewardedAnswerTimeDuration = 0;
+        flow.clearRewardedTimeout();
 
         this.rewarded.active = false;
         if (/*1==1|| */flow.isAdAvailable('rewarded')) {
@@ -38,7 +38,7 @@ cc.Class({
     },
 
     reward: function() {
-        G.rewardedAnswerTimeDuration = 5;
+        flow.setRewardedTimeout();
 
         var scaleOut = cc.scaleTo(0.6, 0, 0)
             .easing(

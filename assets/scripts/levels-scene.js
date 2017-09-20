@@ -108,7 +108,14 @@ cc.Class({
                 
             this.scoresContainer.runAction(cc.sequence(
                 cc.delayTime(0.8),
-                scoreIn
+                scoreIn,
+                cc.delayTime(0.5),
+                cc.callFunc(function() {
+                    if (flow.isGameOver && flow.isAdAvailable('gameover')) {
+                        flow.isGameOver = false;
+                        flow.showAd('gameover');
+                    }
+                })
             ));
         }
     },

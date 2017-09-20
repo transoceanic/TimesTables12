@@ -4,7 +4,7 @@ window.G = {
     fadeInDuration: 0.2,
     fadeOutDuration: 0.2,
     answerTimeDuration: 5,
-    rewardedAnswerTimeDuration: 0,
+    rewardedAnswerTimeDuration: 5,
     gameplay: {
         allowed: false,
         bestScore: null,

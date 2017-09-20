@@ -57,7 +57,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        G.rewardedAnswerTimeDuration = 0;
+        flow.clearRewardedTimeout();
 
         // initialization
         this.audioMng = this.audioMng.getComponent('AudioMng');
@@ -346,6 +346,8 @@ cc.Class({
     },
     
     gameOver: function() {
+        flow.isGameOver = true;
+
         this.modalGameOver.getComponent('ModalUI').show();
         this.modalGameOver.getComponent('modal-game-over').setScore(this.score);
     },
@@ -353,11 +355,11 @@ cc.Class({
     update: function (dt) {
         if (this.isCounting) {
             this.counterTimer += dt;
-            this.countdown.progress = this.counterTimer/(G.answerTimeDuration + G.rewardedAnswerTimeDuration);
+            this.countdown.progress = this.counterTimer/(G.answerTimeDuration + flow.getRewardedTimeout());
             this.countdownLabel.string = 
-                parseInt(Math.ceil((G.answerTimeDuration + G.rewardedAnswerTimeDuration) - this.counterTimer), 10);
+                parseInt(Math.ceil((G.answerTimeDuration + flow.getRewardedTimeout()) - this.counterTimer), 10);
             // console.log('this.counterTimer '+this.counterTimer+ ' -------- '+this.countdown.progress+ '    '+G.answerTimeDuration);
-            if (this.counterTimer >= (G.answerTimeDuration + G.rewardedAnswerTimeDuration)) {
+            if (this.counterTimer >= (G.answerTimeDuration + flow.getRewardedTimeout())) {
 
                 for (var i=0; i<this.buttons.length; i++) {
                     this.buttons[i].setInteractable(false);

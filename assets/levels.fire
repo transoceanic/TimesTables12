@@ -1233,7 +1233,7 @@
     },
     "sfIcons": [
       {
-        "__uuid__": "121bc43d-fe61-4ce5-b2bf-c4cc337e618e"
+        "__uuid__": "c43768ac-46c5-4e8d-867e-b2681e33116c"
       },
       {
         "__uuid__": "b9c37f6c-b2b9-4a70-a621-aeed1d499cd0"
@@ -3601,8 +3601,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 55
+      "width": 343.33000000000004,
+      "height": 588.33
     },
     "_rotationX": 0,
     "_rotationY": 0,

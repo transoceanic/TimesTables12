@@ -119,6 +119,7 @@ window.G = {
 
         if (this.debug) {
             // this.gameplay.allowed = false;
+            this.settings.name = null;
             for (let i=0; i<10; i++) {
                 this.levels[i].locked = false;
             }

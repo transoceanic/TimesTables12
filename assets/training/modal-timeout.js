@@ -4,20 +4,25 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        audioMng: cc.Node,
+
         regular: cc.Node,
         suggestion: cc.Node,
-        rewarded: cc.Node
+        rewarded: cc.Node,
+
+        confirmDialog: cc.Node
     },
 
     // use this for initialization
     onLoad: function () {
+        this.audioMng = this.audioMng.getComponent('AudioMng');
     },
 
     prepare: function () {
         flow.clearRewardedTimeout();
 
         this.rewarded.active = false;
-        if (/*1==1|| */flow.isAdAvailable('rewarded')) {
+        if (G.debug || flow.isAdAvailable('rewarded')) {
             this.regular.active = false;
             this.suggestion.active = true;
             this.suggestion.scaleX = 1;
@@ -26,15 +31,28 @@ cc.Class({
         } else {
             this.regular.active = true;
             this.suggestion.active = false;
-
         }
     },
 
+    prepareToClose: function() {
+        this.rewarded.active = false;
+    },
+
     setDoubleTimeout: function() {
+        this.confirmDialog.getComponent('ModalUI').hide();
         if (flow.isAdAvailable('rewarded')) {
             flow.showAd('rewarded', this.reward, this);
+        } else if (G.debug) {
+            this.reward();
         }
-        // this.reward();
+    },
+
+    openConfirmDialog: function() {
+        this.confirmDialog.getComponent('ModalUI').show();
+    },
+
+    closeConfirmDialog: function() {
+        this.confirmDialog.getComponent('ModalUI').hide();
     },
 
     reward: function() {
@@ -60,6 +78,8 @@ cc.Class({
                 self.rewarded.scaleX = 0;
                 self.rewarded.scaleY = 0;
                 self.rewarded.runAction(scaleIn);
+
+                self.audioMng.playWin();
             })
         ));
     }

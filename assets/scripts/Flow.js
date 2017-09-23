@@ -14,7 +14,7 @@ var Flow = function() {
     this.adDismissCallback = null;
     this.adDismissCallbackContext = null;
 
-    if(cc.sys.isMobile) {
+    if(cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
         var self = this;
         sdkbox.PluginAdMob.setListener({
             adViewDidReceiveAd: function(name) {
@@ -49,10 +49,16 @@ var Flow = function() {
 }
 
 Flow.prototype.isAdAvailable = function(name) {
-    return !!this.adStatuses[name];
+    // return !!this.adStatuses[name];
+    if(cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
+        return sdkbox.PluginAdMob.isAvailable(name);
+    }
+
+    return false;
 },
 Flow.prototype.showAd = function(name, callback, context) {
-    if(cc.sys.isMobile && this.adStatuses[name]) {
+    if(cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
+    // if(cc.sys.isMobile && this.adStatuses[name]) {
         sdkbox.PluginAdMob.show(name);
         this.adCurrent = name;
         this.adStatuses[name] = false;

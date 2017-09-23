@@ -337,6 +337,8 @@ cc.Class({
     closeTimeoutAlert: function() {
         this.audioMng.playButton();
 
+        this.modalTimeout.getComponent('modal-timeout').prepareToClose();
+
         this.node.runAction(cc.sequence(
             cc.delayTime( this.modalTimeout.getComponent('ModalUI').hide() ),
             cc.callFunc(function() {

@@ -1,0 +1,65 @@
+{
+    "android": {
+        "AdMob": {
+            "test": false, 
+            "ads": {
+                "gameover": {
+                    "type": "interstitial", 
+                    "id": "ca-app-pub-5124191565541023/9994957798"
+                }, 
+                "home": {
+                    "width": 300, 
+                    "type": "banner", 
+                    "id": "ca-app-pub-5124191565541023/6369260323", 
+                    "alignment": "bottom", 
+                    "height": 50
+                }, 
+                "next_level": {
+                    "type": "interstitial", 
+                    "id": "ca-app-pub-5124191565541023/9994957798"
+                }, 
+                "top_banner": {
+                    "type": "banner", 
+                    "id": "ca-app-pub-5124191565541023/6369260323", 
+                    "alignment": "top"
+                }, 
+                "rewarded": {
+                    "type": "rewarded_video", 
+                    "id": "ca-app-pub-5124191565541023/3032650542"
+                }
+            }
+        }
+    }, 
+    "ios": {
+        "AdMob": {
+            "test": false, 
+            "ads": {
+                "gameover": {
+                    "type": "interstitial", 
+                    "id": "ca-app-pub-5124191565541023/2185638588"
+                }, 
+                "home": {
+                    "width": 300, 
+                    "type": "banner", 
+                    "id": "ca-app-pub-5124191565541023/2341551254", 
+                    "alignment": "bottom", 
+                    "height": 50
+                }, 
+                "next_level": {
+                    "type": "interstitial", 
+                    "id": "ca-app-pub-5124191565541023/2185638588"
+                }, 
+                "top_banner": {
+                    "type": "banner", 
+                    "id": "ca-app-pub-5124191565541023/2341551254", 
+                    "alignment": "top"
+                }, 
+                "rewarded": {
+                    "type": "rewarded_video", 
+                    "real-id": "ca-app-pub-5124191565541023/7352482583",
+                    "id": "ca-app-pub-3940256099942544/1712485313"
+                }
+            }
+        }
+    }
+}

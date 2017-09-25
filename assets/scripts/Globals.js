@@ -1,5 +1,5 @@
 window.G = {
-    debug: true,
+    debug: false,
     
     fadeInDuration: 0.2,
     fadeOutDuration: 0.2,
@@ -119,7 +119,7 @@ window.G = {
 
         if (this.debug) {
             // this.gameplay.allowed = false;
-            this.settings.name = null;
+            // this.settings.name = null;
             for (let i=0; i<10; i++) {
                 this.levels[i].locked = false;
             }

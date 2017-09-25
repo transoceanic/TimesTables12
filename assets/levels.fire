@@ -2528,7 +2528,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 174.05,
+      "width": 420.95,
       "height": 81
     },
     "_rotationX": 0,
@@ -2538,7 +2538,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 8
+      "y": 12
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2565,7 +2565,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "Hello\nAndrey",
+    "_N$string": "Hello\nAndrey Feldmanm",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

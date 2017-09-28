@@ -15,7 +15,7 @@ Utils.prototype.loadJson = function(options) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     
     xhr.onreadystatechange = function() {
-        console.log('----onreadystatechange xhr.status '+xhr.status);
+        // console.log('----onreadystatechange xhr.status '+xhr.status);
         if ( xhr.readyState == 4 ) {
             if ( xhr.status >= 200 && xhr.status <=207 ) {
                 var result = {};
@@ -40,5 +40,10 @@ Utils.prototype.loadJson = function(options) {
         xhr.send();
     }
 }
+
+Utils.prototype.isNoneEnglish = function(text) {
+    return text.search(/[^\u0000-\u007f]/) > -1;
+}
+
 
 module.exports = new Utils();

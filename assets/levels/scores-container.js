@@ -1,4 +1,5 @@
 var flow = require('Flow');
+var Utils = require('Utils');
 
 cc.Class({
     extends: cc.Component,
@@ -9,6 +10,7 @@ cc.Class({
         myScore: cc.Label,
         highScoresBtn: cc.Button,
         nameLabel: cc.Label,
+        noneEnglishNameLabel: cc.Label,
 
         modalHighScores: {
             default: null,
@@ -22,7 +24,13 @@ cc.Class({
 
         this.myScore.string = flow.getMyScore();
 
-        this.nameLabel.string = 'Hello\n' + G.getName() + '!!!';
+        this.nameLabel.string = '';
+        this.noneEnglishNameLabel.string = '';
+        if (Utils.isNoneEnglish(G.getName())) {
+            this.noneEnglishNameLabel.string = G.getName() + '!!!';
+        } else {
+            this.nameLabel.string = G.getName() + '!!!';
+        }
     },
     
     highScores: function() {

@@ -1,5 +1,5 @@
 window.G = {
-    debug: false,
+    debug: true,
     
     fadeInDuration: 0.2,
     fadeOutDuration: 0.2,

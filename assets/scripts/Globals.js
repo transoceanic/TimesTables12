@@ -104,7 +104,7 @@ window.G = {
     },
 
     restoreAll: function() {
-        cc.sys.localStorage.removeItem('levels');
+        // cc.sys.localStorage.removeItem('levels');
         // cc.sys.localStorage.removeItem('settings');
         // cc.sys.localStorage.removeItem('gameplay');
         // cc.sys.localStorage.removeItem('stat');
@@ -118,7 +118,7 @@ window.G = {
         }
 
         if (this.debug) {
-            this.gameplay.allowed = false;
+            // this.gameplay.allowed = false;
             // this.settings.name = null;
             for (let i=0; i<10; i++) {
                 this.levels[i].locked = false;

@@ -6,7 +6,8 @@ cc.Class({
     properties: {
         scoreNode: cc.Node,
         nameNode: cc.Node,
-        noneEngNameNode: cc.Node
+        noneEngNameNode: cc.Node,
+        hand: cc.Node
     },
 
     // use this for initialization
@@ -19,10 +20,14 @@ cc.Class({
         this.noneEngNameLabel.string = '';
     },
 
-    setLabel: function(score, name) {
-        this.scoreLabel.string = score;
+    setLabel: function(score, name, isOwner) {
+        this.hand.active = isOwner;
+        let indent = 75 * +isOwner;
 
-        const indent = this.scoreNode.width + 15;
+        this.scoreLabel.string = score;
+        this.scoreNode.x = indent;
+
+        indent += this.scoreNode.width + 15;
         if (Utils.isNoneEnglish(name)) {
             this.noneEngNameLabel.string = name;
             this.noneEngNameNode.x = indent;

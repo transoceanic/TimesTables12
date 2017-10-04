@@ -9,17 +9,14 @@ var Flow = function() {
     this.rewardedTimeout = 0;
     this.isGameOver = false;
 
-    this.adStatuses = {};
-    this.adCurrent = null;
-    this.adDismissCallback = null;
-    this.adDismissCallbackContext = null;
+    this.adDismissCallback = {};
+    this.adDismissCallbackContext = {};
 
     if(cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
         var self = this;
         sdkbox.PluginAdMob.setListener({
             adViewDidReceiveAd: function(name) {
                 console.log('---------------adViewDidReceiveAd name=' + name);
-                self.adStatuses[name] = true;
             },
             adViewDidFailToReceiveAdWithError: function(name, msg) {
                 console.log('---------------adViewDidFailToReceiveAdWithError name=' + name + ' msg=' + msg);
@@ -32,12 +29,11 @@ var Flow = function() {
             },
             adViewWillDismissScreen: function(name) {
                 console.log('---------------adViewWillDismissScreen=' + name);
-                if (self.adCurrent) {
-                    sdkbox.PluginAdMob.cache(self.adCurrent);
-                    self.adCurrent = null;
-                    if (self.adDismissCallback) {
-                        self.adDismissCallback.call(self.adDismissCallbackContext || this);
-                    }
+                sdkbox.PluginAdMob.cache(name);
+                if (self.adDismissCallback[name]) {
+                    self.adDismissCallback[name].call(self.adDismissCallbackContext[name] || this);
+                    self.adDismissCallback[name] = null;
+                    self.adDismissCallbackContext[name] = null;
                 }
             },
             adViewWillLeaveApplication: function(name) {
@@ -49,7 +45,6 @@ var Flow = function() {
 }
 
 Flow.prototype.isAdAvailable = function(name) {
-    // return !!this.adStatuses[name];
     if(cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
         return sdkbox.PluginAdMob.isAvailable(name);
     }
@@ -58,12 +53,9 @@ Flow.prototype.isAdAvailable = function(name) {
 },
 Flow.prototype.showAd = function(name, callback, context) {
     if(cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
-    // if(cc.sys.isMobile && this.adStatuses[name]) {
         sdkbox.PluginAdMob.show(name);
-        this.adCurrent = name;
-        this.adStatuses[name] = false;
-        this.adDismissCallback = callback;
-        this.adDismissCallbackContext = context;
+        this.adDismissCallback[name] = callback;
+        this.adDismissCallbackContext[name] = context;
     }
 },
 
@@ -139,7 +131,7 @@ Flow.prototype.getMinOfBestScores = function() {
             method: 'GET',
             // data: {name:'Andrey',"score":score},
             success: function(res) {
-                console.log('score/best '+JSON.stringify(res));
+                // console.log('score/best '+JSON.stringify(res));
                 self.min = res;
             },
             error: null
@@ -208,13 +200,5 @@ Flow.prototype.getRewardedTimeout = function(key) {
     return this.rewardedTimeout;
 }
 
-
-// Flow.prototype.setState = function(state) {
-//     this.state = state;
-//     console.log('setState '+this.state);
-// }
-// Flow.prototype.getState = function() {
-//     return this.state;
-// }
 
 module.exports = new Flow();

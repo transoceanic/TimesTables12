@@ -20,6 +20,7 @@ Utils.prototype.loadJson = function(options) {
             if ( xhr.status >= 200 && xhr.status <=207 ) {
                 var result = {};
                 if (xhr.response && typeof(xhr.response) === 'string') {
+                    console.log('------xhr.response - '+xhr.response);
                     try {
                         result = JSON.parse(xhr.response);
                     } catch (e) {}

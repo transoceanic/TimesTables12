@@ -49,10 +49,16 @@ cc.Class({
 	            function(list) {
 			    	self.loader.active = false;
 
-                    if (G.debug) {
-                        list= list.concat(list);
-                        list= list.concat(list);
-                        list= list.concat(list);
+                    if (G.stat[period]) {
+                        let id = G.stat[period].id;
+                        if (id) {
+                            for (var i = list.length - 1; i >= 0; i--) {
+                                if (id === list[i].id) {
+                                    list[i].owner = true;
+                                    break;
+                                }
+                            }
+                        }
                     }
 
                     self.awardsCache[period] = list;
@@ -71,9 +77,9 @@ cc.Class({
             const lineHeight = 40;
             for (let i=0; i<list.length; i++) {
                 let row = cc.instantiate(this.listLabelPrefab);
-                row.setPosition(0, -80 - i * lineHeight);
+                row.setPosition(0, -80 - i * lineHeight );
                 this.scrollView.content.addChild(row);
-                row.getComponent('high-score-list-label').setLabel(list[i].score, list[i].name);
+                row.getComponent('high-score-list-label').setLabel(list[i].score, list[i].name, !!list[i].owner);
             }
             this.scrollView.content.height = list.length * lineHeight + 100;
         } else {

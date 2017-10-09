@@ -19,10 +19,10 @@
     "portrait": true,
     "upsideDown": false
   },
-  "packageName": "org.cocos2d.MultiplicationTableClient",
+  "packageName": "com.abf.office.multiplicationtable.en",
   "privateKey": "",
   "renderMode": "0",
   "startScene": "1194f53f-be08-4b1e-904a-67e1898815e0",
-  "title": "MultiplicationTableClient",
+  "title": "MultiplicationTable",
   "webOrientation": "portrait"
 }

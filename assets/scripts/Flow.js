@@ -26,19 +26,27 @@ var Flow = function() {
             },
             adViewDidDismissScreen: function(name) {
                 console.log('---------------adViewDidDismissScreen name=' + name);
+                sdkbox.PluginAdMob.cache(name);
+                // if (self.adDismissCallback[name]) {
+                //     self.adDismissCallback[name].call(self.adDismissCallbackContext[name] || this);
+                //     self.adDismissCallback[name] = null;
+                //     self.adDismissCallbackContext[name] = null;
+                // }
             },
             adViewWillDismissScreen: function(name) {
                 console.log('---------------adViewWillDismissScreen=' + name);
-                sdkbox.PluginAdMob.cache(name);
+            },
+            adViewWillLeaveApplication: function(name) {
+                console.log('---------------adViewWillLeaveApplication=' + name);
+            },
+            reward: function(name, currency, amount) {
+                console.log('---------------reward=' + name + ' ' + currency + ' ' + amount);
                 if (self.adDismissCallback[name]) {
                     self.adDismissCallback[name].call(self.adDismissCallbackContext[name] || this);
                     self.adDismissCallback[name] = null;
                     self.adDismissCallbackContext[name] = null;
                 }
-            },
-            adViewWillLeaveApplication: function(name) {
-                console.log('---------------adViewWillLeaveApplication=' + name);
-            }
+             }
         });
         sdkbox.PluginAdMob.init();
     }

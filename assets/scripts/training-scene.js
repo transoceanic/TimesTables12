@@ -152,10 +152,12 @@ cc.Class({
                     first: this.numberObj,
                     second: G.levels[i]
                 });
-                this.questions.push({
-                    first: G.levels[i],
-                    second: this.numberObj
-                });
+                if (this.numberObj.number != G.levels[i].number) {
+                    this.questions.unshift({
+                        first: G.levels[i],
+                        second: this.numberObj
+                    });
+                }
             }
         } else {
             // play
@@ -216,7 +218,7 @@ cc.Class({
         }
         
         this.currentQuestion = this.questions.pop();
-        var answer = this.currentQuestion.first.number  * this.currentQuestion.second.number;
+        var answer = this.currentQuestion.first.number * this.currentQuestion.second.number;
         // this.expressionLabel.string = this.currentQuestion.first.number 
         //     + ' x ' + this.currentQuestion.second.number/* + ' = ?'*/;
 
@@ -238,14 +240,26 @@ cc.Class({
         // generate wrong answers
         this.currentQuestion.answer = answer;
         this.currentQuestion.answers = [{string: answer, correct: true}];
-        var simpleAnswers = [answer];
+        let simpleAnswers = [answer],
+        needToOptimize = answer%2 === 0 || answer%5 === 0,
+        optimazedCount = 0;
         while (this.currentQuestion.answers.length < this.buttons.length) {
-            let x = answer + Math.floor( cc.randomMinus1To1() * Math.max(answer, 20)/2 );
+            let x = answer + Math.floor( cc.randomMinus1To1() * Math.max(answer, 30)/2 );
+            if (optimazedCount < 2) {
+                if (answer%10 === 0 && answer >= 30) {
+                    x = parseInt(x/10)*10;
+                } else if (answer%5 === 0 && answer >= 20) {
+                    x = parseInt(x/5)*5;
+                } else if (answer%2 === 0) {
+                    x = parseInt(x/2)*2;
+                }
+            }
             if (simpleAnswers.indexOf(x) == -1//x != answer 
                     && x > 0 
                     && x <= Math.pow(G.levels[G.levels.length-1].number, 2)) {
                 this.currentQuestion.answers.push({string: x, correct: false});
                 simpleAnswers.push(x);
+                optimazedCount++;
             }
         }
         
@@ -329,7 +343,10 @@ cc.Class({
                     return false;
                 }
             }
-            
+
+            this.questions.push(this.currentQuestion);
+            Utils.shuffle(this.questions);
+        
             return true;
         }
     },

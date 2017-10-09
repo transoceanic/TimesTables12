@@ -257,6 +257,7 @@ cc.Class({
             if (simpleAnswers.indexOf(x) == -1//x != answer 
                     && x > 0 
                     && x <= Math.pow(G.levels[G.levels.length-1].number, 2)) {
+                x = parseInt(x);
                 this.currentQuestion.answers.push({string: x, correct: false});
                 simpleAnswers.push(x);
                 optimazedCount++;

@@ -33,6 +33,7 @@ cc.Class({
     playMusic: function() {
         this.isPlaying = true;
         cc.audioEngine.playMusic( this.bgm, true );
+        cc.audioEngine.setMusicVolume(0.2);
     },
 
     pauseMusic: function() {

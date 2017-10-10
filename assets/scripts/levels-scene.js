@@ -16,6 +16,7 @@ cc.Class({
         },
         
         levelsContainer: cc.Node,
+        getLevelsBackBtn: cc.Button,
         
         scoresContainer: cc.Node,
 
@@ -183,6 +184,22 @@ cc.Class({
 
         this.soundOnOff.getComponent('ButtonMultiSprites')
             .updateSprite(+status);
+    },
+
+    getLevelsBack: function() {
+        var scoreOut = cc.moveBy(0.4, cc.p(0, this.scoresContainer.height)).easing(cc.easeCircleActionIn());
+        this.scoresContainer.runAction(scoreOut);
+        
+        var playBtnIn = cc.moveBy(0.6, cc.p(0, -150)).easing(cc.easeCircleActionOut());
+        this.playBtn.node.runAction(playBtnIn);
+
+        var levelsIn = cc.moveBy(0.8, cc.p(0, -900)).easing(cc.easeCircleActionOut());
+                
+        this.levelsContainer.active = true;
+        this.levelsContainer.runAction(cc.sequence(
+            cc.delayTime(0.2),
+            levelsIn
+        ));
     }
 
     // called every frame, uncomment this function to activate update callback

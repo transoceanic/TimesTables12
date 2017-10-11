@@ -3,7 +3,7 @@
   "appSecret": "",
   "excludeScenes": [],
   "includeAnySDK": false,
-  "includeSDKBox": false,
+  "includeSDKBox": true,
   "includeSdk": [
     "anysdk"
   ],

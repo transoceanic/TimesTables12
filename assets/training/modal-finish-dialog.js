@@ -1,3 +1,6 @@
+const i18n = require('LanguageData');
+i18n.init();
+
 cc.Class({
     extends: cc.Component,
 
@@ -21,11 +24,11 @@ cc.Class({
 
         switch (stars) {
             case 0:
-                this.label.string = 'Ups...\nTry Again';
+                this.label.string = i18n.t('errors.try_again');
                 this.lockClosed.active = true;
                 break;
             default:
-                this.label.string = isEndOfTraining ? 'You are ready\nto play now' : 'Next level\nis open';
+                this.label.string = isEndOfTraining ? i18n.t('messages.ready_to_play') : i18n.t('messages.next_level_opened');
                 this.lockOpened.active = true;
                 break;
         }

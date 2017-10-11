@@ -3,6 +3,8 @@ var Utils = require('Utils');
 var DOMAIN = 'https://multiplication-table-server.herokuapp.com/multiplication-table/';
 
 var Flow = function() {
+    // this.i18n = i18n;
+
     this.trainingNumberObj = null;
     // this.state = null;
     this.min = null;

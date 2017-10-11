@@ -1,4 +1,7 @@
-var flow = require('Flow');
+const i18n = require('LanguageData');
+i18n.init();
+
+let flow = require('Flow');
 
 cc.Class({
     extends: cc.Component,
@@ -34,7 +37,7 @@ cc.Class({
         this.scrollView.content.removeAllChildren();
         this.scrollView.content.height = 200;
 
-        this.periodLabel.string = 'of ' + period.charAt(0).toUpperCase() + period.slice(1).toLowerCase();
+        this.periodLabel.string = i18n.t('strings.of') + i18n.t('period.capital.' + period);
 
         if (this.awardsCache[period]) {
 
@@ -67,7 +70,7 @@ cc.Class({
 	            },
 	            function() {
 			    	self.loader.active = false;
-	                self.errorLabel.string = 'Ups...\nTry Again\nLater';
+	                self.errorLabel.string = i18n.t('errors.try_again_later');
 	            });
 		}
     },
@@ -83,7 +86,7 @@ cc.Class({
             }
             this.scrollView.content.height = list.length * lineHeight + 100;
         } else {
-            this.errorLabel.string = 'No\nCompetitors';
+            this.errorLabel.string = i18n.t('errors.no_competitors');
         }
     }
 

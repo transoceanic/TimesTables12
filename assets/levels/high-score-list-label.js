@@ -6,6 +6,8 @@ cc.Class({
     properties: {
         scoreNode: cc.Node,
         nameNode: cc.Node,
+        nameRuNode: cc.Node,
+        nameHeNode: cc.Node,
         noneEngNameNode: cc.Node,
         hand: cc.Node
     },
@@ -14,9 +16,13 @@ cc.Class({
     onLoad: function () {
         this.scoreLabel = this.scoreNode.getComponent(cc.Label);
         this.nameLabel = this.nameNode.getComponent(cc.Label);
+        this.nameRuLabel = this.nameRuNode.getComponent(cc.Label);
+        this.nameHeLabel = this.nameHeNode.getComponent(cc.Label);
         this.noneEngNameLabel = this.noneEngNameNode.getComponent(cc.Label);
 
         this.nameLabel.string = '';
+        this.nameRuLabel.string = '';
+        this.nameHeLabel.string = '';
         this.noneEngNameLabel.string = '';
     },
 
@@ -28,12 +34,18 @@ cc.Class({
         this.scoreNode.x = indent;
 
         indent += this.scoreNode.width + 15;
-        if (Utils.isNoneEnglish(name)) {
-            this.noneEngNameLabel.string = name;
-            this.noneEngNameNode.x = indent;
-        } else {
+        if (Utils.isRussianSet(name)) {
+            this.nameRuLabel.string = name;
+            this.nameRuNode.x = indent;
+        } else if (Utils.isHebrewSet(name)) {
+            this.nameHeLabel.string = Utils.reverseString(name);
+            this.nameHeNode.x = indent;
+        } else if (Utils.isEnglishSet(name)) {
             this.nameLabel.string = name;
             this.nameNode.x = indent;
+        } else {
+            this.noneEngNameLabel.string = name;
+            this.noneEngNameNode.x = indent;
         }
     }
 

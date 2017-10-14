@@ -173,7 +173,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -5,
-      "y": 37
+      "y": 41
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -193,7 +193,7 @@
     "_useOriginalSize": false,
     "_actualFontSize": 80,
     "_fontSize": 80,
-    "_lineHeight": 40,
+    "_lineHeight": 80,
     "_enableWrapText": false,
     "_N$file": {
       "__uuid__": "ec8c8359-78eb-4818-9a35-9b462c2b9045"

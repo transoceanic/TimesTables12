@@ -42,8 +42,20 @@ Utils.prototype.loadJson = function(options) {
     }
 }
 
-Utils.prototype.isNoneEnglish = function(text) {
-    return text.search(/[^\u0000-\u007f]/) > -1;
+Utils.prototype.isEnglishSet = function(text) {
+    // return text.search(/[^\u0000-\u007f]/) > -1;
+    return text.search(/[a-zA-ZàâäèéêëîïôœùûüÿçÀÂÄÈÉÊËÎÏÔŒÙÛÜŸÇæøåÆØÅöÖñáíóúÑÁÍÓÚìòÌÒýÝãõÃÕß]/) > -1;
+}
+
+Utils.prototype.isHebrewSet = function(text) {
+    return text.search(/[א-ת]/) > -1;
+}
+Utils.prototype.reverseString = function(str) {
+    return str.split("").reverse().join("");
+}
+
+Utils.prototype.isRussianSet = function(text) {
+    return text.search(/[а-яА-Я]/) > -1;
 }
 
 

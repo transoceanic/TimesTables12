@@ -10,6 +10,8 @@ cc.Class({
         myScore: cc.Label,
         highScoresBtn: cc.Button,
         nameLabel: cc.Label,
+        nameRuLabel: cc.Label,
+        nameHeLabel: cc.Label,
         noneEnglishNameLabel: cc.Label,
 
         modalHighScores: {
@@ -25,11 +27,18 @@ cc.Class({
         this.myScore.string = flow.getMyScore();
 
         this.nameLabel.string = '';
+        this.nameRuLabel.string = '';
+        this.nameHeLabel.string = '';
         this.noneEnglishNameLabel.string = '';
-        if (Utils.isNoneEnglish(G.getName())) {
-            this.noneEnglishNameLabel.string = G.getName() + '!!!';
-        } else {
+
+        if (Utils.isRussianSet(G.getName())) {
+            this.nameRuLabel.string = G.getName() + '!!!';
+        } else if (Utils.isHebrewSet(G.getName())) {
+            this.nameHeLabel.string = Utils.reverseString(G.getName() + '!!!');
+        } else if (Utils.isEnglishSet(G.getName())) {
             this.nameLabel.string = G.getName() + '!!!';
+        } else {
+            this.noneEnglishNameLabel.string = G.getName() + '!!!';
         }
     },
     

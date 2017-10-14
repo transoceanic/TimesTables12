@@ -17,7 +17,7 @@
         "__id__": 2
       },
       {
-        "__id__": 30
+        "__id__": 31
       }
     ],
     "_tag": -1,
@@ -84,10 +84,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 28
+        "__id__": 29
       },
       {
-        "__id__": 29
+        "__id__": 30
       }
     ],
     "_prefab": null,
@@ -759,16 +759,16 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 23
-      },
-      {
         "__id__": 24
       },
       {
-        "__id__": 26
+        "__id__": 25
       },
       {
         "__id__": 27
+      },
+      {
+        "__id__": 28
       }
     ],
     "_prefab": null,
@@ -821,6 +821,9 @@
     "_components": [
       {
         "__id__": 22
+      },
+      {
+        "__id__": 23
       }
     ],
     "_prefab": null,
@@ -885,6 +888,16 @@
     "_N$overflow": 1
   },
   {
+    "__type__": "744dcs4DCdNprNhG0xwq6FK",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 21
+    },
+    "_enabled": true,
+    "_dataID": "labels.training"
+  },
+  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -941,7 +954,7 @@
     "hoverSprite": null,
     "clickEvents": [
       {
-        "__id__": 25
+        "__id__": 26
       }
     ],
     "_N$interactable": true,
@@ -1037,7 +1050,7 @@
     },
     "_enabled": true,
     "audioMng": {
-      "__id__": 30
+      "__id__": 31
     },
     "labelPrefab": {
       "__uuid__": "e0a3aecb-9e97-4dbf-a845-046328900c25"
@@ -1055,7 +1068,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 31
+        "__id__": 32
       }
     ],
     "_prefab": null,
@@ -1100,7 +1113,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 30
+      "__id__": 31
     },
     "_enabled": true,
     "buttonAudio": {

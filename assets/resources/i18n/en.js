@@ -8,10 +8,13 @@ window.i18n.languages.en={
 	},
 	messages: {
 		ready_to_play: 'You are ready\nto play now',
-		next_level_opened: 'The next level\nis open'
+		next_level_opened: 'The next level\nis open',
+		congrats: 'Congrats!\nYou improved\nyour score',
+		goodTry: 'Good Try'
 	},
 	strings: {
-		of: 'of '
+		of: 'of ',
+		enterYourNamePlaceholder: 'Your name'
 	},
 	period: {
 		capital: {
@@ -24,6 +27,26 @@ window.i18n.languages.en={
 	},
 
 	labels: {
-		hello: 'Hello'
+		score: 'score',
+		hello: 'Hello',
+		period: {
+			uppercase: {
+				day: 'DAY',
+				week: 'WEEK',
+				month: 'MONTH',
+				year: 'YEAR',
+				century: 'CENTURY'
+			}
+		},
+
+		training: 'Go!!!',
+		of: 'of',
+		topOf: 'TOP of',
+
+		timeout: 'Timeout',
+		hurryUp: 'Hurry Up...',
+		moreTime: 'More Time?',
+		bonusReward: 'Bonus\nReward',
+		watchNow: 'Watch Now'
 	}
 };

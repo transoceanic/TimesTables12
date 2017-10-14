@@ -1,3 +1,5 @@
+const i18n = require('LanguageData');
+i18n.init();
 var flow = require('Flow');
 
 cc.Class({
@@ -51,6 +53,7 @@ cc.Class({
             
             if (!G.settings.name) {
                 this.nameRequestContainer.active = true;
+                this.nameRequestContainer.getChildByName('editbox').getComponent(cc.EditBox).placeholder = i18n.t('strings.enterYourNamePlaceholder');
             } else {
                 this.requestForBestScore();
             }
@@ -58,9 +61,9 @@ cc.Class({
         } else {
             this.continueContainer.active = true;
             if (this.isIncrease) {
-                this.message.string = 'Congrats!\nYou improved\nyour score';
+                this.message.string = i18n.t('messages.congrats');
             } else {
-                this.message.string = 'Good Try';
+                this.message.string = i18n.t('messages.goodTry');
             }
 
             // this.bestScoreContainer.active = false;
@@ -101,9 +104,9 @@ cc.Class({
     stopLoader: function(awards) {
         if (!awards || awards.length === 0) {
             if (this.isIncrease) {
-                this.message.string = 'Congrats!\nYou improved\nyour score';
+                this.message.string = i18n.t('messages.congrats');
             } else {
-                this.message.string = 'Good Try';
+                this.message.string = i18n.t('messages.goodTry');
             }
         }
 

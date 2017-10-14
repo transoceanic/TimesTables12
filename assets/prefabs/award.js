@@ -1,3 +1,6 @@
+const i18n = require('LanguageData');
+i18n.init();
+
 cc.Class({
     extends: cc.Component,
 
@@ -18,7 +21,7 @@ cc.Class({
     show: function(award) {
         let artifact = this.artifacts[award.sprite];
         artifact.getChildByName('order').getComponent(cc.Label).string = award.top;
-        artifact.getChildByName('period').getComponent(cc.Label).string = award.period.toUpperCase();
+        artifact.getChildByName('period').getComponent(cc.Label).string = i18n.t('labels.period.uppercase.' + award.period);
         artifact.getChildByName('date-label').getComponent(cc.Label).string = award.date;
 
         artifact.active = true;

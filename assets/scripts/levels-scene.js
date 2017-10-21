@@ -24,6 +24,11 @@ cc.Class({
         awardsPanelPrefab: {
             default: null,
             type: cc.Prefab
+        },
+
+        modalSettings: {
+            default: null,
+            type: cc.Node
         }
 
     },
@@ -187,6 +192,8 @@ cc.Class({
     },
 
     getLevelsBack: function() {
+        this.audioMng.playButton();
+
         var scoreOut = cc.moveBy(0.4, cc.p(0, this.scoresContainer.height)).easing(cc.easeCircleActionIn());
         this.scoresContainer.runAction(scoreOut);
         
@@ -200,7 +207,12 @@ cc.Class({
             cc.delayTime(0.2),
             levelsIn
         ));
-    }
+    },
+
+    settings: function() {
+        this.audioMng.playButton();
+        this.modalSettings.getComponent('ModalUI').show();
+    },
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

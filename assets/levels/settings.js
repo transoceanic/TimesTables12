@@ -18,6 +18,20 @@ cc.Class({
         this.audioMng.playButton();
         this.getComponent('ModalUI').hide();
     },
+    
+    rateUs: function() {
+        this.audioMng.playButton();
+    },
+    
+    contactUs: function() {
+        this.audioMng.playButton();
+        cc.sys.openURL('https://driving-test-landing-pages.herokuapp.com/il/#contact2');
+    },
+    
+    privacyPolicy: function() {
+        this.audioMng.playButton();
+        cc.sys.openURL('https://driving-test-landing-pages.herokuapp.com/il/privacypolicy.html');
+    },
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

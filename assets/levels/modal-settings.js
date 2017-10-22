@@ -7,6 +7,10 @@ cc.Class({
     properties: {
         audioMng: cc.Node,
 
+        modalRateUs: {
+            default: null,
+            type: cc.Node
+        }
     },
 
     // use this for initialization
@@ -21,6 +25,7 @@ cc.Class({
     
     rateUs: function() {
         this.audioMng.playButton();
+        this.modalRateUs.getComponent('ModalUI').show();
     },
     
     contactUs: function() {

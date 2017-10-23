@@ -45,7 +45,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 282.8,
-      "height": 28
+      "height": 70
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -74,7 +74,7 @@
     "_useOriginalSize": false,
     "_actualFontSize": 70,
     "_fontSize": 70,
-    "_lineHeight": 40,
+    "_lineHeight": 100,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "a174a183-e875-4092-9080-a4a8718e5662"

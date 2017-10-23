@@ -38,6 +38,7 @@ window.i18n.languages.en={
 				century: 'CENTURY'
 			}
 		},
+		play: 'Play',
 		privacyPolicy: 'Privacy policy',
 
 		training: 'Go!!!',

@@ -1,5 +1,5 @@
 const i18n = require('LanguageData');
-i18n.init();
+// i18n.init();
 var flow = require('Flow');
 
 cc.Class({

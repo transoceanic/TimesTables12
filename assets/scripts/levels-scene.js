@@ -9,15 +9,15 @@ cc.Class({
         musicOnOff: cc.Button,
         soundOnOff: cc.Button,
         playBtn: cc.Button,
-        
+
         levelButtonGroupPrefab: {
             default: null,
             type: cc.Prefab
         },
-        
+
         levelsContainer: cc.Node,
         getLevelsBackBtn: cc.Button,
-        
+
         scoresContainer: cc.Node,
 
         awardsContainer: cc.Node,
@@ -34,7 +34,7 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad: function () {
+    onLoad: function() {
         flow.getMinOfBestScores();
 
         this.audioMng = this.audioMng.getComponent('AudioMng');
@@ -51,7 +51,7 @@ cc.Class({
         flow.setTrainingNumber(null);
 
         //  cc.game.addPersistRootNode(this.node);
- 
+
         // this.canvas = cc.director.getScene().getChildByName('Canvas');
         this.node.opacity = 0;
         this.node.runAction(
@@ -59,19 +59,19 @@ cc.Class({
         );
 
 
-        for (var i=0; i<G.levels.length; i++) {
+        for (var i = 0; i < G.levels.length; i++) {
             var newLevelButtonGroup = cc.instantiate(this.levelButtonGroupPrefab);
             // newLevelButtonGroup.parent = this.node;
             this.levelsContainer.addChild(newLevelButtonGroup);
             newLevelButtonGroup.setPosition(G.levels[i].position);
-    
+
             var newLevelButtonGroupScript = newLevelButtonGroup.getComponent('level-button-group');
             newLevelButtonGroupScript.setIndex(G.levels[i]);
             newLevelButtonGroupScript.scene = this;
-            
+
             // console.log(i+' '+G.levels[i].stars);
         }
-        
+
         if (flow.isAllowed()) {
             this.playBtn.interactable = true;
 
@@ -83,7 +83,7 @@ cc.Class({
                     // cc.easeQuarticActionInOut()    
                     // cc.easeCubicActionOut()
                 );
-                
+
             this.levelsContainer.runAction(cc.sequence(
                 cc.delayTime(0.2),
                 levelsOut,
@@ -91,7 +91,7 @@ cc.Class({
                     this.levelsContainer.active = false;
                 }.bind(this))
             ));
-            
+
             var playBtnIn = cc.moveBy(0.8, cc.p(0, 150)).easing(cc.easeCircleActionOut());
 
             this.playBtn.node.runAction(cc.sequence(
@@ -109,15 +109,15 @@ cc.Class({
             awardsPanel.getComponent('awards-panel')
                 .addAwards(G.gameplay.awards);
 
-            
+
             var scoreIn = cc.moveBy(0.4, cc.p(0, -this.scoresContainer.height)).easing(cc.easeCircleActionOut());
-                
+
             this.scoresContainer.runAction(cc.sequence(
                 cc.delayTime(0.8),
                 scoreIn,
                 cc.delayTime(0.5),
                 cc.callFunc(function() {
-                    if (flow.isGameOver && flow.isAdAvailable('gameover')) {
+                    if (flow.isShowGameOverAd && flow.isGameOver && flow.isAdAvailable('gameover')) {
                         flow.isGameOver = false;
                         flow.showAd('gameover');
                     }
@@ -132,9 +132,9 @@ cc.Class({
         // return;
 
         this.audioMng.playButton();
-        
+
         flow.setTrainingNumber(numberObj);
-        
+
         // this.node.active = false;
 
         // cc.director.preloadScene('one-number-table', function(err, data) {
@@ -142,11 +142,11 @@ cc.Class({
         //     // console.log('callback preload='+data.scene.children[0].getComponent('one-number-table-scene').number);
         //     data.scene.children[0].getComponent('one-number-table-scene').number = index;
         // });
-         
+
         this.node.runAction(cc.sequence(
             cc.fadeOut(G.fadeOutDuration),
             cc.callFunc(function() {
-               
+
                 // cc.director.loadScene('one-number-table', function(err, data) {
                 //     // console.log('callback load='+data.children[0].getComponent('one-number-table-scene').number);
                 // });
@@ -154,14 +154,14 @@ cc.Class({
             })
         ));
     },
-    
+
     play: function() {
         this.audioMng.playButton();
 
         this.node.runAction(cc.sequence(
             cc.fadeOut(G.fadeOutDuration),
             cc.callFunc(function() {
-               
+
                 // cc.director.loadScene('one-number-table', function(err, data) {
                 //     // console.log('callback load='+data.children[0].getComponent('one-number-table-scene').number);
                 // });
@@ -169,7 +169,7 @@ cc.Class({
             })
         ));
     },
-    
+
     onMusicButtonClicked: function() {
         var status = !flow.getSettings('music');
         flow.setSettings('music', status)
@@ -182,7 +182,7 @@ cc.Class({
         this.musicOnOff.getComponent('ButtonMultiSprites')
             .updateSprite(+status);
     },
-    
+
     onSoundButtonClicked: function() {
         var status = !flow.getSettings('sound');
         flow.setSettings('sound', status)
@@ -196,12 +196,12 @@ cc.Class({
 
         var scoreOut = cc.moveBy(0.4, cc.p(0, this.scoresContainer.height)).easing(cc.easeCircleActionIn());
         this.scoresContainer.runAction(scoreOut);
-        
+
         var playBtnIn = cc.moveBy(0.6, cc.p(0, -150)).easing(cc.easeCircleActionOut());
         this.playBtn.node.runAction(playBtnIn);
 
         var levelsIn = cc.moveBy(0.8, cc.p(0, -900)).easing(cc.easeCircleActionOut());
-                
+
         this.levelsContainer.active = true;
         this.levelsContainer.runAction(cc.sequence(
             cc.delayTime(0.2),

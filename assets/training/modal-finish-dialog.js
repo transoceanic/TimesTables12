@@ -1,5 +1,5 @@
 const i18n = require('LanguageData');
-i18n.init();
+// i18n.init();
 
 cc.Class({
     extends: cc.Component,
@@ -14,10 +14,10 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad: function () {
+    onLoad: function() {
         this.audioMng = this.audioMng.getComponent('AudioMng');
     },
-    
+
     setStars: function(stars, isEndOfTraining) {
         this.rateStarsPlaceholder.getComponent('RateStars')
             .setStars(stars, true, this.audioMng);

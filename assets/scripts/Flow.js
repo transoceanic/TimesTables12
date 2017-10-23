@@ -1,20 +1,20 @@
 var Utils = require('Utils');
 
-var DOMAIN = 'https://multiplication-table-server.herokuapp.com/multiplication-table/';
+var DOMAIN = 'https://multiplication-table-server.herokuapp.com/multiplication-table/10/';
 
 var Flow = function() {
-    // this.i18n = i18n;
-
     this.trainingNumberObj = null;
     // this.state = null;
     this.min = null;
     this.rewardedTimeout = 0;
     this.isGameOver = false;
 
+    this.isShowGameOverAd = true;
+
     this.adDismissCallback = {};
     this.adDismissCallbackContext = {};
 
-    if(cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
+    if (cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
         var self = this;
         sdkbox.PluginAdMob.setListener({
             adViewDidReceiveAd: function(name) {
@@ -43,42 +43,43 @@ var Flow = function() {
             },
             reward: function(name, currency, amount) {
                 console.log('---------------reward=' + name + ' ' + currency + ' ' + amount);
+                self.isShowGameOverAd = false;
                 if (self.adDismissCallback[name]) {
                     self.adDismissCallback[name].call(self.adDismissCallbackContext[name] || this);
                     self.adDismissCallback[name] = null;
                     self.adDismissCallbackContext[name] = null;
                 }
-             }
+            }
         });
         sdkbox.PluginAdMob.init();
     }
 }
 
 Flow.prototype.isAdAvailable = function(name) {
-    if(cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
-        return sdkbox.PluginAdMob.isAvailable(name);
-    }
+        if (cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
+            return sdkbox.PluginAdMob.isAvailable(name);
+        }
 
-    return false;
-},
-Flow.prototype.showAd = function(name, callback, context) {
-    if(cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
-        sdkbox.PluginAdMob.show(name);
-        this.adDismissCallback[name] = callback;
-        this.adDismissCallbackContext[name] = context;
-    }
-},
+        return false;
+    },
+    Flow.prototype.showAd = function(name, callback, context) {
+        if (cc.sys.isMobile && typeof(sdkbox) != 'undefined' && typeof(sdkbox.PluginAdMob) != 'undefined') {
+            sdkbox.PluginAdMob.show(name);
+            this.adDismissCallback[name] = callback;
+            this.adDismissCallbackContext[name] = context;
+        }
+    },
 
-Flow.prototype.setTrainingNumber = function(number) {
-    this.trainingNumberObj = number;
-}
+    Flow.prototype.setTrainingNumber = function(number) {
+        this.trainingNumberObj = number;
+    }
 Flow.prototype.getTrainingNumber = function() {
     return this.trainingNumberObj;
 }
 Flow.prototype.isSendScore = function(score) {
     if (this.min) {
         for (const period in (this.min || {})) {
-            if (this.min[period].min*0.9 < score) {
+            if (this.min[period].min * 0.9 < score) {
                 return true;
             }
         }
@@ -90,22 +91,22 @@ Flow.prototype.isSendScore = function(score) {
 }
 
 Flow.prototype.addStar = function(stars) {
-    this.trainingNumberObj.stars = {count: stars, isNew: true};
-    
+    this.trainingNumberObj.stars = { count: stars, isNew: true };
+
     if (stars > 0 && G.levels.length > this.trainingNumberObj.index + 1) {
         G.levels[this.trainingNumberObj.index + 1].locked = false;
-    } else if (this.trainingNumberObj.index+1 === G.levels.length && !G.gameplay.allowed) {
+    } else if (this.trainingNumberObj.index + 1 === G.levels.length && !G.gameplay.allowed) {
         G.gameplay.allowed = true;
         G.save('gameplay');
     }
-    
+
     G.save('levels');
 }
 
 
 Flow.prototype.setSettings = function(key, value) {
     G.settings[key] = value;
-    
+
     G.save('settings');
 }
 Flow.prototype.getSettings = function(key) {
@@ -122,10 +123,10 @@ Flow.prototype.setMyScore = function(score) {
     if ((G.gameplay.bestScore || 0) < score) {
         G.gameplay.bestScore = score;
         G.save('gameplay');
-        
+
         return true;
     }
-    
+
     return false;
 }
 Flow.prototype.getMyScore = function(score) {
@@ -137,7 +138,7 @@ Flow.prototype.getMinOfBestScores = function() {
     if (!this.min) {
         var self = this;
         Utils.loadJson({
-            url: DOMAIN+'score/best',
+            url: DOMAIN + 'score/best',
             method: 'GET',
             // data: {name:'Andrey',"score":score},
             success: function(res) {
@@ -152,7 +153,7 @@ Flow.prototype.getMinOfBestScores = function() {
 
 Flow.prototype.checkForBestScores = function(score, success, error) {
     Utils.loadJson({
-        url: DOMAIN+'score/update',
+        url: DOMAIN + 'score/update',
         method: 'POST',
         data: {
             name: G.getName(),
@@ -165,7 +166,7 @@ Flow.prototype.checkForBestScores = function(score, success, error) {
 
 
             let awards = [];
-            for (let category of ["century", "year", "month", "week", "day"]) {
+            for (let category of["century", "year", "month", "week", "day"]) {
                 let order = parseInt((G.stat[category] || {}).order);
                 if (!isNaN(order) && order < 100) {
                     awards.push({
@@ -190,7 +191,7 @@ Flow.prototype.checkForBestScores = function(score, success, error) {
 
 Flow.prototype.getHighScores = function(period, success, error) {
     Utils.loadJson({
-        url: DOMAIN+'score/list/'+period,
+        url: DOMAIN + 'score/list/' + period,
         method: 'GET',
         success: function(res) {
             success(res);

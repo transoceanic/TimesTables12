@@ -1,5 +1,17 @@
 window.G = {
     debug: true,
+
+    properties: {
+        domain: 'https://multiplication-table-server.herokuapp.com/',
+        api: 'multiplication-table/',
+        gameType: '10',
+        rate: {
+            iOS: 'itms-apps://itunes.apple.com/us/app/itunes-u/id1020710773?action=write-review',
+            Android: 'market://details?id=com.abf.drivetest'
+        },
+        contactUs: 'game/{gameType}/en/#contact2',
+        privacyPolicy: 'policy/'
+    },
     
     fadeInDuration: 0.2,
     fadeOutDuration: 0.2,

@@ -29,13 +29,13 @@ cc.Class({
     },
     
     contactUs: function() {
-        this.audioMng.playButton();
-        cc.sys.openURL('https://driving-test-landing-pages.herokuapp.com/il/#contact2');
+        this.closeSettings();
+        cc.sys.openURL(G.properties.domain + G.properties.contactUs.replace('{gameType}', G.properties.gameType));
     },
     
     privacyPolicy: function() {
-        this.audioMng.playButton();
-        cc.sys.openURL('https://driving-test-landing-pages.herokuapp.com/il/privacypolicy.html');
+        this.closeSettings();
+        cc.sys.openURL(G.properties.domain + G.properties.privacyPolicy + G.properties.gameType);
     },
 
     // called every frame, uncomment this function to activate update callback

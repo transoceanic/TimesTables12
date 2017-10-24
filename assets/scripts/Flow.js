@@ -1,7 +1,5 @@
 var Utils = require('Utils');
 
-var DOMAIN = 'https://multiplication-table-server.herokuapp.com/multiplication-table/10/';
-
 var Flow = function() {
     this.trainingNumberObj = null;
     // this.state = null;
@@ -138,7 +136,7 @@ Flow.prototype.getMinOfBestScores = function() {
     if (!this.min) {
         var self = this;
         Utils.loadJson({
-            url: DOMAIN + 'score/best',
+            url: G.properties.domain + G.properties.api + G.properties.gameType + '/score/best',
             method: 'GET',
             // data: {name:'Andrey',"score":score},
             success: function(res) {
@@ -153,7 +151,7 @@ Flow.prototype.getMinOfBestScores = function() {
 
 Flow.prototype.checkForBestScores = function(score, success, error) {
     Utils.loadJson({
-        url: DOMAIN + 'score/update',
+        url: G.properties.domain + G.properties.api + G.properties.gameType + '/score/update',
         method: 'POST',
         data: {
             name: G.getName(),
@@ -191,7 +189,7 @@ Flow.prototype.checkForBestScores = function(score, success, error) {
 
 Flow.prototype.getHighScores = function(period, success, error) {
     Utils.loadJson({
-        url: DOMAIN + 'score/list/' + period,
+        url: G.properties.domain + G.properties.api + G.properties.gameType + '/score/list/' + period,
         method: 'GET',
         success: function(res) {
             success(res);

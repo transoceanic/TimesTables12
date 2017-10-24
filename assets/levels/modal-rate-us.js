@@ -14,6 +14,19 @@ cc.Class({
         this.audioMng.playButton();
         this.getComponent('ModalUI').hide();
     },
+    
+    rate: function() {
+        this.close();
+        cc.sys.openURL( G.properties.rate[cc.sys.os] );
+    },
+    
+    remind: function() {
+        // this.audioMng.playButton();
+    },
+    
+    noRate: function() {
+        this.close();
+    },
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

@@ -40,6 +40,10 @@ window.i18n.languages.en={
 		},
 		play: 'Play',
 		privacyPolicy: 'Privacy policy',
+		rateUs: 'Enjoying?\nRate Us',
+		rateBtn: 'Rate',
+		remindBtn: 'Remind Me Later',
+		noRate: 'No, Thanks',
 
 		training: 'Go!!!',
 		of: 'of',

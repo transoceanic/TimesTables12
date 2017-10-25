@@ -27,6 +27,7 @@ window.i18n.languages.en={
 	},
 
 	labels: {
+		loading: 'Loading...',
 		score: 'score',
 		hello: 'Hello',
 		period: {

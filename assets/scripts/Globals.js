@@ -7,7 +7,7 @@ window.G = {
         gameType: '10',
         rate: {
             iOS: 'itms-apps://itunes.apple.com/us/app/itunes-u/id1020710773?action=write-review',
-            Android: 'market://details?id=com.abf.drivetest'
+            Android: 'market://details?id=com.abf.office.multiplicationtable10.en'
         },
         contactUs: 'game/{gameType}/en/#contact2',
         privacyPolicy: 'policy/'

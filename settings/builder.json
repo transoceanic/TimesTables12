@@ -3,7 +3,7 @@
   "appSecret": "",
   "excludeScenes": [],
   "includeAnySDK": false,
-  "includeSDKBox": false,
+  "includeSDKBox": true,
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
   "jailbreakPlatform": false,
@@ -17,10 +17,10 @@
     "portrait": true,
     "upsideDown": false
   },
-  "packageName": "com.abf.office.multiplicationtable.en",
+  "packageName": "com.abf.office.multiplicationtable10.en",
   "privateKey": "",
   "renderMode": "0",
-  "startScene": "1194f53f-be08-4b1e-904a-67e1898815e0",
+  "startScene": "a6ce29b2-688b-4cf6-9fd2-d6368541d97a",
   "title": "MultiplicationTable",
   "webOrientation": "portrait"
 }

@@ -132,7 +132,10 @@ Flow.prototype.getMyScore = function(score) {
 }
 
 
-Flow.prototype.getMinOfBestScores = function() {
+Flow.prototype.getMinOfBestScores = function(success, error) {
+    success = success || function() {};
+    error = error || function() {};
+
     if (!this.min) {
         var self = this;
         Utils.loadJson({
@@ -142,9 +145,12 @@ Flow.prototype.getMinOfBestScores = function() {
             success: function(res) {
                 // console.log('score/best '+JSON.stringify(res));
                 self.min = res;
+                success();
             },
-            error: null
+            error: error
         });
+    } else {
+        success();
     }
 }
 

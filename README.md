@@ -53,6 +53,15 @@ afterEvaluate {
     }
 }
 
+buildTypes {
+    release {
+        lintOptions {
+            disable 'MissingTranslation'
+        }
+    }
+}
+
+
 find all minSdkVersion and replace to 14
 
 find and replace to 26 26.0.1 (according to sdk version)

@@ -2,8 +2,8 @@ if (!window.i18n) window.i18n = {};
 if (!window.i18n.languages) window.i18n.languages = {};
 window.i18n.languages.en={
 	errors: {
-		try_again: 'Ups...\nTry Again',
-		try_again_later: 'Ups...\nTry Again\nLater',
+		try_again: 'ooppss...\nTry Again',
+		try_again_later: 'Problem\nwith\nInternet\nConnection.\nTry Again\nLater',
 		no_competitors: 'No\nCompetitors'
 	},
 	messages: {
@@ -52,7 +52,7 @@ window.i18n.languages.en={
 
 		timeout: 'Timeout',
 		hurryUp: 'Hurry Up...',
-		moreTime: 'More Time?',
+		moreTime: 'Do You Want\nSome More Time?',
 		bonusReward: 'Bonus\nReward',
 		watchNow: 'Watch Now'
 	}

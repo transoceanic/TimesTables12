@@ -143,11 +143,12 @@ Flow.prototype.getMinOfBestScores = function(success, error) {
             method: 'GET',
             // data: {name:'Andrey',"score":score},
             success: function(res) {
-                // console.log('score/best '+JSON.stringify(res));
                 self.min = res;
                 success();
             },
-            error: error
+            error: function() {
+                error();
+            }
         });
     } else {
         success();

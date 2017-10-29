@@ -3739,8 +3739,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 351.8,
-      "height": 60
+      "width": 531.2,
+      "height": 120
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -3748,8 +3748,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 22
+      "x": 6,
+      "y": 9
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -3776,7 +3776,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "More Time?",
+    "_N$string": "Do You Want\nSome More Time?",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

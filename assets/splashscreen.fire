@@ -678,7 +678,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "label",
+    "_name": "sun-ray",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -698,7 +698,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "04sUlAmLVFS70tzIwTUtRM",
+    "_id": "0eZdY+z49BAam4VEZH9QQa",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -715,8 +715,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 349.3,
-      "height": 70
+      "width": 320,
+      "height": 320
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -724,8 +724,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 12,
-      "y": -199
+      "x": -144,
+      "y": 342
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -735,38 +735,58 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 20
     },
     "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 70,
-    "_fontSize": 70,
-    "_lineHeight": 100,
-    "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "a174a183-e875-4092-9080-a4a8718e5662"
+    "_spriteFrame": {
+      "__uuid__": "438670f7-f0b9-44da-8a08-cf55051d302f"
     },
-    "_isSystemFontUsed": false,
-    "_spacingX": 0,
-    "_N$string": "Loading...",
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 0
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": {
+      "__uuid__": "7ad223bf-f1e8-4185-8070-0e4a28b38686"
+    }
   },
   {
-    "__type__": "744dcs4DCdNprNhG0xwq6FK",
+    "__type__": "cc.Widget",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 20
     },
     "_enabled": true,
-    "_dataID": "labels.loading"
+    "isAlignOnce": true,
+    "_target": null,
+    "_alignFlags": 9,
+    "_left": 16,
+    "_right": 0,
+    "_top": -22,
+    "_bottom": 0,
+    "_verticalCenter": 0,
+    "_horizontalCenter": 0,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
+    "_isAbsHorizontalCenter": true,
+    "_isAbsVerticalCenter": true,
+    "_originalWidth": 0,
+    "_originalHeight": 0
   },
   {
     "__type__": "cc.Animation",
@@ -777,11 +797,11 @@
     },
     "_enabled": true,
     "_defaultClip": {
-      "__uuid__": "fed3fdb2-f5fe-451c-8ecb-8c2df10eb2d7"
+      "__uuid__": "ca1267d4-754d-40f5-9862-d80565f7dc5a"
     },
     "_clips": [
       {
-        "__uuid__": "fed3fdb2-f5fe-451c-8ecb-8c2df10eb2d7"
+        "__uuid__": "ca1267d4-754d-40f5-9862-d80565f7dc5a"
       }
     ],
     "playOnLoad": true

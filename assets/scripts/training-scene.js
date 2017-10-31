@@ -272,6 +272,11 @@ cc.Class({
     },
 
     onBackClicked: function() {
+        if (G.gameplay.tutorial.okBtn) {
+            G.gameplay.tutorial.okBtn = false;
+            G.save('gameplay');
+        }
+
         this.audioMng.playButton();
 
         this.node.runAction(cc.sequence(

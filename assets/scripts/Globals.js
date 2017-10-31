@@ -1,5 +1,5 @@
 window.G = {
-    debug: true,
+    debug: false,
 
     properties: {
         domain: 'https://multiplication-table-server.herokuapp.com/',
@@ -18,15 +18,20 @@ window.G = {
     answerTimeDuration: 5,
     rewardedAnswerTimeDuration: 5,
     gameplay: {
+        version: 1,
         allowed: false,
         bestScore: null,
-        awards: []
+        awards: [],
         // {
         //     sprite: 0..3, // gold, silver, bronze, medal
         //     date: '30 jul 2017',
         //     top: 1, // 1,2,3,10,20,30..100
         //     period: 'week', // day, week, month, year, century
         // }
+        tutorial: {
+            level: true,
+            okBtn: true
+        }
     },
     settings: {
         name: null,

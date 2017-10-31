@@ -10,11 +10,15 @@ cc.Class({
         rateStarsPlaceholder: cc.Node,
         lockOpened: cc.Node,
         lockClosed: cc.Node,
-        label: cc.Label
+        label: cc.Label,
+
+        tutorialOkBtn: cc.Node
     },
 
     // use this for initialization
     onLoad: function() {
+        this.tutorialOkBtn.active = G.gameplay.tutorial.okBtn;
+
         this.audioMng = this.audioMng.getComponent('AudioMng');
     },
 

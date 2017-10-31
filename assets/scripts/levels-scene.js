@@ -15,6 +15,8 @@ cc.Class({
             type: cc.Prefab
         },
 
+        tutorialLevel: cc.Node,
+
         levelsContainer: cc.Node,
         getLevelsBackBtn: cc.Button,
 
@@ -36,6 +38,8 @@ cc.Class({
     // use this for initialization
     onLoad: function() {
         // flow.getMinOfBestScores();
+
+        this.tutorialLevel.active = G.gameplay.tutorial.level;
 
         this.audioMng = this.audioMng.getComponent('AudioMng');
         if (flow.getSettings('music')) {
@@ -127,9 +131,10 @@ cc.Class({
     },
 
     chooseLevel: function(numberObj) {
-        // flow.cacheInterstitial();
-        // flow.showInterstitial();
-        // return;
+        if (G.gameplay.tutorial.level) {
+            G.gameplay.tutorial.level = false;
+            G.save('gameplay');
+        }
 
         this.audioMng.playButton();
 

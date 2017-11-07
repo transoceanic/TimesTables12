@@ -20,6 +20,9 @@ var Flow = function() {
             },
             adViewDidFailToReceiveAdWithError: function(name, msg) {
                 console.log('---------------adViewDidFailToReceiveAdWithError name=' + name + ' msg=' + msg);
+                setTimeout(function(){
+                    sdkbox.PluginAdMob.cache(name);
+                }, 10000);
             },
             adViewWillPresentScreen: function(name) {
                 console.log('---------------adViewWillPresentScreen name=' + name);
@@ -27,11 +30,6 @@ var Flow = function() {
             adViewDidDismissScreen: function(name) {
                 console.log('---------------adViewDidDismissScreen name=' + name);
                 sdkbox.PluginAdMob.cache(name);
-                // if (self.adDismissCallback[name]) {
-                //     self.adDismissCallback[name].call(self.adDismissCallbackContext[name] || this);
-                //     self.adDismissCallback[name] = null;
-                //     self.adDismissCallbackContext[name] = null;
-                // }
             },
             adViewWillDismissScreen: function(name) {
                 console.log('---------------adViewWillDismissScreen=' + name);

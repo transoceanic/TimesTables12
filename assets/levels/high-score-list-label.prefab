@@ -177,7 +177,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 6
@@ -203,7 +203,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 83.4,
+      "width": 0,
       "height": 36
     },
     "_rotationX": 0,
@@ -240,7 +240,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "Label",
+    "_N$string": "",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -266,7 +266,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 9
@@ -292,7 +292,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 88.2,
+      "width": 0,
       "height": 36
     },
     "_rotationX": 0,
@@ -329,7 +329,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "Label",
+    "_N$string": "",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -355,7 +355,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 12
@@ -418,7 +418,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "Label",
+    "_N$string": "",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -444,7 +444,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 15
@@ -470,7 +470,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 73.4,
+      "width": 0,
       "height": 120
     },
     "_rotationX": 0,
@@ -505,7 +505,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "Label",
+    "_N$string": "",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -531,7 +531,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 18

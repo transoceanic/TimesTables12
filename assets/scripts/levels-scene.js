@@ -62,6 +62,12 @@ cc.Class({
             cc.fadeIn(G.fadeInDuration)
         );
 
+        const ratio = this.node.height/this.node.width;
+        let self = this;
+        setTimeout(function() {
+            self.playBtn.node.setPosition(self.playBtn.node.position.x, -178 * ratio * ratio + 636 * ratio - 869)
+        }, 0);
+
 
         for (var i = 0; i < G.levels.length; i++) {
             var newLevelButtonGroup = cc.instantiate(this.levelButtonGroupPrefab);

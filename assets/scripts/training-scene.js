@@ -59,6 +59,8 @@ cc.Class({
     onLoad: function () {
         flow.clearRewardedTimeout();
 
+        this.isGameOver = false;
+
         // initialization
         this.audioMng = this.audioMng.getComponent('AudioMng');
 
@@ -279,14 +281,20 @@ cc.Class({
 
         this.audioMng.playButton();
 
-        this.node.runAction(cc.sequence(
-            cc.delayTime( this.modalFinish.getComponent('ModalUI').hide() ),
-            cc.delayTime( this.modalGameOver.getComponent('ModalUI').hide() ),
-            cc.fadeOut(G.fadeOutDuration),
-            cc.callFunc(function() {
-                cc.director.loadScene('levels');
-            })
-        ));
+        if (!this.numberObj && !this.isGameOver) {
+            this.isCounting = false;
+            this.gameOver();
+        } else {
+            this.node.runAction(cc.sequence(
+                cc.delayTime( this.modalFinish.getComponent('ModalUI').hide() ),
+                cc.delayTime( this.modalGameOver.getComponent('ModalUI').hide() ),
+                cc.fadeOut(G.fadeOutDuration),
+                cc.callFunc(function() {
+                    cc.director.loadScene('levels');
+                })
+            ));
+        }
+
     },
 
     chooseAnswer: function(answer) {
@@ -372,6 +380,7 @@ cc.Class({
     
     gameOver: function() {
         flow.isGameOver = true;
+        this.isGameOver = true;
 
         this.modalGameOver.getComponent('ModalUI').show();
         this.modalGameOver.getComponent('modal-game-over').setScore(this.score);

@@ -31,7 +31,7 @@ cc.Class({
             var newLabel = cc.instantiate(this.labelPrefab);
             // newLevelButtonGroup.parent = this.node;
             this.node.addChild(newLabel);
-            newLabel.setPosition(cc.p(0, 340 - i*70));
+            newLabel.setPosition(cc.p(0, 353 - i*67));
             
             newLabel.runAction(cc.sequence(
                     cc.delayTime(0.05*i),

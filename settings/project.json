@@ -1,4 +1,11 @@
 {
+  "cocos-analytics": {
+    "appID": "13798",
+    "appSecret": "959b3ac0037d0f3c2fdce94f8421a9b2",
+    "channel": "",
+    "enable": true,
+    "version": ""
+  },
   "collision-matrix": [
     [
       true
@@ -6,7 +13,25 @@
   ],
   "design-resolution-height": 960,
   "design-resolution-width": 640,
-  "excluded-modules": [],
+  "excluded-modules": [
+    "ParticleSystem",
+    "TiledMap",
+    "Spine Skeleton",
+    "Toggle",
+    "ToggleGroup",
+    "Slider",
+    "VideoPlayer",
+    "WebView",
+    "RichText",
+    "MotionStreak",
+    "Collider",
+    "DragonBones",
+    "Physics",
+    "RenderTexture",
+    "Chipmunk",
+    "Camera",
+    "Intersection"
+  ],
   "fit-height": false,
   "fit-width": true,
   "group-list": [

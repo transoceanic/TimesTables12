@@ -4,10 +4,10 @@ window.G = {
     properties: {
         domain: 'https://multiplication-table-server.herokuapp.com/',
         api: 'multiplication-table/',
-        gameType: '10',
+        gameType: '12',
         rate: {
-            iOS: 'itms-apps://itunes.apple.com/us/app/itunes-u/id1300602174?action=write-review',
-            Android: 'market://details?id=com.abf.office.multiplicationtable10.en'
+            iOS: 'itms-apps://itunes.apple.com/us/app/itunes-u/id1326158628?action=write-review',
+            Android: 'market://details?id=com.abf.office.timestables'
         },
         contactUs: 'game/{gameType}/en#contact2',
         privacyPolicy: 'policy/'
@@ -42,74 +42,88 @@ window.G = {
     levels: [
         {
             index: 0,
-            number: 1,
+            number: 2,
             locked: false,
-            position: cc.p(-140, -250),
+            position: cc.p(-140, -240),
             stars: {count: 0, isNew: false}
         },
         {
             index: 1,
-            number: 2,
+            number: 3,
             locked: true,
-            position: cc.p(0, -210),
+            position: cc.p(0, -200),
             stars: {count: 0, isNew: false}
         },
         {
             index: 2,
-            number: 3,
+            number: 4,
             locked: true,
-            position: cc.p(140, -200),
+            position: cc.p(140, -190),
             stars: {count: 0, isNew: false}
         },
         {
             index: 3,
-            number: 4,
+            number: 5,
             locked: true,
-            position: cc.p(-125, -400),
+            position: cc.p(-125, -390),
             stars: {count: 0, isNew: false}
         },
         {
             index: 4,
-            number: 5,
+            number: 6,
             locked: true,
-            position: cc.p(5, -360),
+            position: cc.p(5, -350),
             stars: {count: 0, isNew: false}
         },
         {
             index: 5,
-            number: 6,
+            number: 7,
             locked: true,
-            position: cc.p(140, -350),
+            position: cc.p(140, -340),
             stars: {count: 0, isNew: false}
         },
         {
             index: 6,
-            number: 7,
+            number: 8,
             locked: true,
-            position: cc.p(-110, -550),
+            position: cc.p(-110, -540),
             stars: {count: 0, isNew: false}
         },
         {
             index: 7,
-            number: 8,
+            number: 9,
             locked: true,
-            position: cc.p(12, -510),
+            position: cc.p(12, -500),
             stars: {count: 0, isNew: false}
         },
         {
             index: 8,
-            number: 9,
+            number: 10,
             locked: true,
-            position: cc.p(140, -500),
+            position: cc.p(140, -490),
             stars: {count: 0, isNew: false}
         },
         {
             index: 9,
-            number: 10,
+            number: 11,
             locked: true,
-            position: cc.p(20, -660),
+            position: cc.p(-45, -670),
             stars: {count: 0, isNew: false}
-        }
+        },
+        {
+            index: 10,
+            number: 12,
+            locked: true,
+            position: cc.p(90, -645),
+            stars: {count: 0, isNew: false}
+        }/*,
+        {
+            index: 11,
+            number: 12,
+            locked: true,
+            position: cc.p(140, -640),
+            stars: {count: 0, isNew: false}
+        }*/
     ],
 
     getName: function() {
@@ -137,8 +151,9 @@ window.G = {
         if (this.debug) {
             // this.gameplay.allowed = false;
             // this.settings.name = null;
-            for (let i=0; i<10; i++) {
+            for (let i=0; i<this.levels.length; i++) {
                 this.levels[i].locked = false;
+                this.levels[i].stars = {count: 3, isNew: false}
             }
         }
     }

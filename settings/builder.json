@@ -1,6 +1,7 @@
 {
   "appKey": "",
   "appSecret": "",
+  "encryptJs": true,
   "excludeScenes": [],
   "includeAnySDK": false,
   "includeSDKBox": false,
@@ -17,10 +18,11 @@
     "portrait": true,
     "upsideDown": false
   },
-  "packageName": "com.abf.office.multiplicationtable10.en",
+  "packageName": "com.abf.office.timestables",
   "privateKey": "",
   "renderMode": "0",
   "startScene": "a6ce29b2-688b-4cf6-9fd2-d6368541d97a",
-  "title": "MultiplicationTable",
-  "webOrientation": "portrait"
+  "title": "TimesTables",
+  "webOrientation": "portrait",
+  "xxteaKey": "6d9f0a1f-f91e-41"
 }
